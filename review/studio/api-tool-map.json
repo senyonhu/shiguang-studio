@@ -1,0 +1,783 @@
+{
+  "kind": "studio-api-tool-map",
+  "generatedAt": "2026-09-30T00:00:00.000Z",
+  "protocolVersions": {
+    "http": "1",
+    "mcp": "2025-06-18",
+    "eventCatalog": 1,
+    "runtimeKernel": 1,
+    "levelProtocol": 1
+  },
+  "sourceOfTruth": [
+    "server/src/tools/registry.ts（工具的 inputSchema 与 handler，同时用于 tools/list 与 /v1/capabilities）",
+    "server/src/api/server.ts（HTTP 路由与作用域要求）",
+    "server/src/edit/actions.ts（事务动作与参数校验）"
+  ],
+  "conventions": {
+    "identity": "操作者、作用域、会话 ID 一律由后台从 Bearer 令牌解析，不接受请求体中的 actor/role 字段。",
+    "idempotency": "事务与撤销按 requestId 幂等；幂等指纹 = sha256(canonical({apiVersion, projectId, operations}))，不含 baseRevision。同 ID 不同内容返回 REQUEST_ID_CONFLICT(409)。",
+    "versionConflict": "baseRevision 与 .studio/state.json 的 revision 不一致时返回 status=conflict、errorCode=REVISION_CONFLICT，HTTP 200 并带当前修订。",
+    "objectVersion": "操作可带 expectedObjectRevision，与 state.objectVersions[objectId] 比较，不一致返回 OBJECT_REVISION_CONFLICT。",
+    "asyncJobs": "当前版本所有接口都是同步短操作；生成/打包类异步 jobId 语义尚未实现（P4/P5）。",
+    "errors": "认证/作用域/暂停/未找到等返回 HTTP 错误 + {error:{code,message,issues}}；事务内容问题返回 HTTP 200 + status=rejected/conflict + issues。",
+    "changedIdsSummary": "事务结果与变更记录中的 changedIds 最多保留 20 个（附 changedIdCount 总数）；完整列表见 .studio/history 事务记录与 studio_get_history（见 KI-030）。"
+  },
+  "tools": [
+    {
+      "tool": "studio_start_preview",
+      "api": "POST /v1/projects/{projectId}/previews",
+      "scopes": [
+        "preview"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_start_preview.inputSchema",
+      "route": "server/src/api/server.ts#handle（previews 分支）",
+      "service": "server/src/preview/service.ts#PreviewService.start → src/runtime/kernel.ts#startRuntime",
+      "persistence": "预览会话保存在后台内存（重启失效），不写工程",
+      "tests": [
+        "tests/studio/integration/p2-preview-export.test.ts › 开始预览返回入口场景、修订与首条对白"
+      ]
+    },
+    {
+      "tool": "studio_preview_action",
+      "api": "POST /v1/projects/{projectId}/previews/{previewId}/actions",
+      "scopes": [
+        "preview"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_preview_action.inputSchema",
+      "route": "server/src/api/server.ts#normalizePreviewAction",
+      "service": "server/src/preview/service.ts#PreviewService.action → src/runtime/kernel.ts#applyRuntimeAction",
+      "persistence": "内存；修订不一致时返回 CONFLICT",
+      "tests": [
+        "tests/studio/integration/p2-preview-export.test.ts › 关卡完成消息推进到结局，重复完成消息不重复推进"
+      ]
+    },
+    {
+      "tool": "studio_get_preview",
+      "api": "GET /v1/projects/{projectId}/previews/{previewId}",
+      "scopes": [
+        "preview"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_get_preview.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/preview/service.ts#PreviewService.summary",
+      "persistence": "只读",
+      "tests": [
+        "tests/studio/integration/p2-preview-export.test.ts › 预览服务不引入自己的推进逻辑：结果与直接运行共用内核一致"
+      ]
+    },
+    {
+      "tool": "studio_render_preview",
+      "api": "POST /v1/projects/{projectId}/previews/{previewId}/render",
+      "scopes": [
+        "preview"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_render_preview.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/preview/service.ts#PreviewService.render",
+      "persistence": "写 .studio/previews/<previewId>-NNN.html 与 .json（结构化舞台快照，非像素级渲染）",
+      "tests": [
+        "tests/studio/integration/p2-preview-export.test.ts › 渲染产物写出结构化舞台快照文件"
+      ],
+      "purpose": "生成预览产物：默认结构化舞台快照；format=pixel 时额外生成 PNG 截图（可选能力，失败返回 RENDER_UNAVAILABLE）",
+      "paidServiceNote": "像素渲染使用本机浏览器，不访问外部服务。"
+    },
+    {
+      "tool": "studio_export_project",
+      "api": "POST /v1/projects/{projectId}/exports",
+      "scopes": [
+        "export"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_export_project.inputSchema",
+      "route": "server/src/api/server.ts#handle（exports 分支）",
+      "service": "server/src/publisher/service.ts#exportProject",
+      "persistence": "写工程 exports/<exportId>/（内容、素材、展示器、manifest.json、serve.mjs）",
+      "tests": [
+        "tests/studio/integration/p2-preview-export.test.ts › 导出发布包并检查完整性、敏感信息与素材缺失",
+        "tests/e2e/p2-player.spec.ts › 展示器从发布包运行完整路线：对白 → 选择 → 关卡 → 结局"
+      ]
+    },
+    {
+      "tool": "studio_list_exports",
+      "api": "GET /v1/projects/{projectId}/exports",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_list_exports.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/publisher/service.ts#listExports",
+      "persistence": "只读发布包 manifest",
+      "tests": [
+        "tests/studio/integration/p2-preview-export.test.ts › 发布包内容包含关卡程序与登记素材，且内容包记录了修订"
+      ]
+    },
+    {
+      "tool": "studio_register_level",
+      "api": "POST /v1/projects/{projectId}/transactions（action=level.register）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_register_level.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/actions.ts#level.register",
+      "persistence": "commitTransaction",
+      "tests": [
+        "tests/studio/integration/p2-preview-export.test.ts › 发布包内容包含关卡程序与登记素材，且内容包记录了修订"
+      ]
+    },
+    {
+      "tool": "studio_install_level",
+      "api": "POST /v1/projects/{projectId}/transactions（action=level.installProgram）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_install_level.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/actions.ts#level.installProgram",
+      "persistence": "commitTransaction（二进制随事务写入 levels/<levelId>.html）",
+      "tests": [
+        "tests/e2e/p2-player.spec.ts › 展示器从发布包运行完整路线：对白 → 选择 → 关卡 → 结局"
+      ]
+    },
+    {
+      "tool": "studio_get_capabilities",
+      "api": "GET /v1/capabilities",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_get_capabilities.inputSchema",
+      "route": "server/src/api/server.ts#handle（capabilities 分支）",
+      "service": "server/src/api/server.ts#capabilities",
+      "persistence": "无（只读）",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › capabilities 如实声明能力（预览/媒体尚未实现）"
+      ]
+    },
+    {
+      "tool": "studio_list_projects",
+      "api": "GET /v1/projects",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_list_projects.inputSchema",
+      "route": "server/src/api/server.ts#handle（projects 分支）",
+      "service": "server/src/store/workspace.ts#listProjects",
+      "persistence": "只读 projects.json 与工程目录",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › 开启自动启动时 MCP 可以拉起后台并完成查询"
+      ]
+    },
+    {
+      "tool": "studio_open_project",
+      "api": "GET /v1/projects/{projectId}",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_open_project.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/service.ts#EditService.snapshot + server/src/store/workspace.ts#summarizeProject",
+      "persistence": "只读",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › 打开工程读到当前修订"
+      ]
+    },
+    {
+      "tool": "studio_get_project",
+      "api": "GET /v1/projects/{projectId}/outline",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_get_project.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "src/runtime/content.ts#sceneOutline",
+      "persistence": "只读",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › MCP 可以继续创建第二章与场景，形成两章结构"
+      ]
+    },
+    {
+      "tool": "studio_read_scene",
+      "api": "GET /v1/projects/{projectId}/scenes/{sceneId}",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_read_scene.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/service.ts#EditService.sceneDetail",
+      "persistence": "只读",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › 重启后 MCP 新进程读到同一工程与同一条对白"
+      ]
+    },
+    {
+      "tool": "studio_search",
+      "api": "GET /v1/projects/{projectId}/search?q=",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_search.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/api/server.ts#searchProject",
+      "persistence": "只读",
+      "tests": []
+    },
+    {
+      "tool": "studio_list_assets",
+      "api": "GET /v1/projects/{projectId}/assets",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_list_assets.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/service.ts#EditService.snapshot",
+      "persistence": "只读 assets/manifest.json",
+      "tests": []
+    },
+    {
+      "tool": "studio_create_chapter",
+      "api": "POST /v1/projects/{projectId}/transactions（action=chapter.create）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_create_chapter.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/service.ts#EditService.applyTransaction → server/src/edit/actions.ts#chapter.create",
+      "persistence": "server/src/store/journal.ts#commitTransaction",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › MCP 可以继续创建第二章与场景，形成两章结构",
+        "tests/studio/unit/edit-service.test.ts › 可以建立两章分支剧情"
+      ]
+    },
+    {
+      "tool": "studio_create_scene",
+      "api": "POST /v1/projects/{projectId}/transactions（action=scene.create）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_create_scene.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/actions.ts#scene.create",
+      "persistence": "commitTransaction",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › MCP 可以继续创建第二章与场景，形成两章结构"
+      ]
+    },
+    {
+      "tool": "studio_insert_event",
+      "api": "POST /v1/projects/{projectId}/transactions（action=event.insert）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_insert_event.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/actions.ts#event.insert",
+      "persistence": "commitTransaction",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › 插入对白后修订递增并落盘",
+        "tests/studio/integration/p0-mcp-authoring.test.ts › 同参数重试复用 requestId，不重复创建"
+      ]
+    },
+    {
+      "tool": "studio_update_event",
+      "api": "POST /v1/projects/{projectId}/transactions（action=event.update）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_update_event.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/actions.ts#event.update",
+      "persistence": "commitTransaction",
+      "tests": [
+        "tests/studio/unit/edit-service.test.ts › 对象级期望版本可以阻止覆盖后续修改"
+      ]
+    },
+    {
+      "tool": "studio_delete_event",
+      "api": "POST /v1/projects/{projectId}/transactions（action=event.delete）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_delete_event.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/actions.ts#event.delete",
+      "persistence": "commitTransaction",
+      "tests": []
+    },
+    {
+      "tool": "studio_apply_changes",
+      "api": "POST /v1/projects/{projectId}/transactions",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_apply_changes.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/service.ts#EditService.applyTransaction",
+      "persistence": "commitTransaction",
+      "tests": [
+        "tests/studio/unit/edit-service.test.ts › 事务中一项非法则整体不提交"
+      ]
+    },
+    {
+      "tool": "studio_import_asset",
+      "api": "POST /v1/projects/{projectId}/transactions（action=asset.registerFromFile）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_import_asset.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/actions.ts#asset.registerFromFile + server/src/media/decode.ts#decodeAsset",
+      "persistence": "commitTransaction（二进制随事务写入 assets/originals）",
+      "tests": [
+        "tests/studio/unit/edit-service.test.ts › 从授权目录导入图片并绑定到背景事件",
+        "tests/studio/unit/edit-service.test.ts › 未授权路径被拒绝且不写入素材"
+      ]
+    },
+    {
+      "tool": "studio_bind_asset",
+      "api": "POST /v1/projects/{projectId}/transactions（action=asset.bind）",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_bind_asset.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/actions.ts#asset.bind",
+      "persistence": "commitTransaction",
+      "tests": [
+        "tests/studio/unit/edit-service.test.ts › 从授权目录导入图片并绑定到背景事件"
+      ]
+    },
+    {
+      "tool": "studio_validate_project",
+      "api": "GET /v1/projects/{projectId}/validate",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_validate_project.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "src/runtime/content.ts#validateStory",
+      "persistence": "只读",
+      "tests": [
+        "tests/studio/integration/p0-mcp-authoring.test.ts › 校验工程无结构问题并保存检查点"
+      ]
+    },
+    {
+      "tool": "studio_get_changes",
+      "api": "GET /v1/projects/{projectId}/changes?after=",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_get_changes.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/service.ts#EditService.changes",
+      "persistence": "只读 .studio/state.json 的 changes 环",
+      "tests": [
+        "tests/studio/integration/p0-security.test.ts › 增量查询返回序号大于 after 的变更"
+      ]
+    },
+    {
+      "tool": "studio_get_history",
+      "api": "GET /v1/projects/{projectId}/history",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_get_history.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/store/journal.ts#readHistory",
+      "persistence": "只读 .studio/history",
+      "tests": [
+        "tests/studio/unit/edit-service.test.ts › 历史记录包含操作与补偿操作"
+      ]
+    },
+    {
+      "tool": "studio_undo",
+      "api": "POST /v1/projects/{projectId}/undo",
+      "scopes": [
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_undo.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/service.ts#EditService.undo",
+      "persistence": "commitTransaction（补偿事务）",
+      "tests": [
+        "tests/studio/unit/edit-service.test.ts › 撤销不覆盖后续无关修改",
+        "tests/studio/unit/edit-service.test.ts › 后续修改了同一对象时返回依赖冲突"
+      ]
+    },
+    {
+      "tool": "studio_save_project",
+      "api": "POST /v1/projects/{projectId}/checkpoints",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_save_project.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "server/src/edit/service.ts#EditService.checkpoint",
+      "persistence": "写 .studio/snapshots/<revision>-<time>.json 并回读 state.json",
+      "tests": [
+        "tests/studio/unit/edit-service.test.ts › 检查点返回已落盘的修订与内容指纹",
+        "tests/studio/integration/p0-mcp-authoring.test.ts › 校验工程无结构问题并保存检查点"
+      ]
+    },
+    {
+      "tool": "studio_get_event_catalog",
+      "api": "GET /v1/capabilities",
+      "scopes": [
+        "read"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "inputSchema": "server/src/tools/registry.ts#studio_get_event_catalog.inputSchema",
+      "route": "server/src/api/server.ts#handle",
+      "service": "src/runtime/events.ts#EVENT_SPECS",
+      "persistence": "只读",
+      "tests": []
+    },
+    {
+      "tool": "studio_list_media_providers",
+      "api": "GET /v1/media/providers",
+      "scopes": [
+        "generate"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "paidServiceNote": "当前只有测试适配器 fixture-local（isTestAdapter=true，不访问网络、不产生费用）；真实服务未接入。",
+      "inputSchema": "server/src/tools/registry.ts#studio_list_media_providers.inputSchema",
+      "route": "server/src/api/server.ts#handle（media-jobs / jobs 分支）",
+      "service": "server/src/media/jobs.ts#MediaJobService",
+      "persistence": ".studio/jobs/<jobId>.json、.studio/jobs/budget.json、assets/candidates/<jobId>/",
+      "tests": [
+        "tests/studio/integration/p4-media-jobs.test.ts"
+      ],
+      "purpose": "能力声明（含 isTestAdapter 标记）"
+    },
+    {
+      "tool": "studio_estimate_media",
+      "api": "POST /v1/projects/{projectId}/media-jobs/estimate",
+      "scopes": [
+        "generate"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "paidServiceNote": "当前只有测试适配器 fixture-local（isTestAdapter=true，不访问网络、不产生费用）；真实服务未接入。",
+      "inputSchema": "server/src/tools/registry.ts#studio_estimate_media.inputSchema",
+      "route": "server/src/api/server.ts#handle（media-jobs / jobs 分支）",
+      "service": "server/src/media/jobs.ts#MediaJobService",
+      "persistence": ".studio/jobs/<jobId>.json、.studio/jobs/budget.json、assets/candidates/<jobId>/",
+      "tests": [
+        "tests/studio/integration/p4-media-jobs.test.ts"
+      ],
+      "purpose": "校验 + 费用估算 + 预算状态"
+    },
+    {
+      "tool": "studio_create_media_job",
+      "api": "POST /v1/projects/{projectId}/media-jobs",
+      "scopes": [
+        "generate"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "paidServiceNote": "当前只有测试适配器 fixture-local（isTestAdapter=true，不访问网络、不产生费用）；真实服务未接入。",
+      "inputSchema": "server/src/tools/registry.ts#studio_create_media_job.inputSchema",
+      "route": "server/src/api/server.ts#handle（media-jobs / jobs 分支）",
+      "service": "server/src/media/jobs.ts#MediaJobService",
+      "persistence": ".studio/jobs/<jobId>.json、.studio/jobs/budget.json、assets/candidates/<jobId>/",
+      "tests": [
+        "tests/studio/integration/p4-media-jobs.test.ts"
+      ],
+      "purpose": "提交生成任务（幂等按 requestId）"
+    },
+    {
+      "tool": "studio_get_job",
+      "api": "GET /v1/jobs/{jobId}",
+      "scopes": [
+        "generate"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "paidServiceNote": "当前只有测试适配器 fixture-local（isTestAdapter=true，不访问网络、不产生费用）；真实服务未接入。",
+      "inputSchema": "server/src/tools/registry.ts#studio_get_job.inputSchema",
+      "route": "server/src/api/server.ts#handle（media-jobs / jobs 分支）",
+      "service": "server/src/media/jobs.ts#MediaJobService",
+      "persistence": ".studio/jobs/<jobId>.json、.studio/jobs/budget.json、assets/candidates/<jobId>/",
+      "tests": [
+        "tests/studio/integration/p4-media-jobs.test.ts"
+      ],
+      "purpose": "查询状态、阶段、候选与错误"
+    },
+    {
+      "tool": "studio_list_jobs",
+      "api": "GET /v1/projects/{projectId}/media-jobs",
+      "scopes": [
+        "generate"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "paidServiceNote": "当前只有测试适配器 fixture-local（isTestAdapter=true，不访问网络、不产生费用）；真实服务未接入。",
+      "inputSchema": "server/src/tools/registry.ts#studio_list_jobs.inputSchema",
+      "route": "server/src/api/server.ts#handle（media-jobs / jobs 分支）",
+      "service": "server/src/media/jobs.ts#MediaJobService",
+      "persistence": ".studio/jobs/<jobId>.json、.studio/jobs/budget.json、assets/candidates/<jobId>/",
+      "tests": [
+        "tests/studio/integration/p4-media-jobs.test.ts"
+      ],
+      "purpose": "任务列表与预算"
+    },
+    {
+      "tool": "studio_cancel_job",
+      "api": "POST /v1/jobs/{jobId}/cancel",
+      "scopes": [
+        "generate"
+      ],
+      "mutatesProject": false,
+      "paidService": false,
+      "paidServiceNote": "当前只有测试适配器 fixture-local（isTestAdapter=true，不访问网络、不产生费用）；真实服务未接入。",
+      "inputSchema": "server/src/tools/registry.ts#studio_cancel_job.inputSchema",
+      "route": "server/src/api/server.ts#handle（media-jobs / jobs 分支）",
+      "service": "server/src/media/jobs.ts#MediaJobService",
+      "persistence": ".studio/jobs/<jobId>.json、.studio/jobs/budget.json、assets/candidates/<jobId>/",
+      "tests": [
+        "tests/studio/integration/p4-media-jobs.test.ts"
+      ],
+      "purpose": "请求取消（服务确认后才为已取消）"
+    },
+    {
+      "tool": "studio_accept_media_output",
+      "api": "POST /v1/projects/{projectId}/media-jobs/{jobId}/accept",
+      "scopes": [
+        "generate",
+        "edit"
+      ],
+      "mutatesProject": true,
+      "paidService": false,
+      "paidServiceNote": "当前只有测试适配器 fixture-local（isTestAdapter=true，不访问网络、不产生费用）；真实服务未接入。",
+      "inputSchema": "server/src/tools/registry.ts#studio_accept_media_output.inputSchema",
+      "route": "server/src/api/server.ts#handle（media-jobs / jobs 分支）",
+      "service": "server/src/media/jobs.ts#MediaJobService + server/src/media/accept.ts#acceptMediaOutput",
+      "persistence": "commitTransaction（素材登记与绑定）+ .studio/jobs/<jobId>.json 回写",
+      "tests": [
+        "tests/studio/integration/p4-media-jobs.test.ts"
+      ],
+      "purpose": "登记素材 + 绑定剧情（同一事务；冲突整体拒绝）"
+    }
+  ],
+  "humanUiOperations": [
+    {
+      "ui": "src/studio/live/LiveStudio.vue#connect",
+      "api": "POST /v1/ui-session、GET /v1/health",
+      "scopes": "无（本机来源白名单）"
+    },
+    {
+      "ui": "src/studio/live/LiveStudio.vue#refreshOutline",
+      "api": "GET /v1/projects/{id}/outline、GET /v1/projects/{id}/assets、GET /v1/projects/{id}/validate",
+      "scopes": "read"
+    },
+    {
+      "ui": "src/studio/live/LiveStudio.vue#refreshScene",
+      "api": "GET /v1/projects/{id}/scenes/{sceneId}",
+      "scopes": "read"
+    },
+    {
+      "ui": "src/studio/live/LiveStudio.vue#submitDraft",
+      "api": "POST /v1/projects/{id}/transactions（event.update）",
+      "scopes": "edit"
+    },
+    {
+      "ui": "src/studio/live/LiveStudio.vue#insertEvent",
+      "api": "POST /v1/projects/{id}/transactions（event.insert）",
+      "scopes": "edit"
+    },
+    {
+      "ui": "src/studio/live/LiveStudio.vue#deleteSelected",
+      "api": "POST /v1/projects/{id}/transactions（event.delete）",
+      "scopes": "edit"
+    },
+    {
+      "ui": "src/studio/live/LiveStudio.vue#undoLast",
+      "api": "POST /v1/projects/{id}/undo",
+      "scopes": "edit"
+    },
+    {
+      "ui": "src/studio/live/LiveStudio.vue#toggleAiSession",
+      "api": "GET /v1/ai-sessions、POST /v1/ai-sessions/{id}/pause|resume",
+      "scopes": "edit + human-ui 通道"
+    },
+    {
+      "ui": "src/studio/live/LiveStudio.vue#watchChanges",
+      "api": "GET /v1/projects/{id}/events（SSE）",
+      "scopes": "read"
+    }
+  ],
+  "httpEndpointsNotExposedAsTools": [
+    {
+      "api": "GET /v1/health",
+      "purpose": "健康检查与发现校验",
+      "auth": "无（仅本机 Host）"
+    },
+    {
+      "api": "POST /v1/sessions",
+      "purpose": "使用本机配对密钥建立有作用域会话",
+      "auth": "配对密钥"
+    },
+    {
+      "api": "POST /v1/ui-session",
+      "purpose": "本地人工界面会话（来源白名单，作用域不含 admin）",
+      "auth": "Origin 白名单"
+    },
+    {
+      "api": "GET /v1/sessions、POST /v1/sessions/{id}/pause|resume、DELETE /v1/sessions/{id}",
+      "purpose": "会话管理",
+      "auth": "admin"
+    },
+    {
+      "api": "GET /v1/ai-sessions、POST /v1/ai-sessions/{id}/pause|resume",
+      "purpose": "人工界面暂停/恢复 AI 会话写入",
+      "auth": "edit + human-ui 通道"
+    },
+    {
+      "api": "GET /v1/projects/{id}/assets/{assetId}/raw",
+      "purpose": "读取素材二进制供界面显示",
+      "auth": "read"
+    },
+    {
+      "api": "GET /v1/projects/{id}/transactions/{requestId}",
+      "purpose": "按 requestId 查询既有提交结果",
+      "auth": "read"
+    },
+    {
+      "api": "GET /v1/projects/{id}/previews、DELETE /v1/projects/{id}/previews/{previewId}",
+      "purpose": "列出/关闭预览会话（启动、动作与渲染有对应工具）",
+      "auth": "preview"
+    },
+    {
+      "api": "POST /v1/projects/{id}/checkpoints",
+      "purpose": "写入保存检查点并回读 state.json",
+      "auth": "read"
+    }
+  ],
+  "pluginPackage": {
+    "directory": "plugin/studio-author",
+    "manifest": "plugin/studio-author/.codex-plugin/plugin.json（字段待宿主规范核对，manifestStatus.state=unverified_host_schema）",
+    "connection": "plugin/studio-author/.mcp.json（stdio 启动 server/mcp-stdio.mjs；含 ${PLUGIN_DIR}/${STUDIO_WORKSPACE} 占位符，不含密钥）",
+    "skill": "plugin/studio-author/skills/studio-author/SKILL.md（frontmatter: name/description，与本机 resources/runtime/office-skills/*/SKILL.md 格式一致）",
+    "references": [
+      "skills/studio-author/references/project-model.md",
+      "skills/studio-author/references/media-workflow.md"
+    ],
+    "serverBuildArtifact": "plugin/studio-author/server/mcp-stdio.mjs（npm run build:plugin，esbuild 打包；结构检查确认不含写文件 API）",
+    "checks": "scripts/studio-plugin-check.mjs（必需文件、frontmatter、Skill 仅引用工具名、无写文件 API、无凭据）",
+    "tests": [
+      "tests/studio/integration/p3-plugin-authoring.test.ts"
+    ],
+    "notVerified": [
+      "目标宿主能否加载插件与 Skill（KI-001）",
+      "宿主清单/连接配置字段名（KI-022）"
+    ]
+  },
+  "gaps": [
+    {
+      "item": "真实图片/视频服务接入",
+      "status": "未实现（只有明确标注的测试适配器；无凭据与额度）",
+      "requirement": "MEDIA-006"
+    },
+    {
+      "item": "查询/下载自动重试退避与次数上限",
+      "status": "未实现（unknown 状态需人工确认后重试，避免重复付费）",
+      "requirement": "MEDIA-002 / KI-023"
+    },
+    {
+      "item": "播放副本（derived）与转码缩略图",
+      "status": "未实现（发布包直接用原始产物）",
+      "requirement": "MEDIA-005 / KI-024"
+    },
+    {
+      "item": "音频/视频播放与关卡快照恢复",
+      "status": "未实现（展示器明确返回 AUDIO/VIDEO_NOT_IMPLEMENTED 并按事件策略继续）",
+      "requirement": "RUNTIME-003 / RUNTIME-006 / RUNTIME-007"
+    },
+    {
+      "item": "像素级渲染产物",
+      "status": "未实现；studio_render_preview 只产出结构化舞台快照",
+      "requirement": "RUNTIME-005"
+    },
+    {
+      "item": "变量、角色、关卡的面板操作",
+      "status": "后台动作已实现（含 studio_register_level / studio_install_level），界面未提供；无专用用例",
+      "requirement": "EDIT-012"
+    },
+    {
+      "item": "gap=true 的变更流截断路径",
+      "status": "实现存在但无用例覆盖",
+      "requirement": "EDIT-009 / KI-004"
+    },
+    {
+      "item": "工具 studio_search / studio_list_assets / studio_delete_event / studio_get_event_catalog",
+      "status": "已实现但无专用用例（同链路其它用例间接覆盖）",
+      "requirement": "PLUGIN-003 / KI-013"
+    },
+    {
+      "item": "目标宿主插件清单与 Skill 加载",
+      "status": "未实现",
+      "requirement": "PLUGIN-004 / PLUGIN-005 / PLUGIN-006"
+    },
+    {
+      "item": "Windows 安装包/完全离线运行包",
+      "status": "未实现；当前是可运行目录 + 静态服务器脚本",
+      "requirement": "RELEASE-001 / RELEASE-002"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "task_id": "tower_light_03", "task_revision": "tower-c11-1.1", "title": "点亮整座塔", "goal": "用同一份代码验证 n=0、1、3、6 四条回路。", "template_id": "loop-v1", "editable_region": "整个循环片段", "initial_fragment": "for (int i = 1; i <= n; i++) {\n    printf(\"%d\\n\", i);\n}", "allowed_trial_inputs": [0, 1, 2, 3, 4, 5, 6], "cases": [0, 1, 3, 6], "output_protocol_version": 1,
+  "hints": ["同一份代码要适应不同灯数，不只适应 3 盏灯。", "看看循环条件是否用了 n，输入 0 时是否会进入循环。", "从 i=1 开始，在 i<=n 时继续。n=0 时第一次判断就不成立。"],
+  "knowledge": "输入范围为整数 0—6。四组样例通过，不等于证明程序对所有输入都正确。"
+}

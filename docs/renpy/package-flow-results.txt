@@ -1,0 +1,32 @@
+[rpytest] [log] Running 2 test(s) marked with 'only' flag.
+[rpytest] [log] - global.tower_flow
+[rpytest] [log] - global.tower_flow
+
+[rpytest] Starting test run
+[rpytest] Platform:      Windows-11-10.0.26200-SP0
+[rpytest] Python:        3.12.7
+[rpytest] Ren'Py:        Ren'Py 8.5.3.26051504
+[rpytest] Game Version:  1.1.0
+
+[rpytest] [exc] + global
+[rpytest] [exc]   + tower_flow
+[rpytest] [exc]     - complete_journey
+EDITOR ROUNDTRIP: 'for (int i = 1; i <= n; i++) {\nprintf("%d\\n", i);\n}'
+[rpytest] [exc]     - complete_journey (26.041 s)
+
+[rpytest] Test outcomes (Detailed)
+[rpytest] PASSED  global               - (26.558 s)
+[rpytest]   PASSED  tower_flow           - (26.047 s)
+[rpytest]     PASSED  complete_journey     - (26.041 s)
+
+====================
+
+[rpytest] Test outcomes (Summary)
+[rpytest] Test suites:     3 |     2 passed |     0 xfailed |     0 failed |     0 xpassed |     1 skipped |     0 not run
+[rpytest] Test cases :     2 |     1 passed |     0 xfailed |     0 failed |     0 xpassed |     1 skipped |     0 not run
+[rpytest] Test hooks :     1 |     1 passed |     0 xfailed |     0 failed |     0 xpassed |     0 skipped |     0 not run
+[rpytest] Assertions :     9 |     9 passed |     0 xfailed |     0 failed |     0 xpassed | 
+
+[rpytest] Time: 26.558 s
+[rpytest] Status: PASSED 
+

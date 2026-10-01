@@ -1,0 +1,10 @@
+import { chromium } from '@playwright/test';
+const browser=await chromium.launch({channel:'msedge'});
+const page=await browser.newPage({viewport:{width:1366,height:768}});
+await page.goto('http://127.0.0.1:5173/?debug=1');
+await page.getByRole('button',{name:'设置与存档'}).click();
+await page.getByRole('button',{name:/开发调试：跳转灯阵/}).click();
+await page.getByRole('button',{name:'回放六灯'}).click();
+await page.waitForTimeout(2200);
+await page.screenshot({path:'.runtime/scene-debug-1366.png'});
+await browser.close();

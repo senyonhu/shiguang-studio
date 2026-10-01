@@ -1,0 +1,5 @@
+{
+  "task_id": "tower_light_02", "task_revision": "tower-c11-1.1", "title": "最后一盏为何不亮", "goal": "输入 n=3，让程序依次输出 1、2、3。", "template_id": "condition-v1", "editable_region": "for 循环的条件表达式", "initial_fragment": "i < n", "allowed_trial_inputs": [3], "cases": [3], "output_protocol_version": 1,
+  "hints": ["当轮到 3 号灯时，i 和 n 分别是多少？", "把 i=3、n=3 代入，3 < 3 成立吗？", "试试 i <= n，允许编号等于灯数的那一轮执行。"],
+  "knowledge": "n 是灯数；i 从 1 开始；条件为真才进入本轮；一轮结束后 i 增加 1。"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "studio-author-plugin-package",
+  "builtAt": "2026-10-01T15:28:09.194Z",
+  "entry": "server/mcp-stdio.mjs",
+  "fileCount": 7,
+  "totalBytes": 92701,
+  "files": [
+    {
+      "rel": ".codex-plugin/plugin.json",
+      "size": 838,
+      "sha256": "cb833a2d1e55d2b1d9d1f6bf41b2b2b002d2e333075c56920da2e453233ba177"
+    },
+    {
+      "rel": ".mcp.json",
+      "size": 726,
+      "sha256": "2a745a76e3e3100184eed3e867b86f4506aa04f34489af49b6ef749ae332d4a0"
+    },
+    {
+      "rel": "README.md",
+      "size": 3954,
+      "sha256": "60330d444bc3130e171b0bae1141b470e58f5068923c4d3629101a8c8e526d98"
+    },
+    {
+      "rel": "server/mcp-stdio.mjs",
+      "size": 62979,
+      "sha256": "ee3dc952937bdf73878764fa6d0a5e77ec3f18ba7f93a0f8795744bd24e29409"
+    },
+    {
+      "rel": "skills/studio-author/SKILL.md",
+      "size": 6974,
+      "sha256": "05e0c795e2d3a386593e7f06e777d58f3f52b95084556f9fb535d8d07b3b0786"
+    },
+    {
+      "rel": "skills/studio-author/references/media-workflow.md",
+      "size": 5452,
+      "sha256": "20fc1d891b02128ad6ddfe4432840b2e15d2d2131b6f05ed7631dbd7dd2bbec0"
+    },
+    {
+      "rel": "skills/studio-author/references/project-model.md",
+      "size": 11778,
+      "sha256": "ad36eb23c5a2312bba3757c377f2f72dd80a650f77fa05f1bbefa37245c93e22"
+    }
+  ],
+  "bundler": {
+    "tool": "esbuild",
+    "inputs": 12
+  },
+  "note": "包内不包含任何凭据；会话在运行时通过本机配对密钥建立。字段与安装方式仍需按目标宿主规范核对。"
+}

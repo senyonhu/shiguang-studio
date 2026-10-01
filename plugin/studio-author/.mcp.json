@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "shiguang-studio": {
+      "command": "node",
+      "args": [
+        "${PLUGIN_DIR}/server/mcp-stdio.mjs",
+        "--workspace",
+        "${STUDIO_WORKSPACE}"
+      ],
+      "env": {
+        "STUDIO_WORKSPACE": "${STUDIO_WORKSPACE}",
+        "STUDIO_AUTOSTART": "1",
+        "STUDIO_CLIENT_NAME": "studio-author",
+        "STUDIO_SCOPES": "read,edit,generate,preview,export"
+      },
+      "note": "安装时必须把 ${PLUGIN_DIR} 替换为插件目录绝对路径、${STUDIO_WORKSPACE} 替换为工作区绝对路径。配置中不含任何密钥；会话通过本机配对密钥文件在运行时建立。宿主是否支持该字段结构需按目标宿主规范核对（KI-022）。"
+    }
+  }
+}

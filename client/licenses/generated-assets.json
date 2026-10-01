@@ -1,0 +1,82 @@
+{
+  "assets": [
+    {
+      "file": "client/game/images/tower.png",
+      "prompt": "Use case: illustration-story. Asset type: production background ONLY for a RenPy fantasy visual novel, widescreen 16:9. An ancient circular stone tower interior, atmospheric hand painted premium anime environment with finely textured blue grey stone, enormous rib vaults disappearing into darkness, central far-wall tall gothic arched doorway with empty dark opening and narrow pale dawn light, scattered dust, low stone steps, engraved subtle circuitry in stone floor. Front-facing camera, moderate perspective. The left and right walls have clean unoccupied spaces to overlay SIX separately generated wall lamps. Door opening has NO door slab (the door will be a separate asset). Leave center left floor open to overlay a separately generated character. Cool desaturated blue, deep ink shadows, quiet magical mystery, readable forms. NO people, NO human silhouettes, NO characters, NO lamps, NO lit lights, NO flames, NO text, NO interface, NO watermark. Background environment only; entire image detailed edge to edge.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "environment"
+    },
+    {
+      "file": "client/game/images/li_worried.png",
+      "prompt": "Use case: illustration-story. Asset type: RenPy visual novel isolated CHARACTER SPRITE, true transparent background. Create Li / 璃, a young adult woman guardian apprentice of an old fantasy tower. Premium hand painted anime illustration matching a cool blue grey ancient stone tower and warm gold magic. Full body from head through shoes, all extremities inside frame, front three-quarter stance looking toward viewer, worried gentle expression, blue grey eyes, shoulder-length ash-silver hair with a tiny dark teal braid ribbon, navy blue hooded short cape draped back with hood down, ivory high-neck blouse, muted charcoal fitted tunic and knee-length layered skirt, brown utility belt holding small brass keys, dark stockings and practical lace-up boots, fine bronze trim and understated astronomical embroidery. One hand held near chest, other relaxed. Slim adult proportions, dignified practical clothing. Soft cool front light with faint warm rim, clean sharp silhouette. One character only, no lantern, no background, no scenery, no floor, no shadow plane, no text, no border. Transparent PNG cutout. Large vertical portrait composition with margin.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "character"
+    },
+    {
+      "file": "client/game/images/li_thinking.png",
+      "prompt": "Use case: identity-preserve. Edit target is the supplied isolated full-body female character. Create second expression variant of EXACT SAME character Li. Change ONLY her face to a thoughtful, attentive expression: eyebrows slightly knit, eyes focused, mouth closed gently. Preserve identical face identity, silver hair, teal ribbon, exact clothes, all embroidery, pose, hand positions, body proportions, boot positions, framing, image dimensions and lighting. Keep entire character visible at identical scale. Remove any surrounding glow/background haze so all space outside the character silhouette is completely transparent alpha=0. No background, scenery, floor or text. RenPy character sprite.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "character"
+    },
+    {
+      "file": "client/game/images/li_relieved.png",
+      "prompt": "Use case: identity-preserve. Edit supplied full-body character sprite Li to third expression variant. Change ONLY facial expression into visibly relieved gentle warm closed-mouth smile, softened eyebrows and slightly smiling eyes. Keep SAME person, identical pose, proportions, ash silver hair and ribbon, cape, costume, hands, boots, colors and pixel framing. Full body completely visible. Transparent background PNG, no scenery, floor, text or extra objects. Background alpha must remain transparent; keep all space outside silhouette transparent. This is an isolated RenPy character layer, never merge with any background.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "character"
+    },
+    {
+      "file": "client/game/images/world_far.png",
+      "prompt": "Use case: illustration-story. Asset type: FAR BACKGROUND layer of a three-layer panoramic world reveal for a premium handpainted anime fantasy visual novel. Widescreen 16:9 beautiful expansive dawn sky with luminous cream peach horizon and soft blue clouds, distant blue and teal mountain ranges fading into mist, an immense airy valley, tiny distant floating rocky islands in upper middle distance. Cinematic calm sense of wonder, original fantasy world, fine painterly detail, softly illuminated golden morning. This is the far layer only, with distant mountains and open sky. No close ground, no foreground rocks, no large foreground vegetation, no buildings in foreground, no tower doorway, no people, no characters, no silhouettes, no text, no interface. Full opaque environment background.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "environment"
+    },
+    {
+      "file": "client/game/images/world_mid.png",
+      "prompt": "Use case: illustration-story. Asset type: transparent MIDGROUND layer for a RenPy fantasy panorama. One sweeping floating island bearing a distant original ivory stone fantasy city, slender towers with teal roofs, a graceful aqueduct bridge, terraced gardens and waterfalls spilling downward from dark blue rocky underside. Hand painted premium anime environment, atmospheric detail, golden dawn light from upper left, blue teal shadows. Widescreen 16:9 transparent canvas. City island occupies central right 65 percent and lower middle of canvas, top remains transparent. Whole floating island contained with generous transparent margins. NO sky, NO distant mountain backdrop, NO foreground, NO people, NO characters, NO text or border. Isolated city and island layer on actual transparent alpha, to composite over a separately generated valley.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "environment"
+    },
+    {
+      "file": "client/game/images/world_fore.png",
+      "prompt": "Use case: illustration-story. Asset type: foreground cutout layer, wide 16:9, genuine transparent background. View looking out from an ancient gothic blue grey stone doorway. ONLY two weathered stone vertical jambs at far left and right edges and rough stone threshold with a few ivy sprigs along bottom edge, open center occupies 75 percent of image and is entirely transparent. Detailed hand-painted anime environment art, blue shadowed interior stone with subtle golden dawn light grazing the outside edges from left. No wall blocking central opening, no door panel, no sky or landscape visible inside opening, no people, no characters, no text. The complete middle and upper-middle is transparent alpha so another scene can be seen through it. Wide camera, dramatic doorway foreground frame for parallax.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "environment"
+    },
+    {
+      "file": "client/game/images/lamp_off.png",
+      "prompt": "Use case: stylized-concept. Asset type: single isolated game prop PNG with true transparent background. Ancient fantasy wall lamp, front view symmetrical, aged bronze gothic sconce, vertical narrow hexagonal smoked glass lantern chamber, small star-shaped finial, stone mounting bracket at rear. UNLIT state: dark glass, no flame, no light, no glow. Hand painted detailed premium anime game art, blue-grey cool reflected light and subtle antique gold trim, matching old stone tower. Entire object visible, centered, generous transparent margin, portrait proportion object within square canvas. No wall, no scenery, no characters, no numbers, no text, no ground shadow. Single lamp only. This will be duplicated six times as independent RenPy layers.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "prop_or_ui"
+    },
+    {
+      "file": "client/game/images/lamp_on.png",
+      "prompt": "Use case: lighting-weather. Edit target: supplied isolated bronze fantasy wall lamp sprite. Change ONLY its UNLIT state to LIT: inside the smoked glass add a bright warm golden magical flame, amber light illuminating the exact same glass panes, gentle warm reflections on the bronze. Preserve exact same design, outline, perspective, positioning, dimensions and framing. Do not change any metalwork. Keep transparent background outside the lamp, no scenery, wall, people or text. Glow mostly confined to lamp silhouette because external halo will be a separate layer. Same sprite lit-state for a 2D visual novel.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "prop_or_ui"
+    },
+    {
+      "file": "client/game/images/door.png",
+      "prompt": "Use case: stylized-concept. Asset type: single isolated gothic STONE DOOR slab for RenPy, true transparent background, tall portrait 2:3 image. Front elevation perfectly symmetrical pointed arch door with dark blue grey carved stone surface and fine aged bronze inset lines, subtle worn astronomical circular motif at chest height, NO glowing light. Door slab only with sharp pointed arch silhouette and flat bottom, nearly fills canvas with small transparent margin. Fine painterly premium anime fantasy environment prop, matching a cold abandoned stone tower. Single door leaf will slide sideways. No door frame, no surrounding wall, no opening or hole in door, no landscape, no characters or people, no text. Completely opaque solid door inside its silhouette, completely transparent outside.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "prop_or_ui"
+    },
+    {
+      "file": "client/game/images/ui_panel.png",
+      "prompt": "Use case: ui-mockup. Asset type: reusable empty game UI PANEL texture for a fantasy visual novel, square 1024x1024 opaque image. Flat front view of a rectangular very dark midnight navy blue panel, extremely subtle brushed slate texture, perfectly even quiet almost black center for readable overlay code and Chinese text. Thin muted antique brass double line border only within outermost 20 pixels, tiny restrained geometric corner details. Border touches image edges, no margin outside border. NO text, NO symbols in central area, NO lettering, NO buttons, NO mockup device, NO scene, NO people. Center 90 percent plain dark #0c1a25. Elegant understated premium editorial game UI, high contrast ready for text. To be nine-sliced as dialogue panel, code panel and buttons.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "prop_or_ui"
+    },
+    {
+      "file": "client/game/images/lamp_glow.png",
+      "prompt": "Use case: stylized-concept. Asset type: isolated transparent VFX light halo texture for a 2D fantasy game, square canvas. Only a soft warm amber-gold luminous glow: concentrated pale warm gold central glow smoothly fading radially and organically into complete transparency at all edges, delicate painterly atmospheric bloom, faint dust motes near center only. NO solid object, NO lantern, NO flame shape, NO icon, NO background, NO black rectangle, NO scenery, NO characters, NO text. True transparent PNG light effect, used behind a separately generated lamp. Keep glow gentle, not an explosive sunburst.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "prop_or_ui"
+    },
+    {
+      "file": "client/game/images/lock.png",
+      "prompt": "Use case: stylized-concept. Asset type: transparent magical LOCK SIGIL effect for a fantasy RenPy game. Front-facing thin luminous gold astronomical circular seal, six small nodes evenly spaced around one delicate ring, a small central eight-point star, fine concentric arcs. Warm amber-gold light with restrained faint bloom. Symmetrical elegant engraved geometric magical mechanism, hand-painted luminous edge detail. Only luminous linework on genuinely transparent background. Square canvas, seal fully visible with broad transparent margins. NO solid disc, NO dark circle fill, NO stone background, NO door, NO people, NO text, NO letters, NO numerals. Separate overlay layer to reveal over a separately generated stone door.",
+      "source": "Built-in image_gen, generated for this project on 2026-09-29",
+      "layer": "prop_or_ui"
+    }
+  ]
+}
