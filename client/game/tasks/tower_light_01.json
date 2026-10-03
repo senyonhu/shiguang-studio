@@ -1,5 +1,0 @@
-{
-  "task_id": "tower_light_01", "task_revision": "tower-c11-1.1", "title": "第一束光", "goal": "让程序输出第一盏灯的编号：1。", "template_id": "number-v1", "editable_region": "printf 引号内的数字", "initial_fragment": "0", "allowed_trial_inputs": [1], "cases": [1], "output_protocol_version": 1,
-  "hints": ["看一看，灯上刻着什么编号？", "术式板需要收到数字 1。", "将 printf 引号中的 0 改成 1，再运行。"],
-  "knowledge": "C 程序输出的是文字；这块术式板按约定把文字变成点灯指令。\\n 表示换行。"
-}

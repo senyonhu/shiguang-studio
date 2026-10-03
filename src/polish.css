@@ -1,8 +1,0 @@
-/* Keep every lamp visible above the portrait at the desktop reference sizes. */
-@media (min-width:901px) {
-  .tower-scene.task .character { height:58%; bottom:12%; left:38%; }
-  .tower-scene.task .light-array.count-6 { top:17%; left:3%; width:93%; gap:24px; z-index:4; }
-  .tower-scene.task .light-array.count-3 { top:17%; z-index:4; }
-  .case-label, .case-list button { padding:3px; line-height:1.2; }
-  .game.ending .toast { top:92px; bottom:auto; }
-}

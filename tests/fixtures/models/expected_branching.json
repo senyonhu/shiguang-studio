@@ -1,0 +1,20 @@
+{
+  "routes": [
+    ["frame_opening", "frame_choice", "frame_left", "frame_join", "frame_end"],
+    ["frame_opening", "frame_choice", "frame_right", "frame_join", "frame_end"]
+  ],
+  "frame_character_ids": {
+    "frame_opening": ["character_anna", "character_ben"],
+    "frame_choice": ["character_anna"],
+    "frame_left": ["character_anna"],
+    "frame_right": ["character_anna", "character_ben"],
+    "frame_join": [],
+    "frame_end": []
+  },
+  "entry": "frame_opening",
+  "endings": ["frame_end"],
+  "unreachable": [],
+  "without_exit": [],
+  "cycles": [],
+  "literal_opening_text": "你好，今天去哪里？[原文] {不是指令}"
+}

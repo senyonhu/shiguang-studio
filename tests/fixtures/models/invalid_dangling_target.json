@@ -1,0 +1,5 @@
+{
+  "project_id": "project_invalid", "save_namespace": "project_invalid", "entry_frame_id": "frame_1",
+  "acts": {"act_1": {"act_id": "act_1", "frame_ids": ["frame_1"]}},
+  "frames": {"frame_1": {"frame_id": "frame_1", "act_id": "act_1", "flow": {"kind": "next", "target_frame_id": "frame_missing"}}}
+}

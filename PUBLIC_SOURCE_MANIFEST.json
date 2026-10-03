@@ -1,0 +1,1039 @@
+{
+  "excluded": [
+    "*.dist-info",
+    "*.egg-info",
+    ".codex",
+    ".env*",
+    ".git",
+    ".runtime",
+    ".venv",
+    "__pycache__",
+    "bin",
+    "evidence",
+    "jobs",
+    "node_modules",
+    "obj",
+    "outputs",
+    "profile",
+    "profiles",
+    "projects",
+    "prototypes",
+    "runtimes",
+    "save",
+    "saves",
+    "upstream"
+  ],
+  "files": {
+    ".gitattributes": {
+      "bytes": 144,
+      "sha256": "30fc93a40ef05f251fa53ad5cb3340830c7831020b6603610d6593d17d1ef6dd"
+    },
+    ".gitignore": {
+      "bytes": 905,
+      "sha256": "0225d085c785952860fbfc302237773eb5f42f59f79886aeecceec29eac28223"
+    },
+    "README.md": {
+      "bytes": 6528,
+      "sha256": "3e40f157faa067eb5c9255876085ed0dacc30d2cf394ed478dd966eaa29a7f97"
+    },
+    "START_HERE.md": {
+      "bytes": 1020,
+      "sha256": "9e3a64e715f4a82571970d51360da1bfd65f5acd55a6b42636b860938a8bb5c7"
+    },
+    "docs/CONTRACT.md": {
+      "bytes": 16454,
+      "sha256": "7b5f728c77326eb1746394fa953f8aafc26e3e6317f5d3d47852d48c980ad15d"
+    },
+    "docs/MIGRATION_FROM_STUDIO.md": {
+      "bytes": 1673,
+      "sha256": "c4534913c749c52b1b9560b5495ec8fc92368240bb2780641d64a8039186c65d"
+    },
+    "docs/PUBLIC_RELEASE.md": {
+      "bytes": 2025,
+      "sha256": "629a1f5e539e49d747958f0b4b54b9433f03dbfa2ef8a737b08af967906e5a14"
+    },
+    "docs/TOOLS.md": {
+      "bytes": 10906,
+      "sha256": "1af78bfb71f2ac274fb336f508deea901502fe5d67482c0ab5c68e8102e62cf8"
+    },
+    "docs/USAGE.md": {
+      "bytes": 7199,
+      "sha256": "7f54a58c1fd3b1d7d9581e72e9a81997a9a2a124bb64c6465edc2ec7ccf5dedd"
+    },
+    "docs/VALIDATION.md": {
+      "bytes": 3926,
+      "sha256": "6bbe7ccda32caf5fa51fa3c9c6835457a98cc3fb9474dac0dd14857a73b9a549"
+    },
+    "docs/project.schema.json": {
+      "bytes": 26945,
+      "sha256": "0cf49053fd41ccf7e991e39f13f0dcd80387c099a7183f71889d741acfdfff00"
+    },
+    "docs/tool-examples.json": {
+      "bytes": 3703,
+      "sha256": "da0019f343ec75d7fde60381e4d5586a239564794006b8598fe547b29dc67d70"
+    },
+    "docs/tools.schema.json": {
+      "bytes": 115636,
+      "sha256": "6fb498c7afe7f8fb78c4304cb2e1043edd92855b8e0c2a28bd08ec3c1eb66ad4"
+    },
+    "examples/html_minigames/README.md": {
+      "bytes": 1255,
+      "sha256": "222092cf0bb21540fd15080f04f34f2e3ec2af0f2a2056f0cbda74cbbc2eea74"
+    },
+    "examples/html_minigames/checkpoint/bridge-sdk.js": {
+      "bytes": 7389,
+      "sha256": "083b35d3de199dbdf93ac14b6c2d76cfaaf194e40b0e64de7e68b03f0fc9d1a9"
+    },
+    "examples/html_minigames/checkpoint/game.js": {
+      "bytes": 5739,
+      "sha256": "b069fb8012423c530483dbe42e95cd4b7ef4414b637f57945ec622b62b9feca0"
+    },
+    "examples/html_minigames/checkpoint/index.html": {
+      "bytes": 3198,
+      "sha256": "34c35ad917f0883755a1651c82985018dd896b575e41a12bb293a1f5060d0a1c"
+    },
+    "examples/html_minigames/checkpoint/manifest.json": {
+      "bytes": 2815,
+      "sha256": "61790f25eee4aa05be745d93b64d600951c9a42bb535d08fe215abe10db1420c"
+    },
+    "examples/html_minigames/checkpoint/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/production/SDK.md": {
+      "bytes": 8993,
+      "sha256": "df14588e7eb1d81bf4607aa6235f21171c8e096c0c4ff7ddf186b2d511c189f8"
+    },
+    "examples/html_minigames/production/checkpoint/LICENSE.txt": {
+      "bytes": 1082,
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9"
+    },
+    "examples/html_minigames/production/checkpoint/bridge-sdk.js": {
+      "bytes": 7423,
+      "sha256": "531be4ccec4f4294e7ab489e5857d206a01e24a3231d934a55de166bfc13303b"
+    },
+    "examples/html_minigames/production/checkpoint/game.js": {
+      "bytes": 6071,
+      "sha256": "f59dd32aa7bd524a1e06045fc740ffbdcbec1472e8888fdb7246473c4f9acd0d"
+    },
+    "examples/html_minigames/production/checkpoint/index.html": {
+      "bytes": 3235,
+      "sha256": "3a860b9fe877efcde46cfb0e4c243266abab25f0f916143fd95dda9d8d9613a6"
+    },
+    "examples/html_minigames/production/checkpoint/instructions.txt": {
+      "bytes": 151,
+      "sha256": "9728fecba124e47b6ca04dc080580c48bc614a96746588614bdb17a65524ca80"
+    },
+    "examples/html_minigames/production/checkpoint/manifest.json": {
+      "bytes": 3001,
+      "sha256": "af5c19898bc86f09e3f9207d82794b4bb066fe5ed74acd59bae79c2ae77b4f91"
+    },
+    "examples/html_minigames/production/checkpoint/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/production/package-digests.json": {
+      "bytes": 1091,
+      "sha256": "f2f45b7e57d7913a3965c83a4c330ab26a08b3bb995a12f85ed2472957bac089"
+    },
+    "examples/html_minigames/production/puzzle/LICENSE.txt": {
+      "bytes": 1082,
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9"
+    },
+    "examples/html_minigames/production/puzzle/bridge-sdk.js": {
+      "bytes": 7423,
+      "sha256": "531be4ccec4f4294e7ab489e5857d206a01e24a3231d934a55de166bfc13303b"
+    },
+    "examples/html_minigames/production/puzzle/game.js": {
+      "bytes": 4541,
+      "sha256": "fd8aeb3f7290230164d089e959702f550eb0ae464fc9302b2d3bff69c5997c6a"
+    },
+    "examples/html_minigames/production/puzzle/index.html": {
+      "bytes": 1635,
+      "sha256": "144f2d40267cb6b1175641c9dacaa573ca7e84ec099d54018adb7d94e87dea65"
+    },
+    "examples/html_minigames/production/puzzle/instructions.txt": {
+      "bytes": 130,
+      "sha256": "4d25481afaeb2b5fd3c768e3e1ca09cc66ea1266d3060049f0108b085886f65c"
+    },
+    "examples/html_minigames/production/puzzle/manifest.json": {
+      "bytes": 2109,
+      "sha256": "29353227fa582d16f63fc5588a27cbe84a68663ca27435781dc0b558be6e7048"
+    },
+    "examples/html_minigames/production/puzzle/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/production/sdk/bridge-sdk.js": {
+      "bytes": 7423,
+      "sha256": "531be4ccec4f4294e7ab489e5857d206a01e24a3231d934a55de166bfc13303b"
+    },
+    "examples/html_minigames/production/timed/LICENSE.txt": {
+      "bytes": 1082,
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9"
+    },
+    "examples/html_minigames/production/timed/bridge-sdk.js": {
+      "bytes": 7423,
+      "sha256": "531be4ccec4f4294e7ab489e5857d206a01e24a3231d934a55de166bfc13303b"
+    },
+    "examples/html_minigames/production/timed/game.js": {
+      "bytes": 4576,
+      "sha256": "50b9a932b4835f3dbe0685b6a769b28eb3e1dcdefe1629cfaccadee930c747c4"
+    },
+    "examples/html_minigames/production/timed/index.html": {
+      "bytes": 2231,
+      "sha256": "c37a35a4b94e42d6ebb86058daab45d5f342cc92efc41c28605f2381f2049a92"
+    },
+    "examples/html_minigames/production/timed/instructions.txt": {
+      "bytes": 154,
+      "sha256": "6ce6322babb6f3434343629ed023608250d56d446cd02f416a4f81fe5e984d7a"
+    },
+    "examples/html_minigames/production/timed/manifest.json": {
+      "bytes": 2400,
+      "sha256": "cc25b1842d308adc54271f2966cde37b431d7721cb650f9639be754e3720c7e0"
+    },
+    "examples/html_minigames/production/timed/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/production/timed/tap.wav": {
+      "bytes": 5336,
+      "sha256": "f8e0e065a4962a8af76161ca5d068a1d515feb351194430651260c8ee2afbecf"
+    },
+    "examples/html_minigames/production/v1.0.1/checkpoint/LICENSE.txt": {
+      "bytes": 1082,
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9"
+    },
+    "examples/html_minigames/production/v1.0.1/checkpoint/bridge-sdk.js": {
+      "bytes": 7787,
+      "sha256": "b4fa6c764f67bd1b67e03a2698f4e97937c7db440eec89ed1a87c052b4640b7b"
+    },
+    "examples/html_minigames/production/v1.0.1/checkpoint/game.js": {
+      "bytes": 6071,
+      "sha256": "580338354a02aba07e542310420861a716efefe599bd533080c0f2fc4c667585"
+    },
+    "examples/html_minigames/production/v1.0.1/checkpoint/index.html": {
+      "bytes": 3235,
+      "sha256": "3a860b9fe877efcde46cfb0e4c243266abab25f0f916143fd95dda9d8d9613a6"
+    },
+    "examples/html_minigames/production/v1.0.1/checkpoint/instructions.txt": {
+      "bytes": 151,
+      "sha256": "9728fecba124e47b6ca04dc080580c48bc614a96746588614bdb17a65524ca80"
+    },
+    "examples/html_minigames/production/v1.0.1/checkpoint/manifest.json": {
+      "bytes": 3001,
+      "sha256": "b3e6d9f3319d08e53224277bbc31194ac4b6d744cb74560b81444698b4cd1357"
+    },
+    "examples/html_minigames/production/v1.0.1/checkpoint/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/production/v1.0.1/package-digests.json": {
+      "bytes": 1121,
+      "sha256": "3c8a7614f7704eb8b00553290c818d2d6f16e1d4bf2f25ff72f78c076a0831c5"
+    },
+    "examples/html_minigames/production/v1.0.1/puzzle/LICENSE.txt": {
+      "bytes": 1082,
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9"
+    },
+    "examples/html_minigames/production/v1.0.1/puzzle/bridge-sdk.js": {
+      "bytes": 7787,
+      "sha256": "b4fa6c764f67bd1b67e03a2698f4e97937c7db440eec89ed1a87c052b4640b7b"
+    },
+    "examples/html_minigames/production/v1.0.1/puzzle/game.js": {
+      "bytes": 4541,
+      "sha256": "453050efebe2b92a7c17a302ca1b2ed6aef8f731c752a56e49378d4dce4561a1"
+    },
+    "examples/html_minigames/production/v1.0.1/puzzle/index.html": {
+      "bytes": 1635,
+      "sha256": "144f2d40267cb6b1175641c9dacaa573ca7e84ec099d54018adb7d94e87dea65"
+    },
+    "examples/html_minigames/production/v1.0.1/puzzle/instructions.txt": {
+      "bytes": 130,
+      "sha256": "4d25481afaeb2b5fd3c768e3e1ca09cc66ea1266d3060049f0108b085886f65c"
+    },
+    "examples/html_minigames/production/v1.0.1/puzzle/manifest.json": {
+      "bytes": 2109,
+      "sha256": "1c2bd93b9eeffa6d14ff420dc68bb05a48737e3e7cb27a7633bb1813b59a90bb"
+    },
+    "examples/html_minigames/production/v1.0.1/puzzle/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/production/v1.0.1/sdk/bridge-sdk.js": {
+      "bytes": 7787,
+      "sha256": "b4fa6c764f67bd1b67e03a2698f4e97937c7db440eec89ed1a87c052b4640b7b"
+    },
+    "examples/html_minigames/production/v1.0.1/timed/LICENSE.txt": {
+      "bytes": 1082,
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9"
+    },
+    "examples/html_minigames/production/v1.0.1/timed/bridge-sdk.js": {
+      "bytes": 7787,
+      "sha256": "b4fa6c764f67bd1b67e03a2698f4e97937c7db440eec89ed1a87c052b4640b7b"
+    },
+    "examples/html_minigames/production/v1.0.1/timed/game.js": {
+      "bytes": 4650,
+      "sha256": "2e235efb5ca96d5b34ca76b9486e396a06556d298fc3fc20bbb7289906aa7150"
+    },
+    "examples/html_minigames/production/v1.0.1/timed/index.html": {
+      "bytes": 2231,
+      "sha256": "c37a35a4b94e42d6ebb86058daab45d5f342cc92efc41c28605f2381f2049a92"
+    },
+    "examples/html_minigames/production/v1.0.1/timed/instructions.txt": {
+      "bytes": 154,
+      "sha256": "6ce6322babb6f3434343629ed023608250d56d446cd02f416a4f81fe5e984d7a"
+    },
+    "examples/html_minigames/production/v1.0.1/timed/manifest.json": {
+      "bytes": 2400,
+      "sha256": "93b1b58c7bb884750481bd05f2a24f2fe5d21ac08979e61796ea1f480f8db88e"
+    },
+    "examples/html_minigames/production/v1.0.1/timed/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/production/v1.0.1/timed/tap.wav": {
+      "bytes": 5336,
+      "sha256": "f8e0e065a4962a8af76161ca5d068a1d515feb351194430651260c8ee2afbecf"
+    },
+    "examples/html_minigames/prototype-digests.json": {
+      "bytes": 1043,
+      "sha256": "6c06a00a737b98c8e0dda18762026b909a517a0d1dcec2f8f3a046b4b1d4207d"
+    },
+    "examples/html_minigames/puzzle/bridge-sdk.js": {
+      "bytes": 7389,
+      "sha256": "083b35d3de199dbdf93ac14b6c2d76cfaaf194e40b0e64de7e68b03f0fc9d1a9"
+    },
+    "examples/html_minigames/puzzle/game.js": {
+      "bytes": 4201,
+      "sha256": "51a0cd1532501f79bbbaed07403d59d291ec80eea0e3abd5d7a5d60c68a4909c"
+    },
+    "examples/html_minigames/puzzle/index.html": {
+      "bytes": 1554,
+      "sha256": "d1462692c44e6d48d8fb9365e18b5da06dcddcd4abb49ea0e3b572ef405a4b35"
+    },
+    "examples/html_minigames/puzzle/manifest.json": {
+      "bytes": 1855,
+      "sha256": "43b0e4c08fcd15a1b313acf5b766fcad12fb6369614b83cb54ee7babc140e9f6"
+    },
+    "examples/html_minigames/puzzle/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/sdk/bridge-sdk.js": {
+      "bytes": 7389,
+      "sha256": "083b35d3de199dbdf93ac14b6c2d76cfaaf194e40b0e64de7e68b03f0fc9d1a9"
+    },
+    "examples/html_minigames/sdk/common.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/tests/gameplay.test.cjs": {
+      "bytes": 9276,
+      "sha256": "3d3a23082328b5a9399f317ab4d473863d36c70e79a05d8b00b31c78cbe1b66a"
+    },
+    "examples/html_minigames/tests/production.test.cjs": {
+      "bytes": 287,
+      "sha256": "03660df132e79a01825aea33c3e74f96238ccb1ddd137bccf47839e750fa8d15"
+    },
+    "examples/html_minigames/tests/sdk.test.cjs": {
+      "bytes": 4455,
+      "sha256": "54b0f2cc8d004838cd63a4d81bc814a1e7a198fde8b04a8346621d36ab9cdef3"
+    },
+    "examples/html_minigames/tests/settings.test.cjs": {
+      "bytes": 2725,
+      "sha256": "e1f1e6035f8f2c48bab82f9f14d73d35a7a3ea0e94459ca69535b08be8bd6794"
+    },
+    "examples/html_minigames/timed/bridge-sdk.js": {
+      "bytes": 7389,
+      "sha256": "083b35d3de199dbdf93ac14b6c2d76cfaaf194e40b0e64de7e68b03f0fc9d1a9"
+    },
+    "examples/html_minigames/timed/game.js": {
+      "bytes": 4230,
+      "sha256": "3042689a43943b8706448eda595090123f9d9a17c51cc27885d524fb2c34e639"
+    },
+    "examples/html_minigames/timed/index.html": {
+      "bytes": 2150,
+      "sha256": "c624d429cadfbc89972d6fa759d95e53061e19af1dd329f8b31794948c48dfb9"
+    },
+    "examples/html_minigames/timed/manifest.json": {
+      "bytes": 2158,
+      "sha256": "b0038bde963cc63341ce8b8847ae6d7884d06bebbd9fe9c76d6492c51443e7e8"
+    },
+    "examples/html_minigames/timed/styles.css": {
+      "bytes": 1732,
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b"
+    },
+    "examples/html_minigames/timed/tap.wav": {
+      "bytes": 5336,
+      "sha256": "f8e0e065a4962a8af76161ca5d068a1d515feb351194430651260c8ee2afbecf"
+    },
+    "examples/html_minigames/tools/build_production_examples.py": {
+      "bytes": 8387,
+      "sha256": "7f107a9a3c8fe9d33bc6f0c97c5341c4f960db1d4f22d94c189e15726396072e"
+    },
+    "examples/html_minigames/tools/build_production_upgrade.py": {
+      "bytes": 4975,
+      "sha256": "6439c21852b8843a2a6009c024937c5458c8c009991f7c1a7a19391dcfadfd72"
+    },
+    "examples/html_minigames/tools/build_prototypes.py": {
+      "bytes": 6283,
+      "sha256": "127c758da6c9ed6cf51dbb0c47e1d939a7922caf1d39ae996fe3c7ea4f437e4f"
+    },
+    "metadata/webview2-runtime.lock.json": {
+      "bytes": 39829,
+      "sha256": "1d858a32cd59593c61e8e69883678e8cc1347392b8535c760bf891c056684d98"
+    },
+    "native/html_minigame_embedded_host/.gitignore": {
+      "bytes": 12,
+      "sha256": "79914b5e84e1a58b12d9e874ea343e2d131dcdaaf0a3bacf01210219fc679d13"
+    },
+    "native/html_minigame_embedded_host/HtmlMinigameEmbeddedHost.csproj": {
+      "bytes": 882,
+      "sha256": "e141848e958fedb45bf3fac2566b8310e91699f1bc980b5846819a3cb15d3f4c"
+    },
+    "native/html_minigame_embedded_host/NativeParent.cs": {
+      "bytes": 6030,
+      "sha256": "5344c7e06d401db76adb534e28817deb1b870b622679359efae6377a1e188880"
+    },
+    "native/html_minigame_embedded_host/Program.cs": {
+      "bytes": 36435,
+      "sha256": "d37fb63190c1e8274056bf86bd4755ede55f99f79e621e51b41d2e2254d6830f"
+    },
+    "native/html_minigame_embedded_host/app.manifest": {
+      "bytes": 751,
+      "sha256": "802409a8429ffbbd44c36eb7fa52faf42aa5daa006e99532c209a388b43acf92"
+    },
+    "native/html_minigame_embedded_host/packages.lock.json": {
+      "bytes": 654,
+      "sha256": "5e768cc1dbe0c4c2d38dd5e6a6b995d494179d40b6aa2112ffc25786d54514a1"
+    },
+    "native/html_minigame_host/.gitignore": {
+      "bytes": 10,
+      "sha256": "6c5082c7e6de3e350189c67a1aacf757485ecc26e0a3cf96683528565f3e5f12"
+    },
+    "native/html_minigame_host/HtmlMinigameHost.csproj": {
+      "bytes": 853,
+      "sha256": "87ae2cb9a9e93e81eaf0dbbc7742279e9ef44e0364b53c8cb02fa655b1b05d65"
+    },
+    "native/html_minigame_host/Program.cs": {
+      "bytes": 21714,
+      "sha256": "8ffd94c915234ed7d6609088a55f7b1a8628cb998943a0ab845b08eb704b0720"
+    },
+    "native/html_minigame_host/README.md": {
+      "bytes": 5236,
+      "sha256": "3171261719007374188d9b85e1d78dd9e3f2a11e8936fbf8a205ea7f1bc93bd4"
+    },
+    "native/html_minigame_host/app.manifest": {
+      "bytes": 736,
+      "sha256": "f6c615f27788b1a327ed7a4da82b587a406095cdfd99de01eb8b4ac6532eda0b"
+    },
+    "native/html_minigame_host/packages.lock.json": {
+      "bytes": 654,
+      "sha256": "5e768cc1dbe0c4c2d38dd5e6a6b995d494179d40b6aa2112ffc25786d54514a1"
+    },
+    "plugin/.agents/plugins/marketplace.json": {
+      "bytes": 389,
+      "sha256": "52ba5766f245b6e65146bf7d22389d26ea1712947b3b1e1f8686fa585ce96027"
+    },
+    "plugin/README.md": {
+      "bytes": 1838,
+      "sha256": "dd35ca732477e23c914aee8aa65b1b117a098bd0efd2151c8988a969fad03bb0"
+    },
+    "plugin/renpy-bridge/.codex-plugin/plugin.json": {
+      "bytes": 714,
+      "sha256": "1e6d3d237936c6bd18976ca851727861ba3dc810cb808eb1266f578c0367c2d6"
+    },
+    "plugin/renpy-bridge/.mcp.json": {
+      "bytes": 232,
+      "sha256": "88bace1ed10a4859e525052af016bf744440bca0763ee93357c6b06925c00de1"
+    },
+    "plugin/renpy-bridge/skills/renpy-author/SKILL.md": {
+      "bytes": 4172,
+      "sha256": "7da1bb2759fb07273f33b33dcd50781fd2a8638925d1e1aa1b1eeb058a31ffbd"
+    },
+    "plugin/renpy-bridge/skills/renpy-author/references/changes.md": {
+      "bytes": 3136,
+      "sha256": "807de37d6a5db69d99e5ffa4e9be0b79b23830750e70d489440ec63dc8f0bb11"
+    },
+    "plugin/renpy-bridge/skills/renpy-author/references/html-minigames.md": {
+      "bytes": 7913,
+      "sha256": "ce6dca659cfd8c3b6b7d3bd247b2dc8ded4ea329cdf37d673067e2a34215a181"
+    },
+    "plugin/renpy-bridge/skills/renpy-author/references/materials-and-layout.md": {
+      "bytes": 4576,
+      "sha256": "54bd0cf20f8d86dd94080e1ca08e7bf9c38af7aca1108bd9fa3e972a5b23c83c"
+    },
+    "plugin/renpy-bridge/skills/renpy-author/references/objects.md": {
+      "bytes": 6740,
+      "sha256": "dd93ad0c42c1b91096aaab97f003d559a483d74250d4c482356acc24890e4815"
+    },
+    "plugin/renpy-bridge/skills/renpy-author/references/validation.md": {
+      "bytes": 5384,
+      "sha256": "2ced13a5d9957bb00fb91782090cf5341cd9d01bac8787dd7bef9ecd5a3125ec"
+    },
+    "pyproject.toml": {
+      "bytes": 789,
+      "sha256": "3fffcdbca7d1883c1024bd40e2d3ef67b24ca8f6d6cb5e3407422f30c5f5cb92"
+    },
+    "requirements.lock": {
+      "bytes": 900,
+      "sha256": "092c539bd70b217c596eea61ab6de1510b62e34502a3ba88357fadefe11ae831"
+    },
+    "scripts/environment_probe.py": {
+      "bytes": 1441,
+      "sha256": "ac386b8fe341da5bf794ab04a6821521f84f3c3d2c45f818813f1056fa8ce2a4"
+    },
+    "scripts/install_local.py": {
+      "bytes": 50931,
+      "sha256": "dc0fb3af59b28e5d59b959647aca330b45d9810f9b9cf35dc58eec28bec43819"
+    },
+    "scripts/mcp_probe.py": {
+      "bytes": 1762,
+      "sha256": "8d62cd7d32e827a0a222d2ac9b58e8b06de3e502ace94c4501a1194a14fcfcb4"
+    },
+    "scripts/plugin_prepare.py": {
+      "bytes": 6174,
+      "sha256": "dfd5f6a84a80779bfc8b2ae44ca9265ed72b69ced3705d72185e1d13f0cc6b56"
+    },
+    "scripts/progress.py": {
+      "bytes": 1317,
+      "sha256": "c70983d3b78dd4aada4d7bd53f89c7574390f590f62022e9de955fa08740617b"
+    },
+    "scripts/record_evidence.py": {
+      "bytes": 1518,
+      "sha256": "9b98e6fb1fba743e19db1004e3add01b1ffb5a585df41c1966ee204ed11fc06e"
+    },
+    "scripts/sync_evidence.py": {
+      "bytes": 4495,
+      "sha256": "18d964ad3b3b34779d4008ce58b234836921ecfd8d73c0ad6c6329cf4a7f081a"
+    },
+    "src/renpy_bridge/__init__.py": {
+      "bytes": 83,
+      "sha256": "0b7b2063b482961abd5cd5b6e15fefd3c17b6c8ae0c2da2f003265c1b4c3e804"
+    },
+    "src/renpy_bridge/cli.py": {
+      "bytes": 6777,
+      "sha256": "340574ca682ae46fe27feef528f358c32c8caff6f45cf70ec4acf1afe7f31bbb"
+    },
+    "src/renpy_bridge/compatibility.py": {
+      "bytes": 12817,
+      "sha256": "aeb3f84a5831266369812ae11778286def69781566e90e8ab946e798357500da"
+    },
+    "src/renpy_bridge/derived_integrity.py": {
+      "bytes": 14236,
+      "sha256": "98327eb03e520234da93a6121f32adb4d37bccd5828e2eef82ec11ee8b42588a"
+    },
+    "src/renpy_bridge/environment.py": {
+      "bytes": 1845,
+      "sha256": "8a335ee2922ff63b36ea759c06c1fcec938d5f294cc88476f0b27f26f4511e17"
+    },
+    "src/renpy_bridge/errors.py": {
+      "bytes": 409,
+      "sha256": "ce70a7c2700dabc1dd3613ec96f2125f64337025a3572574a63cf238e7e210d2"
+    },
+    "src/renpy_bridge/generator.py": {
+      "bytes": 33018,
+      "sha256": "73568cf847057631a5160d5b200ccc6d2e52106eabdb16fcc2f9b0b354e2d2c3"
+    },
+    "src/renpy_bridge/jobs.py": {
+      "bytes": 15235,
+      "sha256": "81e847f9a35553a634cbf0e2570775b064a5623101ba40591bb483d7575913b7"
+    },
+    "src/renpy_bridge/layout.py": {
+      "bytes": 11586,
+      "sha256": "0a42ee3a25ff8c15d16f404d559008ce8fb8acf81f9efb2d3899239dbd2b9ee5"
+    },
+    "src/renpy_bridge/media.py": {
+      "bytes": 9811,
+      "sha256": "3f4c9cffff8fd31c6beb7aeef3eedfd6044b809f93d776456586b2e965755485"
+    },
+    "src/renpy_bridge/migrations.py": {
+      "bytes": 4743,
+      "sha256": "70157771897fcce887a954803f4466b616a9b85da10e164d37ca20bc5592e9b6"
+    },
+    "src/renpy_bridge/minigame_packages.py": {
+      "bytes": 36631,
+      "sha256": "e800ad5f839251745764104d316678c2aab4f12f409fbc680c3f0797682266cb"
+    },
+    "src/renpy_bridge/minigame_protocol.py": {
+      "bytes": 35656,
+      "sha256": "006b22bed1a828ea620ec28d0b7a985379bf2dfe7c22c91e3db7271be84904fa"
+    },
+    "src/renpy_bridge/minigame_qa.py": {
+      "bytes": 34208,
+      "sha256": "eabf976adbb7b81dcb3e60ef9c530d95755e62a0cd357dcc5239befa634f723e"
+    },
+    "src/renpy_bridge/minigame_runtime.py": {
+      "bytes": 73031,
+      "sha256": "ed01a445d4026fb5161a90e677c81b3e4ae08f8eb1d794c56e015bbbb6e925ba"
+    },
+    "src/renpy_bridge/minigame_windows.py": {
+      "bytes": 10355,
+      "sha256": "f0f2d784436ec4a1633fcb272a52bf1c68acc49bdbe299bbf8432f4d05d46c8b"
+    },
+    "src/renpy_bridge/models.py": {
+      "bytes": 30662,
+      "sha256": "49f3152107ae632c09ceadb6d30de13a6cb9305aad63fe8242095b1fb666909b"
+    },
+    "src/renpy_bridge/native_qa.py": {
+      "bytes": 8138,
+      "sha256": "63c625b7ae73405aed74382b6b6bc797450eda0e42d537ac7d5d256438cf9690"
+    },
+    "src/renpy_bridge/pipeline.py": {
+      "bytes": 45748,
+      "sha256": "4aa2e7a8629173fd86e07627fd372f985462aadbff6514e8e74849e48ad61210"
+    },
+    "src/renpy_bridge/reimport.py": {
+      "bytes": 11901,
+      "sha256": "e582b495b10a5993d3680cdb1c0a46a749856aabef9825e94eb607eaf97e0c4f"
+    },
+    "src/renpy_bridge/sdk.py": {
+      "bytes": 9202,
+      "sha256": "a775c3f4f52b715dd946c34884afa1eedb25dd09023ad864dfa481e019677fbe"
+    },
+    "src/renpy_bridge/server.py": {
+      "bytes": 20800,
+      "sha256": "9ae40ca36ea7d98ce6b9b0e52f45823ef904b7fd220a12fac43f8803e161578f"
+    },
+    "src/renpy_bridge/sources.py": {
+      "bytes": 10138,
+      "sha256": "61994d5dd1a8a2662cd30c9687ba93eb4d73f3e086b47dd27eae6c528e6d3bce"
+    },
+    "src/renpy_bridge/storage.py": {
+      "bytes": 55538,
+      "sha256": "3dee73dc9af4aee7c1d060c120f9be56f697cf50267b235d68e8113d1bb69492"
+    },
+    "src/renpy_bridge/visual_regression.py": {
+      "bytes": 23913,
+      "sha256": "c690610a4093925b16c335bf5d5ab4d76e86ea16777620b928ca75001f225843"
+    },
+    "src/renpy_bridge/worker.py": {
+      "bytes": 2664,
+      "sha256": "0ab2c2f2648f647bf062818591407f6df751a49d305213a80320cde698c3b9a2"
+    },
+    "tests/fixtures/models/README.md": {
+      "bytes": 672,
+      "sha256": "87a220bfdc20493b2c511dbe12a103e78e47642c301358ac1f86917941260597"
+    },
+    "tests/fixtures/models/expected_branching.json": {
+      "bytes": 643,
+      "sha256": "a66c7469d6cef3fc0baca7de35fefd11b7dcc774e1a3557d89ce27d625e09f0c"
+    },
+    "tests/fixtures/models/invalid_ambiguous_flow.json": {
+      "bytes": 296,
+      "sha256": "1577e2504f27c5e9604b32fa272f646216ec41f7b9f828a020c3015b1b45a808"
+    },
+    "tests/fixtures/models/invalid_dangling_target.json": {
+      "bytes": 303,
+      "sha256": "8270ecd4fe674cd97b9dd214ce9901af3c9d9edbc2edbd005105c23baabf25e3"
+    },
+    "tests/fixtures/models/invalid_future_schema.json": {
+      "bytes": 91,
+      "sha256": "365399df37b85ab65f553b3dc43a926836fc7a32f6fe87eed35500130bcf8714"
+    },
+    "tests/fixtures/models/invalid_path_escape.json": {
+      "bytes": 256,
+      "sha256": "1f285a40cbc37288ee77daf2ea9ddf7f5b374fd9c56a705e4a2c0d6773ff144a"
+    },
+    "tests/fixtures/models/valid_branching.json": {
+      "bytes": 4753,
+      "sha256": "2502d92b514ad8b5d8593ac0a20b7a4021a3020c665816ce1044a72e3c714a5b"
+    },
+    "tests/fixtures/models/valid_empty.json": {
+      "bytes": 108,
+      "sha256": "0088f1bbc002528b997d96e89b9b4b870a7ae4f75c86c74d39d4b48de3d602d7"
+    },
+    "tests/test_checkpoint_discovery.py": {
+      "bytes": 2134,
+      "sha256": "6492fdc724e422d3904ae3fcc04743b2a576a42169411f85f14be8b99d1bb742"
+    },
+    "tests/test_cold_xlsx_mcp.py": {
+      "bytes": 5171,
+      "sha256": "87a5252c551a5be43efc74fb66aee579f468ba4157c543399a69f7b504b93259"
+    },
+    "tests/test_compatibility.py": {
+      "bytes": 9856,
+      "sha256": "f5b242fcc74c37b933e6a259101d33a8924158ffb8ced40d528ee9ac79a5a27f"
+    },
+    "tests/test_core_integration.py": {
+      "bytes": 24930,
+      "sha256": "f6105e262136abb637edde3cf327ae395f5fda31a03a64a3a701c39fcc3f1570"
+    },
+    "tests/test_demo_audio_probe.py": {
+      "bytes": 11798,
+      "sha256": "f366cc65f6f900c0bc88a4a9d9e20fa9932a72375f828af001ef4f38fb4c3fa0"
+    },
+    "tests/test_demo_authoring_verifier.py": {
+      "bytes": 13365,
+      "sha256": "927f1912f7926334e965531bb2519aeb75a58546bec08733aa1a3479cbcda925"
+    },
+    "tests/test_derived_integrity.py": {
+      "bytes": 9124,
+      "sha256": "34dc770068a63db857f470213b4bfc88e990e0d8b215044ec021dcbca0cc9c3a"
+    },
+    "tests/test_html_authoring_install.py": {
+      "bytes": 9261,
+      "sha256": "89f4abcc52b72333c499239e5d8e14aa3de06915a60f6850a2dfbdc2b142a1f4"
+    },
+    "tests/test_html_native_security.py": {
+      "bytes": 3238,
+      "sha256": "98e724c2571771070db2d58a16bb122b0852b06afba7bab86b37a5defe2d1bc7"
+    },
+    "tests/test_html_runtime_install.py": {
+      "bytes": 12329,
+      "sha256": "543f00a4a66bd1dde9f883dd27ec280fbc21e8ec105f92623e6414a9453651da"
+    },
+    "tests/test_html_runtime_notices.py": {
+      "bytes": 2901,
+      "sha256": "5b063999d1abfa451c3f3f60b9faf63650f591c5e0fff82efc71b9fa93f31dfd"
+    },
+    "tests/test_interlude_controls.py": {
+      "bytes": 2045,
+      "sha256": "61f6febcc7e53299631e6541b24122f36d858bd2066cba140961754e989dfbda"
+    },
+    "tests/test_jobs.py": {
+      "bytes": 8773,
+      "sha256": "9b169a0cc9994193396dcf87ba9e64d89915d06c7bc5f55249f22e39a0f11194"
+    },
+    "tests/test_layout.py": {
+      "bytes": 8045,
+      "sha256": "f23e5d037b05fcec99db4c9157265f1d40a9dcd2760f6aa1e56027eb2ea4c889"
+    },
+    "tests/test_media.py": {
+      "bytes": 11327,
+      "sha256": "7bf28d919913f358edfca763edd9e914dc26daa7662df59f896310a17f2c95f6"
+    },
+    "tests/test_migration_recovery.py": {
+      "bytes": 5497,
+      "sha256": "9f67d355cadaff707a0feb2aa9623b415361cd5b32c6f94aa491ef9f49ce1470"
+    },
+    "tests/test_migrations.py": {
+      "bytes": 4437,
+      "sha256": "ce6275360136c5e0005df6e5c50db9743b5fc94e5297a62dc54e8236dac8fa2d"
+    },
+    "tests/test_minigame_acceptance_boundaries.py": {
+      "bytes": 21082,
+      "sha256": "c7ff748ce75692a08884e42c2eff1286cea9c3cc28dd02787e5866df4dea775d"
+    },
+    "tests/test_minigame_generator.py": {
+      "bytes": 14916,
+      "sha256": "7acf87296feefbcde567b10ac69422c1c51571aa5f88df824a102bfec68303ee"
+    },
+    "tests/test_minigame_integrity.py": {
+      "bytes": 3519,
+      "sha256": "e1e8ce851689ce2077dba7cddf73b609d09e4933c1f98d43dbca8e348277551d"
+    },
+    "tests/test_minigame_models.py": {
+      "bytes": 18534,
+      "sha256": "8232a7152e13c4304c7f8480d2ddcfab6faa32b31ad92f9ee39fb55123db7238"
+    },
+    "tests/test_minigame_packages.py": {
+      "bytes": 15209,
+      "sha256": "1ed989657531877f905d23cf38164b7eb417a9629703d27389af3074e015f9b7"
+    },
+    "tests/test_minigame_protocol.py": {
+      "bytes": 14728,
+      "sha256": "decfc1c749287c5a7ec5ede0b2103cf5351e4cb3676d44c84b1c86e3ed55486d"
+    },
+    "tests/test_minigame_qa.py": {
+      "bytes": 4808,
+      "sha256": "b8b03ff3a829db65555d59afc0fbbba00a378118a1ff26b7825a2917ecf0104c"
+    },
+    "tests/test_minigame_qa_evidence.py": {
+      "bytes": 3072,
+      "sha256": "9285232c21439b1582d98436fe5c49fb8c540b860c1f12358e0bd7e752cf31f1"
+    },
+    "tests/test_minigame_qa_owned_fault.py": {
+      "bytes": 11003,
+      "sha256": "e1e96be1fc93bf85945b14194db8cda492410146749014e80b8430f0590e6bf6"
+    },
+    "tests/test_minigame_runtime.py": {
+      "bytes": 40511,
+      "sha256": "8183191a263fe83b2e115933b4d309c119fd12c1b48b5f523c61e22eb733c809"
+    },
+    "tests/test_minigame_scenario_capacity.py": {
+      "bytes": 5699,
+      "sha256": "87cbf422388e6549b0fd74043d9dff54b33994dc5403cb8c832853cf3628f654"
+    },
+    "tests/test_minigame_windows.py": {
+      "bytes": 4465,
+      "sha256": "237cd2d11bac72a03328b3edd09ab260cd29100aea82b0ea999fd74beaa4cf01"
+    },
+    "tests/test_models.py": {
+      "bytes": 12467,
+      "sha256": "35fd04833d40f097d15ee31b295279bcd18df12c62892b2bf7a230d6be13c19b"
+    },
+    "tests/test_native_asset_paths.py": {
+      "bytes": 2966,
+      "sha256": "f55a03b5586ec7f37f617ef1a6043b7ac6d73e44fa73f44cf3329cb518baa944"
+    },
+    "tests/test_package_delivery.py": {
+      "bytes": 29205,
+      "sha256": "4e5892fe585e1c1c9593890035b4363a06bb38862b21d9105ab0f86467ef7ddc"
+    },
+    "tests/test_package_html_delivery.py": {
+      "bytes": 22307,
+      "sha256": "f02295faedd1d755ac61323330e05b7f69fb81d3d8330d6969031b4b00b956a4"
+    },
+    "tests/test_prepare_html_browser.py": {
+      "bytes": 16837,
+      "sha256": "3d5ebe6cdd18e9aed45ace1cbe81f9383a11c2acedd896e2b3cdd1a781acfdd8"
+    },
+    "tests/test_prepare_html_runtime_manifest.py": {
+      "bytes": 8808,
+      "sha256": "6325ca575a1ae2cac67e8980c4297d76752e8ac60ba4148f8bed5fc29bc421e8"
+    },
+    "tests/test_prepare_public_source.py": {
+      "bytes": 14743,
+      "sha256": "6e58e7f406f0948e9ecedd5a41feb31c67ffa8b02bfe688d5c990786921bbf8a"
+    },
+    "tests/test_reimport.py": {
+      "bytes": 9390,
+      "sha256": "0ec419865ff7411a1cf62d6f6269e3641c0079e2c9de0e747c1c582528ea154a"
+    },
+    "tests/test_release_staging.py": {
+      "bytes": 20981,
+      "sha256": "78c1bfaa87bb76c77aa0bac00c6742daf803fb8e1f9f9bcba2a1bfa4ace1529b"
+    },
+    "tests/test_release_versions.py": {
+      "bytes": 725,
+      "sha256": "72ff7b90b35f6909b4fddded7c106d59a4529adc4dca11485ae37c40e0971057"
+    },
+    "tests/test_sdk.py": {
+      "bytes": 2229,
+      "sha256": "ebf19b1c15bd057add02750b79c58a11e75fedacf76070ea9215c4e78ae17115"
+    },
+    "tests/test_sdk_upgrade_preservation.py": {
+      "bytes": 19237,
+      "sha256": "eb27f4d356bfca30242fb92ab7e4e3d0b6c2337c4fe7d26d00a6a7771bcf6bce"
+    },
+    "tests/test_sources.py": {
+      "bytes": 6734,
+      "sha256": "79c3eaa430dd0cf335b7ed31e9662c06d1eb376ef1d6dc801dcece8ffc71db60"
+    },
+    "tests/test_storage.py": {
+      "bytes": 4590,
+      "sha256": "5878a99dc81b40600a7f871616c09a32ea20dd2d100e2f3a720b12dbd3796a54"
+    },
+    "tests/test_store_migration.py": {
+      "bytes": 2881,
+      "sha256": "282e330d1d5102fea046f9b1ab85fd9612dbade0fee32a42279c20d0a31252d0"
+    },
+    "tests/test_tool_docs.py": {
+      "bytes": 1991,
+      "sha256": "0473cab2480210fabb61464efb8cf3278a9aa2bc32dd9c4bf95cdb79990566e4"
+    },
+    "tests/test_visual_environment.py": {
+      "bytes": 3711,
+      "sha256": "a1a66cac83da3777255747ed00ab8af597ee63be5db722e2f3d4cf6050988cc2"
+    },
+    "tests/test_visual_regression.py": {
+      "bytes": 20850,
+      "sha256": "d291b78d57dd3bccdbe15cba312c99ae18e667e018d17e49ebe5fe543e910127"
+    },
+    "tools/build_html_embedded_host.py": {
+      "bytes": 9082,
+      "sha256": "e083a58f2d0c9325fc318647a8dc6fbf890a827d4fab667013ef9825de09b1e2"
+    },
+    "tools/build_html_host.py": {
+      "bytes": 5524,
+      "sha256": "330af0fa3c318ce1f321f54ee0bd4e661b169520582eeef51eabe15c740caa66"
+    },
+    "tools/capture_project_state.py": {
+      "bytes": 1553,
+      "sha256": "eb32ea0262d0573457c57952142569268fb8a895959805bedf19ed991eab5515"
+    },
+    "tools/codex_author.py": {
+      "bytes": 9601,
+      "sha256": "89b377b026138132dc46ae6bf38233b6168fe88711ca6c4526d239ee50b8a631"
+    },
+    "tools/create_demo_audio.py": {
+      "bytes": 4042,
+      "sha256": "6b325dbea1034c153075010be6805a8a8f8a0cfe79929464e973a4a648b9cb13"
+    },
+    "tools/create_demo_workbook.mjs": {
+      "bytes": 15634,
+      "sha256": "0e43d6ee1b5bd085629997b1ca3a6055fd96c361b27e5c99a786a791cb7e2bc4"
+    },
+    "tools/create_html_minigame_demo.py": {
+      "bytes": 15561,
+      "sha256": "4c3db37447db2be33bdcebeb9ee43c2ac370be44e2395954f15693a1728f49a4"
+    },
+    "tools/html_progress.py": {
+      "bytes": 2276,
+      "sha256": "61bd0b9547bf43a5df1644abe9331e5e95200f3daaba89cb9ad30c1ee52c8df2"
+    },
+    "tools/install_html_runtime.py": {
+      "bytes": 17128,
+      "sha256": "147f10204c7f74654e91dce5bbf0e8dc837995b339a41bea89e3d46971b99bdc"
+    },
+    "tools/package_delivery.py": {
+      "bytes": 32920,
+      "sha256": "74666291125cee28ed51e0a5ddc876568543bcb97bf7df7d70ddc6bc946e5f73"
+    },
+    "tools/package_html_delivery.py": {
+      "bytes": 34635,
+      "sha256": "9e488e06bea0f1568a1d5a0f957309c396030c127ddd83fac8e1a6e35d21bcc8"
+    },
+    "tools/prepare_html_browser.py": {
+      "bytes": 18283,
+      "sha256": "a607a09991a0f028ffb01984204b5bc9cfd87fd869ac653adc06cc44d9e923aa"
+    },
+    "tools/prepare_html_runtime_manifest.py": {
+      "bytes": 7785,
+      "sha256": "a9258221d9dec233f556421386d467cdee04497f835d64f2a1cb9ec6ae7e398b"
+    },
+    "tools/prepare_public_source.py": {
+      "bytes": 15932,
+      "sha256": "2ea9bbdd8866ba85802009e18a308c65c5620dd05644410d46ddd3f11cf7862c"
+    },
+    "tools/probe_audio.py": {
+      "bytes": 17814,
+      "sha256": "31668b64a658abfbd6d1c674a4e5825cdd2f57c01b92502c54901e64308d9919"
+    },
+    "tools/probe_checkpoint_inputs.mjs": {
+      "bytes": 5374,
+      "sha256": "7ea1e3265e5b907bdec0eea930af6700876f75af1b2fbd596002f3e97fa3a04f"
+    },
+    "tools/probe_codex.py": {
+      "bytes": 4083,
+      "sha256": "e90b9786d5708aba1caf861d18177159e7f41a93294ee7b05518d2fb66881d32"
+    },
+    "tools/probe_core_integrity.py": {
+      "bytes": 14786,
+      "sha256": "d050104119c20ee63caa0c11499030269c6e0ac017fe7288a70cc217f9049165"
+    },
+    "tools/probe_demo_audio.py": {
+      "bytes": 32981,
+      "sha256": "9a0bcac73a8237ded65068e40e7568706642a42a7e2c3c24513e10a483f845e7"
+    },
+    "tools/probe_diagnostics_jobs.py": {
+      "bytes": 33535,
+      "sha256": "e356a721577ba055431b0132b13d0ab15c9095b5c9827e5e8a8f6771f0070757"
+    },
+    "tools/probe_engine_audio.py": {
+      "bytes": 21914,
+      "sha256": "7ff217b7b82a64ad4e23389567f54ce3b6dc17dcbd588912d7b38f194a9a111e"
+    },
+    "tools/probe_formal_minigames.py": {
+      "bytes": 5228,
+      "sha256": "b428e38851f4c6597d32faf80791f318a8f868083425f7424b513ef1eb5752a2"
+    },
+    "tools/probe_generator.py": {
+      "bytes": 8264,
+      "sha256": "7cf0416a8f0b9e8b018ab024d512699968b71c9f613bcaf40cc965e57638bddd"
+    },
+    "tools/probe_html_baseline.py": {
+      "bytes": 5351,
+      "sha256": "8e3f9c767e5b1705f4f1c17aef804f26aea60ee218de5d43406d5d01a8af6177"
+    },
+    "tools/probe_html_cdp.mjs": {
+      "bytes": 11019,
+      "sha256": "faf50482807d1f8e57d9fb264b55719f7fa88d4ff2deb4acc97ecb40f3680578"
+    },
+    "tools/probe_html_embedded_renpy.py": {
+      "bytes": 9857,
+      "sha256": "299f5429922d2c4a3048e12ba21f89b678512dab69aaf1f21266b72086a5f026"
+    },
+    "tools/probe_html_host.mjs": {
+      "bytes": 13653,
+      "sha256": "f8525918270463a2c4b3dbb00e99a5ca068ebea1b654e4b5c935d3f9a808288f"
+    },
+    "tools/probe_html_network.py": {
+      "bytes": 22568,
+      "sha256": "a4db7ce9aa859ce0494ed98654ac961437c44258be06de9a9df0ffc2c90a3bdd"
+    },
+    "tools/probe_html_renpy.py": {
+      "bytes": 14926,
+      "sha256": "b13f5ef457ce52cd7cc1b0926bc8b07b833046d9606540c1414ca97ed0a60c9d"
+    },
+    "tools/probe_html_resource_slice.py": {
+      "bytes": 4549,
+      "sha256": "9acecb2499af817408b35bd5aac2ff3f1fe30bc58c425e4969c72cd1fded05a0"
+    },
+    "tools/probe_install_recovery.py": {
+      "bytes": 18168,
+      "sha256": "e0585d9301d6c8bf74624035b60f57796b5011fb03716c29fe968e5d87df156e"
+    },
+    "tools/probe_installed_plugin.py": {
+      "bytes": 3497,
+      "sha256": "699dde8d81142ec120a5def4c529b066775cbfc12d5548772cf6e7fe8cd2d52b"
+    },
+    "tools/probe_interactions.py": {
+      "bytes": 15022,
+      "sha256": "b530de30bb0aab1366cabde5d1c257fbc2358fffb153848a72f9c3151409c0ce"
+    },
+    "tools/probe_minigame_generator.py": {
+      "bytes": 36816,
+      "sha256": "7639410f69f40d53dee2cb373f288e0c3295b720d1cd2a693bcfc7a034e0dd89"
+    },
+    "tools/probe_minigame_manual_compat.py": {
+      "bytes": 16779,
+      "sha256": "e999199a4076fc4a3e6c060f64e065f2cbff7510c3c3857ec7468ed013a36ff6"
+    },
+    "tools/probe_old_save.py": {
+      "bytes": 15062,
+      "sha256": "b11a0eeac998bfe5062d7909674395649c5fc0ff7afa88420c456bd439514e31"
+    },
+    "tools/probe_pipeline.py": {
+      "bytes": 3423,
+      "sha256": "cbc6754e3e8394e0575dc71e210142be88c93667b39836f0cec64e0b51e3ed81"
+    },
+    "tools/probe_plugin_host.py": {
+      "bytes": 4930,
+      "sha256": "e1412b35c042630194ec8b27ad10e5bef348333f1ac3e1f91a57decb5c64185e"
+    },
+    "tools/probe_plugin_uninstall.py": {
+      "bytes": 13661,
+      "sha256": "662c7669d48749af1b1f8fba4bcb2bf67a0c52727bd712b8a7c80073ab48fa85"
+    },
+    "tools/probe_scale.py": {
+      "bytes": 25595,
+      "sha256": "a4b7941d65ff7571fcfac58ba7c9cbb6869a3945881aa4deccde458a33b825f5"
+    },
+    "tools/probe_sdk.py": {
+      "bytes": 15555,
+      "sha256": "cd4bd85b18972d99f3d9c87a147a0f6330e340ec2add9333c6c87f3686d33315"
+    },
+    "tools/probe_tool_contract.py": {
+      "bytes": 5026,
+      "sha256": "479a8ba948a4303105020f5e795912181928c491ac11a77af2d663319497f127"
+    },
+    "tools/probe_voice.ps1": {
+      "bytes": 2399,
+      "sha256": "fbe8a867e3ebb703da8048e6ba97178ad736b74fb14cccefb30004caa4199617"
+    },
+    "tools/record_demo_visual_review.py": {
+      "bytes": 4914,
+      "sha256": "aad31518cb393de6ba0acc6eb6e88c101d088b9d2c3cbf066b91f849af153ee6"
+    },
+    "tools/update_demo_workbook.mjs": {
+      "bytes": 4014,
+      "sha256": "c2f1deb0365db4957bef0cddb226b5dc83691433dabf993418ad063290d6a0e7"
+    },
+    "tools/upgrade_html_minigame_demo.py": {
+      "bytes": 7707,
+      "sha256": "de94c29f12c2d96a0e8464348d92c861b0fc3f3b7186529c388363a2dc1838a7"
+    },
+    "tools/verify_demo_authoring.py": {
+      "bytes": 93439,
+      "sha256": "55db9700545b1a39121b65beaab295a8ac09620c4b59b33f3ad150e2d37ebb4b"
+    },
+    "tools/verify_html_minigame_core.py": {
+      "bytes": 4723,
+      "sha256": "2f2b2ef91a6aba5ca3865213a105e6c64ca399bc3bef7815ba02c99dadbe3e33"
+    }
+  },
+  "kind": "controlled_public_source",
+  "license_note": "No project license is inferred; retain and review existing third-party notices.",
+  "limits": {
+    "file_bytes": 5242880,
+    "total_bytes": 52428800
+  },
+  "privacy_checked": true,
+  "project_license": null,
+  "schema_version": "1.0",
+  "sdk_and_production_evidence_included": false,
+  "source_content_sha256": "e1d566c249e94c1557546837af5e1723e68cdf34dde2e765fc27b5466f1f0283"
+}

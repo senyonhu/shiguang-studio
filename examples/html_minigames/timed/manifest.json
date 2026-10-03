@@ -1,0 +1,91 @@
+{
+  "format_version": "1.0",
+  "prototype": true,
+  "game_id": "h0_timed",
+  "version": "h0-1",
+  "entry": "index.html",
+  "protocol": "1.0",
+  "display_name": "信号回路 · 限时操作",
+  "inputs": {
+    "duration_seconds": {
+      "type": "number",
+      "default": 12,
+      "minimum": 3,
+      "maximum": 60
+    },
+    "rounds": {
+      "type": "integer",
+      "default": 6,
+      "minimum": 3,
+      "maximum": 24
+    }
+  },
+  "results": {
+    "outcomes": [
+      "win",
+      "lose"
+    ],
+    "fields": {
+      "score": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "hits": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 24
+      },
+      "misses": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "elapsed_ms": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  },
+  "save_capabilities": {
+    "entry_restart": true,
+    "checkpoint": false,
+    "snapshot_version": null
+  },
+  "automation": {
+    "begin": "[data-testid=begin]",
+    "lit_target": ".target.lit",
+    "actual_actions": "开始后逐次按发亮端子胜利；开始后不操作到计时归零失败"
+  },
+  "required_capabilities": [
+    "local_content",
+    "host_messages",
+    "audio"
+  ],
+  "license": "Original example code and generated tone; no external dependency",
+  "files": [
+    {
+      "path": "bridge-sdk.js",
+      "sha256": "083b35d3de199dbdf93ac14b6c2d76cfaaf194e40b0e64de7e68b03f0fc9d1a9",
+      "bytes": 7389
+    },
+    {
+      "path": "game.js",
+      "sha256": "3042689a43943b8706448eda595090123f9d9a17c51cc27885d524fb2c34e639",
+      "bytes": 4230
+    },
+    {
+      "path": "index.html",
+      "sha256": "c624d429cadfbc89972d6fa759d95e53061e19af1dd329f8b31794948c48dfb9",
+      "bytes": 2150
+    },
+    {
+      "path": "styles.css",
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b",
+      "bytes": 1732
+    },
+    {
+      "path": "tap.wav",
+      "sha256": "f8e0e065a4962a8af76161ca5d068a1d515feb351194430651260c8ee2afbecf",
+      "bytes": 5336
+    }
+  ]
+}

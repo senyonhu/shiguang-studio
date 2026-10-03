@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>温室修复</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+    .choices button { min-height: 90px; }
+    .calibration { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 24px 0; }
+    .calibration strong { font-size: 36px; min-width: 80px; text-align: center; }
+    @media (max-width: 520px) { .choices { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main id="workshop" data-testid="workshop" data-stage="0">
+    <div class="eyebrow">离线小游戏 · 温室修复</div>
+    <h1>让温室重新苏醒</h1>
+    <p>依照检修说明完成三道工序。前两道完成后保存进度，返回时可继续修复。</p>
+    <div class="stats"><span>工序 <strong id="stage" data-testid="stage">1 / 3</strong></span><span>失误 <strong id="mistakes">0</strong></span></div>
+    <section id="sensor-step">
+      <h2>1 · 安装探头</h2>
+      <p>温室需要读取气温，请选择<strong>温度探头</strong>。</p>
+      <div class="choices">
+        <button data-part="humidity" data-testid="part-humidity" disabled>1 · 湿度探头</button>
+        <button data-part="temperature" data-testid="part-temperature" disabled>2 · 温度探头</button>
+        <button data-part="light" data-testid="part-light" disabled>3 · 光照探头</button>
+      </div>
+    </section>
+    <section id="wire-step" hidden>
+      <h2>2 · 接通信号线</h2>
+      <p>检修图规定：温度信号接入<strong>蓝色端子</strong>。</p>
+      <div class="choices">
+        <button data-wire="red" data-testid="wire-red" disabled>1 · 红色端子</button>
+        <button data-wire="blue" data-testid="wire-blue" disabled>2 · 蓝色端子</button>
+        <button data-wire="yellow" data-testid="wire-yellow" disabled>3 · 黄色端子</button>
+      </div>
+    </section>
+    <section id="calibration-step" hidden>
+      <h2>3 · 校准温度</h2>
+      <p>校准目标为 <strong id="target">37</strong> °C。调整显示温度后进行实测。</p>
+      <div class="calibration"><button id="minus" data-testid="calibration-minus" disabled aria-label="温度减一">−</button><strong id="value" data-testid="calibration-value">34</strong><button id="plus" data-testid="calibration-plus" disabled aria-label="温度加一">+</button></div>
+      <button id="verify" class="primary" data-testid="verify-calibration" disabled>进行实测</button>
+    </section>
+    <div id="status" class="status" role="status" aria-live="polite" data-testid="status">正在准备……</div>
+    <p class="help">键盘：前两步按 1–3 选择；校准时方向键调整，Enter 实测。暂停时不能操作。</p>
+    <p id="preview" class="preview" hidden>你正在单独试玩，进度只保留在当前页面。</p>
+    <p id="package-instructions" class="help" data-testid="package-instructions">正在读取本地操作单……</p>
+  </main>
+  <script src="bridge-sdk.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

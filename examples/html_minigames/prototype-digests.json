@@ -1,0 +1,28 @@
+{
+  "prototype": true,
+  "protocol": "1.0",
+  "digest_algorithm": "sha256(path_utf8+nul+file_sha256_ascii+lf)-v1",
+  "packages": {
+    "puzzle": {
+      "game_id": "h0_puzzle",
+      "package_version": "h0-1",
+      "package_hash": "a727e5b5622719b5056ebca80ada4a5d6ccd32e6811654c92cfa649cb7541f1e",
+      "manifest_sha256": "43b0e4c08fcd15a1b313acf5b766fcad12fb6369614b83cb54ee7babc140e9f6",
+      "file_count": 5
+    },
+    "timed": {
+      "game_id": "h0_timed",
+      "package_version": "h0-1",
+      "package_hash": "b6b65a9a3dac95fe4b10491054c82f1b4439ef826e74944334cd97cf99cb42f4",
+      "manifest_sha256": "b0038bde963cc63341ce8b8847ae6d7884d06bebbd9fe9c76d6492c51443e7e8",
+      "file_count": 6
+    },
+    "checkpoint": {
+      "game_id": "h0_checkpoint",
+      "package_version": "h0-1",
+      "package_hash": "c51ed7e01d12ec88e09dfa21036ebe41d82ff043568b6a960b1b1fc8ad60cfe8",
+      "manifest_sha256": "61790f25eee4aa05be745d93b64d600951c9a42bb535d08fe215abe10db1420c",
+      "file_count": 5
+    }
+  }
+}

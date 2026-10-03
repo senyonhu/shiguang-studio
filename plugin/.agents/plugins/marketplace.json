@@ -1,0 +1,20 @@
+{
+  "name": "renpy-bridge-local",
+  "interface": {
+    "displayName": "RenPy Bridge 本地开发"
+  },
+  "plugins": [
+    {
+      "name": "renpy-bridge",
+      "source": {
+        "source": "local",
+        "path": "./renpy-bridge"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

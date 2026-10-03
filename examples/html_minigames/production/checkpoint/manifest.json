@@ -1,0 +1,138 @@
+{
+  "format_version": "1.0",
+  "prototype": false,
+  "game_id": "prod_checkpoint",
+  "version": "1.0.0",
+  "entry": "index.html",
+  "protocol": "1.0",
+  "display_name": "温室修复",
+  "inputs": {
+    "target_temperature": {
+      "type": "integer",
+      "default": 37,
+      "minimum": 20,
+      "maximum": 50
+    }
+  },
+  "results": {
+    "outcomes": [
+      "win"
+    ],
+    "fields": {
+      "score": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 300
+      },
+      "steps_completed": {
+        "type": "integer",
+        "enum": [
+          3
+        ]
+      },
+      "mistakes": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "calibrated_temperature": {
+        "type": "integer",
+        "minimum": 20,
+        "maximum": 50
+      }
+    }
+  },
+  "save_capabilities": {
+    "entry_restart": true,
+    "checkpoint": true,
+    "snapshot_version": "1.0"
+  },
+  "snapshot_schema": {
+    "type": "object",
+    "required": [
+      "stage",
+      "sensor",
+      "wire",
+      "calibration",
+      "mistakes"
+    ],
+    "properties": {
+      "stage": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 2
+      },
+      "sensor": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          null,
+          "temperature"
+        ]
+      },
+      "wire": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          null,
+          "blue"
+        ]
+      },
+      "calibration": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 99
+      },
+      "mistakes": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100000
+      }
+    },
+    "additionalProperties": false
+  },
+  "automation": {
+    "stage": "[data-testid=workshop]",
+    "actual_actions": "温度探头→蓝色端子→调到目标温度→实测；前两步真实提交检查点"
+  },
+  "required_capabilities": [
+    "local_content",
+    "host_messages"
+  ],
+  "license": "MIT; see LICENSE.txt. Original code, instructions, and generated tap.wav; no external dependency.",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9",
+      "bytes": 1082
+    },
+    {
+      "path": "bridge-sdk.js",
+      "sha256": "531be4ccec4f4294e7ab489e5857d206a01e24a3231d934a55de166bfc13303b",
+      "bytes": 7423
+    },
+    {
+      "path": "game.js",
+      "sha256": "f59dd32aa7bd524a1e06045fc740ffbdcbec1472e8888fdb7246473c4f9acd0d",
+      "bytes": 6071
+    },
+    {
+      "path": "index.html",
+      "sha256": "3a860b9fe877efcde46cfb0e4c243266abab25f0f916143fd95dda9d8d9613a6",
+      "bytes": 3235
+    },
+    {
+      "path": "instructions.txt",
+      "sha256": "9728fecba124e47b6ca04dc080580c48bc614a96746588614bdb17a65524ca80",
+      "bytes": 151
+    },
+    {
+      "path": "styles.css",
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b",
+      "bytes": 1732
+    }
+  ]
+}

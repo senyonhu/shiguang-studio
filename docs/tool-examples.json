@@ -1,0 +1,64 @@
+[
+  {
+    "tool": "register_assets",
+    "arguments": {
+      "project_id": "p_example",
+      "expected_revision": 0,
+      "operation_id": "register_example_assets",
+      "assets": [
+        {"asset_id": "asset_bg", "kind": "image", "source_path": "C:\\材料\\背景.png", "provenance": {"source_id": "source_example", "sheet": "第一幕", "cell": "D2"}},
+        {"asset_id": "asset_character", "kind": "image", "source_path": "C:\\材料\\小夏.png"},
+        {"asset_id": "asset_voice", "kind": "audio", "source_path": "C:\\材料\\第一帧.wav"}
+      ]
+    }
+  },
+  {
+    "tool": "apply_frame_batch",
+    "arguments": {
+      "project_id": "p_example",
+      "expected_revision": 1,
+      "operation_id": "import_example_frames",
+      "entry_frame_id": "frame_1",
+      "characters": [{"character_id": "character_xiaoxia", "name": "小夏", "color": "#ffd0e0"}],
+      "acts": [{"act_id": "act_1", "name": "第一幕", "frame_ids": ["frame_1", "frame_2", "frame_3"], "provenance": {"source_id": "source_example"}}],
+      "frames": [
+        {
+          "frame_id": "frame_1", "act_id": "act_1", "source_label": "第一幕 第1帧", "order": 0,
+          "bg": {"component_id": "background", "kind": "background", "asset_id": "asset_bg"},
+          "characters": [{"component_id": "xiaoxia", "kind": "character", "character_id": "character_xiaoxia", "asset_id": "asset_character"}],
+          "decorations": [], "dialogue": {"speaker_id": "character_xiaoxia", "text": "我们走哪条路？", "provenance": {"source_id": "source_example", "sheet": "第一幕", "cell": "B2"}},
+          "voice": "asset_voice", "bgm": null, "sfx": [], "transition": {"kind": "dissolve", "duration": 0.3},
+          "flow": {"kind": "choices", "choices": [{"choice_id": "choice_river", "text": "去河边", "target_frame_id": "frame_2"}, {"choice_id": "choice_finish", "text": "直接结束", "target_frame_id": "frame_3"}]},
+          "provenance": {"source_id": "source_example", "sheet": "第一幕", "row": 2}
+        },
+        {
+          "frame_id": "frame_2", "act_id": "act_1", "source_label": "第一幕 第2帧", "order": 1,
+          "bg": null, "characters": [], "decorations": [], "dialogue": {"speaker_id": null, "text": "河边很安静。"},
+          "voice": null, "bgm": null, "sfx": [], "transition": {"kind": "none", "duration": 0.0},
+          "flow": {"kind": "next", "target_frame_id": "frame_3"}, "provenance": {"source_id": "source_example", "sheet": "第一幕", "row": 3}
+        },
+        {
+          "frame_id": "frame_3", "act_id": "act_1", "source_label": "第一幕 第3帧", "order": 2,
+          "bg": null, "characters": [], "decorations": [], "dialogue": {"speaker_id": null, "text": "两条路在这里汇合。"},
+          "voice": null, "bgm": null, "sfx": [], "transition": {"kind": "none", "duration": 0.0},
+          "flow": {"kind": "end"}, "provenance": {"source_id": "source_example", "sheet": "第一幕", "row": 4}
+        }
+      ]
+    }
+  },
+  {
+    "tool": "apply_layout",
+    "arguments": {
+      "project_id": "p_example", "scope": "frames", "frame_ids": ["frame_1"], "expected_revision": 2, "operation_id": "move_example_character",
+      "layout": {"xiaoxia": {"x": 0.72, "y": 0.93, "anchor_x": 0.5, "anchor_y": 1.0, "height": 0.7, "fit": "contain"}}
+    }
+  },
+  {
+    "tool": "patch_frame",
+    "arguments": {"project_id": "p_example", "frame_id": "frame_2", "expected_revision": 3, "operation_id": "patch_example_dialogue", "patch": {"dialogue": {"speaker_id": null, "text": "风声很轻。"}}}
+  },
+  {
+    "tool": "get_job",
+    "arguments": {"job_id": "job_0123456789abcdef0123456789abcdef", "include_report": true, "detail": "summary"}
+  }
+]

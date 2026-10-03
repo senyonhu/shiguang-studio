@@ -1,0 +1,21 @@
+{
+  "name": "renpy-bridge",
+  "version": "0.1.3",
+  "description": "通过本地结构化接口组装、修改、预览和导出 Ren’Py 作品。",
+  "author": {
+    "name": "Local project"
+  },
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "RenPy Bridge",
+    "shortDescription": "通过本地接口操作 Ren’Py 工程。",
+    "longDescription": "本地自用的 Ren’Py 制作工具。读取材料、管理完整帧与小分支，提供原生预览、路线检查和Windows发行任务。实际验证状态见项目报告。",
+    "developerName": "Local project",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ]
+  }
+}

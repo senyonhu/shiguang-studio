@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "renpy_bridge": {
+      "command": "python",
+      "args": [
+        "-m",
+        "renpy_bridge.server"
+      ],
+      "env": {
+        "PYTHONUTF8": "1",
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "format_version": "1.0",
+  "prototype": false,
+  "game_id": "prod_puzzle",
+  "version": "1.0.1",
+  "entry": "index.html",
+  "protocol": "1.0",
+  "display_name": "星图锁 · 九宫格拼图",
+  "inputs": {
+    "seed": {
+      "type": "integer",
+      "default": 1742,
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "scramble_moves": {
+      "type": "integer",
+      "default": 12,
+      "minimum": 2,
+      "maximum": 80
+    }
+  },
+  "results": {
+    "outcomes": [
+      "win"
+    ],
+    "fields": {
+      "score": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "moves": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "elapsed_ms": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  },
+  "save_capabilities": {
+    "entry_restart": true,
+    "checkpoint": false,
+    "snapshot_version": null
+  },
+  "automation": {
+    "board": "[data-testid=board]",
+    "actual_actions": "点击与空格相邻的 tile-N，直到排序正确"
+  },
+  "required_capabilities": [
+    "local_content",
+    "host_messages"
+  ],
+  "license": "MIT; see LICENSE.txt. Original code, instructions, and generated tap.wav; no external dependency.",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9",
+      "bytes": 1082
+    },
+    {
+      "path": "bridge-sdk.js",
+      "sha256": "b4fa6c764f67bd1b67e03a2698f4e97937c7db440eec89ed1a87c052b4640b7b",
+      "bytes": 7787
+    },
+    {
+      "path": "game.js",
+      "sha256": "453050efebe2b92a7c17a302ca1b2ed6aef8f731c752a56e49378d4dce4561a1",
+      "bytes": 4541
+    },
+    {
+      "path": "index.html",
+      "sha256": "144f2d40267cb6b1175641c9dacaa573ca7e84ec099d54018adb7d94e87dea65",
+      "bytes": 1635
+    },
+    {
+      "path": "instructions.txt",
+      "sha256": "4d25481afaeb2b5fd3c768e3e1ca09cc66ea1266d3060049f0108b085886f65c",
+      "bytes": 130
+    },
+    {
+      "path": "styles.css",
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b",
+      "bytes": 1732
+    }
+  ]
+}

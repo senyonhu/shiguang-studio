@@ -1,9 +1,6 @@
-* text=auto eol=lf
-*.cmd text eol=crlf
-*.ps1 text eol=crlf
+# Preserve bytes: immutable game packages and native build provenance use SHA256.
+* -text
 *.png binary
-*.jpg binary
-*.jpeg binary
 *.wav binary
-*.mp4 binary
-*.ttf binary
+*.xlsx binary
+*.save binary

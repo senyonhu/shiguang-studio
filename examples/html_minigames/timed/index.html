@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>信号回路 · 限时操作</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .targets { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 24px 0; }
+    .target { min-height: 96px; font-size: 22px; background: #223451; }
+    .target.lit { background: #986a29; border-color: #ffe09b; box-shadow: 0 0 20px #f1c77155; }
+    .target:disabled.lit { opacity: 1; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">离线玩法原型 · 信号回路</div>
+    <h1>在熄灯前接通信号</h1>
+    <p>开始后，按下当前发亮的端子。完成全部信号就能接通回路；按错会扣除时间，倒计时归零则失败。</p>
+    <div class="stats"><span>剩余 <strong id="remaining" data-testid="remaining">12.0</strong> 秒</span><span>信号 <strong id="progress" data-testid="progress">0 / 6</strong></span><span>失误 <strong id="misses">0</strong></span></div>
+    <button id="begin" class="primary" data-testid="begin" disabled>开始接线 · 启用声音</button>
+    <div class="targets" aria-label="信号端子">
+      <button class="target" data-target="0" data-testid="target-1" disabled>1 · 铜</button>
+      <button class="target" data-target="1" data-testid="target-2" disabled>2 · 铃</button>
+      <button class="target" data-target="2" data-testid="target-3" disabled>3 · 木</button>
+      <button class="target" data-target="3" data-testid="target-4" disabled>4 · 风</button>
+    </div>
+    <audio id="tone" preload="auto" src="tap.wav"></audio>
+    <div id="status" class="status" role="status" aria-live="polite" data-testid="status">正在等待游戏开始……</div>
+    <p class="help">键盘：Enter 开始；数字 1–4 选择对应端子。暂停会停止倒计时与声音。</p>
+    <p id="preview" class="preview" hidden>独立预览：这里可以实际操作，完成结果不会返回 Galgame。</p>
+  </main>
+  <script src="bridge-sdk.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,4017 @@
+{
+  "scope": "public_mcp_list_tools_snapshot",
+  "captured_at": "2026-10-02T16:47:29.331401+00:00",
+  "plugin_version": "0.1.3",
+  "schema_version": "1.0",
+  "tools": [
+    {
+      "name": "apply_frame_batch",
+      "description": "原子提交完整帧与角色/幕；首次省略内容表示清空，不继承前帧。跨批前向目标用导入候选接口。",
+      "inputSchema": {
+        "$defs": {
+          "Act": {
+            "additionalProperties": false,
+            "properties": {
+              "act_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Act Id",
+                "type": "string"
+              },
+              "name": {
+                "default": "第一幕",
+                "title": "Name",
+                "type": "string"
+              },
+              "order": {
+                "default": 0,
+                "minimum": 0,
+                "title": "Order",
+                "type": "integer"
+              },
+              "frame_ids": {
+                "items": {
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                  "type": "string"
+                },
+                "title": "Frame Ids",
+                "type": "array"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "act_id"
+            ],
+            "title": "Act",
+            "type": "object"
+          },
+          "Character": {
+            "additionalProperties": false,
+            "properties": {
+              "character_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Character Id",
+                "type": "string"
+              },
+              "name": {
+                "minLength": 1,
+                "title": "Name",
+                "type": "string"
+              },
+              "color": {
+                "default": "#ffffff",
+                "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+                "title": "Color",
+                "type": "string"
+              },
+              "metadata": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Metadata",
+                "type": "object"
+              }
+            },
+            "required": [
+              "character_id",
+              "name"
+            ],
+            "title": "Character",
+            "type": "object"
+          },
+          "Choice": {
+            "additionalProperties": false,
+            "properties": {
+              "choice_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Choice Id",
+                "type": "string"
+              },
+              "text": {
+                "minLength": 1,
+                "title": "Text",
+                "type": "string"
+              },
+              "target_frame_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Target Frame Id",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "choice_id",
+              "text",
+              "target_frame_id"
+            ],
+            "title": "Choice",
+            "type": "object"
+          },
+          "Component": {
+            "additionalProperties": false,
+            "properties": {
+              "component_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Component Id",
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "background",
+                  "character",
+                  "image",
+                  "text"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "asset_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Asset Id"
+              },
+              "text": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Text"
+              },
+              "character_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Character Id"
+              },
+              "layout": {
+                "$ref": "#/$defs/Layout"
+              },
+              "zorder": {
+                "default": 0,
+                "maximum": 1000,
+                "minimum": -1000,
+                "title": "Zorder",
+                "type": "integer"
+              },
+              "font_size": {
+                "default": 32,
+                "maximum": 128,
+                "minimum": 12,
+                "title": "Font Size",
+                "type": "integer"
+              },
+              "color": {
+                "default": "#ffffff",
+                "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+                "title": "Color",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "component_id",
+              "kind"
+            ],
+            "title": "Component",
+            "type": "object"
+          },
+          "Dialogue": {
+            "additionalProperties": false,
+            "properties": {
+              "speaker_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Speaker Id"
+              },
+              "text": {
+                "title": "Text",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "title": "Dialogue",
+            "type": "object"
+          },
+          "Flow": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "next",
+                  "choices",
+                  "end",
+                  "minigame"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Target Frame Id"
+              },
+              "choices": {
+                "items": {
+                  "$ref": "#/$defs/Choice"
+                },
+                "title": "Choices",
+                "type": "array"
+              },
+              "game_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Game Id"
+              },
+              "instance_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Instance Id"
+              },
+              "inputs": {
+                "patternProperties": {
+                  "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+                    "$ref": "#/$defs/ValueBinding"
+                  }
+                },
+                "title": "Inputs",
+                "type": "object"
+              },
+              "result_branches": {
+                "items": {
+                  "$ref": "#/$defs/ResultBranch"
+                },
+                "maxItems": 256,
+                "title": "Result Branches",
+                "type": "array"
+              },
+              "cancel_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Cancel Target Frame Id"
+              },
+              "error_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Error Target Frame Id"
+              },
+              "fallback_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Fallback Target Frame Id"
+              },
+              "save_mode": {
+                "default": "entry_restart",
+                "enum": [
+                  "entry_restart",
+                  "checkpoint"
+                ],
+                "title": "Save Mode",
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "title": "Flow",
+            "type": "object"
+          },
+          "Frame": {
+            "additionalProperties": false,
+            "properties": {
+              "frame_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Frame Id",
+                "type": "string"
+              },
+              "act_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Act Id",
+                "type": "string"
+              },
+              "source_label": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Source Label"
+              },
+              "order": {
+                "default": 0,
+                "minimum": 0,
+                "title": "Order",
+                "type": "integer"
+              },
+              "bg": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Component"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "characters": {
+                "items": {
+                  "$ref": "#/$defs/Component"
+                },
+                "title": "Characters",
+                "type": "array"
+              },
+              "decorations": {
+                "items": {
+                  "$ref": "#/$defs/Component"
+                },
+                "title": "Decorations",
+                "type": "array"
+              },
+              "dialogue": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Dialogue"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "voice": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Voice"
+              },
+              "bgm": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Bgm"
+              },
+              "sfx": {
+                "items": {
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                  "type": "string"
+                },
+                "title": "Sfx",
+                "type": "array"
+              },
+              "transition": {
+                "$ref": "#/$defs/Transition"
+              },
+              "flow": {
+                "$ref": "#/$defs/Flow"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "frame_id",
+              "act_id",
+              "flow"
+            ],
+            "title": "Frame",
+            "type": "object"
+          },
+          "JsonValue": {},
+          "Layout": {
+            "additionalProperties": false,
+            "description": "Coordinates/sizes are fractions of the canvas; anchors of the component.",
+            "properties": {
+              "x": {
+                "default": 0.5,
+                "maximum": 3.0,
+                "minimum": -2.0,
+                "title": "X",
+                "type": "number"
+              },
+              "y": {
+                "default": 1.0,
+                "maximum": 3.0,
+                "minimum": -2.0,
+                "title": "Y",
+                "type": "number"
+              },
+              "anchor_x": {
+                "default": 0.5,
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "title": "Anchor X",
+                "type": "number"
+              },
+              "anchor_y": {
+                "default": 1.0,
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "title": "Anchor Y",
+                "type": "number"
+              },
+              "width": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0.0,
+                    "maximum": 4.0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Width"
+              },
+              "height": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0.0,
+                    "maximum": 4.0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Height"
+              },
+              "fit": {
+                "default": "contain",
+                "enum": [
+                  "contain",
+                  "cover"
+                ],
+                "title": "Fit",
+                "type": "string"
+              }
+            },
+            "title": "Layout",
+            "type": "object"
+          },
+          "Predicate": {
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "enum": [
+                  "eq",
+                  "ne",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "all",
+                  "any",
+                  "not"
+                ],
+                "title": "Op",
+                "type": "string"
+              },
+              "left": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ValueBinding"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "right": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ValueBinding"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "conditions": {
+                "items": {
+                  "$ref": "#/$defs/Predicate"
+                },
+                "maxItems": 128,
+                "title": "Conditions",
+                "type": "array"
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "title": "Predicate",
+            "type": "object"
+          },
+          "ResultBranch": {
+            "additionalProperties": false,
+            "properties": {
+              "branch_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Branch Id",
+                "type": "string"
+              },
+              "outcome": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Outcome",
+                "type": "string"
+              },
+              "predicate": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Predicate"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "effects": {
+                "items": {
+                  "$ref": "#/$defs/VariableEffect"
+                },
+                "maxItems": 256,
+                "title": "Effects",
+                "type": "array"
+              },
+              "target_frame_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Target Frame Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "branch_id",
+              "outcome",
+              "target_frame_id"
+            ],
+            "title": "ResultBranch",
+            "type": "object"
+          },
+          "Transition": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "default": "none",
+                "enum": [
+                  "none",
+                  "dissolve",
+                  "fade"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "duration": {
+                "default": 0.3,
+                "maximum": 10.0,
+                "minimum": 0.0,
+                "title": "Duration",
+                "type": "number"
+              }
+            },
+            "title": "Transition",
+            "type": "object"
+          },
+          "ValueBinding": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "literal",
+                  "variable",
+                  "result"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "value": {
+                "$ref": "#/$defs/JsonValue",
+                "default": null
+              },
+              "variable_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Variable Id"
+              },
+              "field": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Field"
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "title": "ValueBinding",
+            "type": "object"
+          },
+          "VariableEffect": {
+            "additionalProperties": false,
+            "properties": {
+              "effect_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Effect Id",
+                "type": "string"
+              },
+              "op": {
+                "enum": [
+                  "set",
+                  "add"
+                ],
+                "title": "Op",
+                "type": "string"
+              },
+              "variable_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Variable Id",
+                "type": "string"
+              },
+              "value": {
+                "$ref": "#/$defs/ValueBinding"
+              }
+            },
+            "required": [
+              "effect_id",
+              "op",
+              "variable_id",
+              "value"
+            ],
+            "title": "VariableEffect",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/$defs/Frame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "acts": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/$defs/Act"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Acts"
+          },
+          "characters": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/$defs/Character"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Characters"
+          },
+          "entry_frame_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Entry Frame Id"
+          }
+        },
+        "required": [
+          "project_id",
+          "frames",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "apply_frame_batchArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "apply_layout",
+      "description": "保存统一界面布局或指定帧组件布局。frames模式layout按component_id索引，坐标归一化。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "scope": {
+            "enum": [
+              "project",
+              "frames"
+            ],
+            "title": "Scope",
+            "type": "string"
+          },
+          "layout": {
+            "additionalProperties": true,
+            "title": "Layout",
+            "type": "object"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "frame_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Frame Ids"
+          }
+        },
+        "required": [
+          "project_id",
+          "scope",
+          "layout",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "apply_layoutArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "apply_migration",
+      "description": "备份原始项目字节及SDK记录后提交新版本；格式迁移不表示旧存档已通过。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "target_schema": {
+            "default": "1.0",
+            "title": "Target Schema",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "apply_migrationArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "apply_reimport",
+      "description": "应用已规划重导入。conflict的JSONPointer路径选择source/current，未解决不提交。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "plan_id": {
+            "title": "Plan Id",
+            "type": "string"
+          },
+          "resolutions": {
+            "additionalProperties": {
+              "enum": [
+                "source",
+                "current"
+              ],
+              "type": "string"
+            },
+            "title": "Resolutions",
+            "type": "object"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "plan_id",
+          "resolutions",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "apply_reimportArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "begin_import",
+      "description": "创建候选导入会话与全体稳定帧身份清单。尚不提交任何内容版本。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "frame_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Frame Ids",
+            "type": "array"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "game_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Game Ids"
+          },
+          "variable_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Variable Ids"
+          }
+        },
+        "required": [
+          "project_id",
+          "frame_ids",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "begin_importArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "build_release",
+      "description": "真实Windows PC发行任务，编译/路线后distribute，并用独立目录包内exe再走路线。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          },
+          "max_routes": {
+            "default": 256,
+            "title": "Max Routes",
+            "type": "integer"
+          },
+          "include_interactions": {
+            "default": false,
+            "title": "Include Interactions",
+            "type": "boolean"
+          },
+          "minigame_scenarios": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Minigame Scenarios"
+          }
+        },
+        "required": [
+          "project_id",
+          "revision"
+        ],
+        "title": "build_releaseArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "cancel_job",
+      "description": "取消本服务创建的任务与其进程树，保留内容修订和之前可运行版本。",
+      "inputSchema": {
+        "properties": {
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id"
+        ],
+        "title": "cancel_jobArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "check_project",
+      "description": "检查固定内容版本：模型、素材哈希、字体/几何、真实compile/lint。返回job_id，不代表完成。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "project_id",
+          "revision"
+        ],
+        "title": "check_projectArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "commit_import",
+      "description": "全图校验并一次提交导入候选。项目已有新修改时拒绝覆盖。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "import_session_id": {
+            "title": "Import Session Id",
+            "type": "string"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "import_session_id",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "commit_importArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "create_checkpoint",
+      "description": "记录当前内容版本检查点，保留素材版本以便恢复。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "note": {
+            "title": "Note",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "note"
+        ],
+        "title": "create_checkpointArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "create_project",
+      "description": "创建受管作品。重复相同operation_id只创建一次；内部身份与显示名称分开。",
+      "inputSchema": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "width": {
+            "default": 1280,
+            "title": "Width",
+            "type": "integer"
+          },
+          "height": {
+            "default": 720,
+            "title": "Height",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "operation_id"
+        ],
+        "title": "create_projectArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "define_variables",
+      "description": "原子登记存档变量及类型范围；默认值仅用于新游戏或旧档缺失字段；仍被引用的变量不能移除。",
+      "inputSchema": {
+        "$defs": {
+          "JsonValue": {},
+          "VariableDefinition": {
+            "additionalProperties": false,
+            "properties": {
+              "variable_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Variable Id",
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "int",
+                  "float",
+                  "bool",
+                  "str"
+                ],
+                "title": "Type",
+                "type": "string"
+              },
+              "default": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "minimum": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Minimum"
+              },
+              "maximum": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Maximum"
+              },
+              "allowed_values": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/JsonValue"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Allowed Values"
+              },
+              "scope": {
+                "const": "save",
+                "default": "save",
+                "title": "Scope",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "variable_id",
+              "type",
+              "default"
+            ],
+            "title": "VariableDefinition",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "variables": {
+            "items": {
+              "$ref": "#/$defs/VariableDefinition"
+            },
+            "title": "Variables",
+            "type": "array"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "remove_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Remove Ids"
+          }
+        },
+        "required": [
+          "project_id",
+          "variables",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "define_variablesArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "discard_import",
+      "description": "取消未提交的导入候选；保留此前有效项目。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "import_session_id": {
+            "title": "Import Session Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "import_session_id"
+        ],
+        "title": "discard_importArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "extract_source",
+      "description": "提取XLSX/CSV/TSV/TXT/MD/DOCX为带位置的记录并保存原件；AI据此理解归属，不执行材料。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "source_path": {
+            "title": "Source Path",
+            "type": "string"
+          },
+          "source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Source Id"
+          },
+          "offset": {
+            "default": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "limit": {
+            "default": 200,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "project_id",
+          "source_path"
+        ],
+        "title": "extract_sourceArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_environment",
+      "description": "查询本地制作服务、版本和SDK能力。环境查询不表示项目已验证。",
+      "inputSchema": {
+        "properties": {
+          "include_runtime": {
+            "default": true,
+            "title": "Include Runtime",
+            "type": "boolean"
+          }
+        },
+        "title": "get_environmentArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_job",
+      "description": "核实任务状态及日志/报告路径。include_report=true默认返回紧凑结果；完整执行输出用detail=full。",
+      "inputSchema": {
+        "properties": {
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          },
+          "include_report": {
+            "default": false,
+            "title": "Include Report",
+            "type": "boolean"
+          },
+          "detail": {
+            "default": "summary",
+            "enum": [
+              "summary",
+              "full"
+            ],
+            "title": "Detail",
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_id"
+        ],
+        "title": "get_jobArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_minigame_capabilities",
+      "description": "发现HTML包、输入结果、检查点及首发平台契约；能力存在不表示某个作品已实测通过。",
+      "inputSchema": {
+        "properties": {},
+        "title": "get_minigame_capabilitiesArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "inspect_project",
+      "description": "查询作品版本、对象或分页；不指定project_id时列出作品。修改前先读revision。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Project Id"
+          },
+          "section": {
+            "default": "summary",
+            "enum": [
+              "summary",
+              "frames",
+              "acts",
+              "characters",
+              "assets",
+              "variables",
+              "minigames",
+              "checkpoints",
+              "full"
+            ],
+            "title": "Section",
+            "type": "string"
+          },
+          "object_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Object Id"
+          },
+          "offset": {
+            "default": 0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "limit": {
+            "default": 50,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "title": "inspect_projectArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "patch_frame",
+      "description": "局部更新帧；省略不改变，null清指定可空字段，[]清组件列表；嵌套对象整体替换。",
+      "inputSchema": {
+        "$defs": {
+          "Choice": {
+            "additionalProperties": false,
+            "properties": {
+              "choice_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Choice Id",
+                "type": "string"
+              },
+              "text": {
+                "minLength": 1,
+                "title": "Text",
+                "type": "string"
+              },
+              "target_frame_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Target Frame Id",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "choice_id",
+              "text",
+              "target_frame_id"
+            ],
+            "title": "Choice",
+            "type": "object"
+          },
+          "Component": {
+            "additionalProperties": false,
+            "properties": {
+              "component_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Component Id",
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "background",
+                  "character",
+                  "image",
+                  "text"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "asset_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Asset Id"
+              },
+              "text": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Text"
+              },
+              "character_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Character Id"
+              },
+              "layout": {
+                "$ref": "#/$defs/Layout"
+              },
+              "zorder": {
+                "default": 0,
+                "maximum": 1000,
+                "minimum": -1000,
+                "title": "Zorder",
+                "type": "integer"
+              },
+              "font_size": {
+                "default": 32,
+                "maximum": 128,
+                "minimum": 12,
+                "title": "Font Size",
+                "type": "integer"
+              },
+              "color": {
+                "default": "#ffffff",
+                "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+                "title": "Color",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "component_id",
+              "kind"
+            ],
+            "title": "Component",
+            "type": "object"
+          },
+          "Dialogue": {
+            "additionalProperties": false,
+            "properties": {
+              "speaker_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Speaker Id"
+              },
+              "text": {
+                "title": "Text",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "title": "Dialogue",
+            "type": "object"
+          },
+          "Flow": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "next",
+                  "choices",
+                  "end",
+                  "minigame"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Target Frame Id"
+              },
+              "choices": {
+                "items": {
+                  "$ref": "#/$defs/Choice"
+                },
+                "title": "Choices",
+                "type": "array"
+              },
+              "game_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Game Id"
+              },
+              "instance_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Instance Id"
+              },
+              "inputs": {
+                "patternProperties": {
+                  "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+                    "$ref": "#/$defs/ValueBinding"
+                  }
+                },
+                "title": "Inputs",
+                "type": "object"
+              },
+              "result_branches": {
+                "items": {
+                  "$ref": "#/$defs/ResultBranch"
+                },
+                "maxItems": 256,
+                "title": "Result Branches",
+                "type": "array"
+              },
+              "cancel_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Cancel Target Frame Id"
+              },
+              "error_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Error Target Frame Id"
+              },
+              "fallback_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Fallback Target Frame Id"
+              },
+              "save_mode": {
+                "default": "entry_restart",
+                "enum": [
+                  "entry_restart",
+                  "checkpoint"
+                ],
+                "title": "Save Mode",
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "title": "Flow",
+            "type": "object"
+          },
+          "FramePatch": {
+            "additionalProperties": false,
+            "description": "Use model_dump(exclude_unset=True): omission is not a clearing action.\n\nStable identities/membership cannot be changed through a local patch.\nCollections replace the complete collection; [] explicitly clears it.",
+            "properties": {
+              "source_label": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Source Label"
+              },
+              "bg": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Component"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "characters": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/Component"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Characters"
+              },
+              "decorations": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/Component"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Decorations"
+              },
+              "dialogue": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Dialogue"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "voice": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Voice"
+              },
+              "bgm": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Bgm"
+              },
+              "sfx": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Sfx"
+              },
+              "transition": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Transition"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "flow": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Flow"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "provenance": {
+                "anyOf": [
+                  {
+                    "additionalProperties": {
+                      "$ref": "#/$defs/JsonValue"
+                    },
+                    "type": "object"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Provenance"
+              }
+            },
+            "title": "FramePatch",
+            "type": "object"
+          },
+          "JsonValue": {},
+          "Layout": {
+            "additionalProperties": false,
+            "description": "Coordinates/sizes are fractions of the canvas; anchors of the component.",
+            "properties": {
+              "x": {
+                "default": 0.5,
+                "maximum": 3.0,
+                "minimum": -2.0,
+                "title": "X",
+                "type": "number"
+              },
+              "y": {
+                "default": 1.0,
+                "maximum": 3.0,
+                "minimum": -2.0,
+                "title": "Y",
+                "type": "number"
+              },
+              "anchor_x": {
+                "default": 0.5,
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "title": "Anchor X",
+                "type": "number"
+              },
+              "anchor_y": {
+                "default": 1.0,
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "title": "Anchor Y",
+                "type": "number"
+              },
+              "width": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0.0,
+                    "maximum": 4.0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Width"
+              },
+              "height": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0.0,
+                    "maximum": 4.0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Height"
+              },
+              "fit": {
+                "default": "contain",
+                "enum": [
+                  "contain",
+                  "cover"
+                ],
+                "title": "Fit",
+                "type": "string"
+              }
+            },
+            "title": "Layout",
+            "type": "object"
+          },
+          "Predicate": {
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "enum": [
+                  "eq",
+                  "ne",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "all",
+                  "any",
+                  "not"
+                ],
+                "title": "Op",
+                "type": "string"
+              },
+              "left": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ValueBinding"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "right": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ValueBinding"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "conditions": {
+                "items": {
+                  "$ref": "#/$defs/Predicate"
+                },
+                "maxItems": 128,
+                "title": "Conditions",
+                "type": "array"
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "title": "Predicate",
+            "type": "object"
+          },
+          "ResultBranch": {
+            "additionalProperties": false,
+            "properties": {
+              "branch_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Branch Id",
+                "type": "string"
+              },
+              "outcome": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Outcome",
+                "type": "string"
+              },
+              "predicate": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Predicate"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "effects": {
+                "items": {
+                  "$ref": "#/$defs/VariableEffect"
+                },
+                "maxItems": 256,
+                "title": "Effects",
+                "type": "array"
+              },
+              "target_frame_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Target Frame Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "branch_id",
+              "outcome",
+              "target_frame_id"
+            ],
+            "title": "ResultBranch",
+            "type": "object"
+          },
+          "Transition": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "default": "none",
+                "enum": [
+                  "none",
+                  "dissolve",
+                  "fade"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "duration": {
+                "default": 0.3,
+                "maximum": 10.0,
+                "minimum": 0.0,
+                "title": "Duration",
+                "type": "number"
+              }
+            },
+            "title": "Transition",
+            "type": "object"
+          },
+          "ValueBinding": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "literal",
+                  "variable",
+                  "result"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "value": {
+                "$ref": "#/$defs/JsonValue",
+                "default": null
+              },
+              "variable_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Variable Id"
+              },
+              "field": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Field"
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "title": "ValueBinding",
+            "type": "object"
+          },
+          "VariableEffect": {
+            "additionalProperties": false,
+            "properties": {
+              "effect_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Effect Id",
+                "type": "string"
+              },
+              "op": {
+                "enum": [
+                  "set",
+                  "add"
+                ],
+                "title": "Op",
+                "type": "string"
+              },
+              "variable_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Variable Id",
+                "type": "string"
+              },
+              "value": {
+                "$ref": "#/$defs/ValueBinding"
+              }
+            },
+            "required": [
+              "effect_id",
+              "op",
+              "variable_id",
+              "value"
+            ],
+            "title": "VariableEffect",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "frame_id": {
+            "title": "Frame Id",
+            "type": "string"
+          },
+          "patch": {
+            "$ref": "#/$defs/FramePatch"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "frame_id",
+          "patch",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "patch_frameArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "plan_migration",
+      "description": "只读规划明确支持的格式迁移；不猜未知版本，不改变项目或存档。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "target_schema": {
+            "default": "1.0",
+            "title": "Target Schema",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id"
+        ],
+        "title": "plan_migrationArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "plan_reimport",
+      "description": "比较上次来源、当前聊天修改和新来源；不提交。省略layout保留当前已决定排版。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "source_id": {
+            "title": "Source Id",
+            "type": "string"
+          },
+          "incoming_frames": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Incoming Frames",
+            "type": "array"
+          },
+          "incoming_variables": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Incoming Variables"
+          },
+          "incoming_minigames": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Incoming Minigames"
+          }
+        },
+        "required": [
+          "project_id",
+          "source_id",
+          "incoming_frames"
+        ],
+        "title": "plan_reimportArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "register_assets",
+      "description": "复制并检查素材，登记逻辑asset_id与内容版本，原文件不改动。",
+      "inputSchema": {
+        "$defs": {
+          "AssetInput": {
+            "additionalProperties": false,
+            "properties": {
+              "asset_id": {
+                "title": "Asset Id",
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "image",
+                  "audio",
+                  "font"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "source_path": {
+                "title": "Source Path",
+                "type": "string"
+              },
+              "name": {
+                "default": "",
+                "title": "Name",
+                "type": "string"
+              },
+              "metadata": {
+                "additionalProperties": true,
+                "default": {},
+                "title": "Metadata",
+                "type": "object"
+              },
+              "provenance": {
+                "additionalProperties": true,
+                "default": {},
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "asset_id",
+              "kind",
+              "source_path"
+            ],
+            "title": "AssetInput",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "assets": {
+            "items": {
+              "$ref": "#/$defs/AssetInput"
+            },
+            "title": "Assets",
+            "type": "array"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "assets",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "register_assetsArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "register_minigame",
+      "description": "完整校验本地HTML目录或ZIP并登记不可变包；schema1.1项目、版本锁和幂等编号必需；拒绝原型包。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "source_path": {
+            "title": "Source Path",
+            "type": "string"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "expected_digest": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Expected Digest"
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provenance"
+          }
+        },
+        "required": [
+          "project_id",
+          "source_path",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "register_minigameArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "register_visual_baseline",
+      "description": "实际逐张审查当前原生预览后登记视觉基准；更新须说明理由，不自动覆盖，不改变剧情revision。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          },
+          "preview_job_id": {
+            "title": "Preview Job Id",
+            "type": "string"
+          },
+          "review_note": {
+            "title": "Review Note",
+            "type": "string"
+          },
+          "frame_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Frame Ids"
+          }
+        },
+        "required": [
+          "project_id",
+          "expected_revision",
+          "operation_id",
+          "preview_job_id",
+          "review_note"
+        ],
+        "title": "register_visual_baselineArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "render_preview",
+      "description": "真实Ren'Py指定帧截图任务。预览隔离存档，不能替代从入口连续路线验证。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "frame_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Frame Ids",
+            "type": "array"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "project_id",
+          "frame_ids",
+          "revision"
+        ],
+        "title": "render_previewArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "restore_checkpoint",
+      "description": "从检查点创建新的内容版本；不会擦除当前历史，之后需要重新验证引擎。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "snapshot_id": {
+            "title": "Snapshot Id",
+            "type": "string"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "snapshot_id",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "restore_checkpointArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "stage_import_batch",
+      "description": "分块暂存候选，允许前向引用尚未暂存的帧；相同batch_id可安全重试。",
+      "inputSchema": {
+        "$defs": {
+          "Act": {
+            "additionalProperties": false,
+            "properties": {
+              "act_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Act Id",
+                "type": "string"
+              },
+              "name": {
+                "default": "第一幕",
+                "title": "Name",
+                "type": "string"
+              },
+              "order": {
+                "default": 0,
+                "minimum": 0,
+                "title": "Order",
+                "type": "integer"
+              },
+              "frame_ids": {
+                "items": {
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                  "type": "string"
+                },
+                "title": "Frame Ids",
+                "type": "array"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "act_id"
+            ],
+            "title": "Act",
+            "type": "object"
+          },
+          "Character": {
+            "additionalProperties": false,
+            "properties": {
+              "character_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Character Id",
+                "type": "string"
+              },
+              "name": {
+                "minLength": 1,
+                "title": "Name",
+                "type": "string"
+              },
+              "color": {
+                "default": "#ffffff",
+                "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+                "title": "Color",
+                "type": "string"
+              },
+              "metadata": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Metadata",
+                "type": "object"
+              }
+            },
+            "required": [
+              "character_id",
+              "name"
+            ],
+            "title": "Character",
+            "type": "object"
+          },
+          "Choice": {
+            "additionalProperties": false,
+            "properties": {
+              "choice_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Choice Id",
+                "type": "string"
+              },
+              "text": {
+                "minLength": 1,
+                "title": "Text",
+                "type": "string"
+              },
+              "target_frame_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Target Frame Id",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "choice_id",
+              "text",
+              "target_frame_id"
+            ],
+            "title": "Choice",
+            "type": "object"
+          },
+          "Component": {
+            "additionalProperties": false,
+            "properties": {
+              "component_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Component Id",
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "background",
+                  "character",
+                  "image",
+                  "text"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "asset_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Asset Id"
+              },
+              "text": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Text"
+              },
+              "character_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Character Id"
+              },
+              "layout": {
+                "$ref": "#/$defs/Layout"
+              },
+              "zorder": {
+                "default": 0,
+                "maximum": 1000,
+                "minimum": -1000,
+                "title": "Zorder",
+                "type": "integer"
+              },
+              "font_size": {
+                "default": 32,
+                "maximum": 128,
+                "minimum": 12,
+                "title": "Font Size",
+                "type": "integer"
+              },
+              "color": {
+                "default": "#ffffff",
+                "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+                "title": "Color",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "component_id",
+              "kind"
+            ],
+            "title": "Component",
+            "type": "object"
+          },
+          "Dialogue": {
+            "additionalProperties": false,
+            "properties": {
+              "speaker_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Speaker Id"
+              },
+              "text": {
+                "title": "Text",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "title": "Dialogue",
+            "type": "object"
+          },
+          "Flow": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "next",
+                  "choices",
+                  "end",
+                  "minigame"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Target Frame Id"
+              },
+              "choices": {
+                "items": {
+                  "$ref": "#/$defs/Choice"
+                },
+                "title": "Choices",
+                "type": "array"
+              },
+              "game_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Game Id"
+              },
+              "instance_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Instance Id"
+              },
+              "inputs": {
+                "patternProperties": {
+                  "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+                    "$ref": "#/$defs/ValueBinding"
+                  }
+                },
+                "title": "Inputs",
+                "type": "object"
+              },
+              "result_branches": {
+                "items": {
+                  "$ref": "#/$defs/ResultBranch"
+                },
+                "maxItems": 256,
+                "title": "Result Branches",
+                "type": "array"
+              },
+              "cancel_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Cancel Target Frame Id"
+              },
+              "error_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Error Target Frame Id"
+              },
+              "fallback_target_frame_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Fallback Target Frame Id"
+              },
+              "save_mode": {
+                "default": "entry_restart",
+                "enum": [
+                  "entry_restart",
+                  "checkpoint"
+                ],
+                "title": "Save Mode",
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "title": "Flow",
+            "type": "object"
+          },
+          "Frame": {
+            "additionalProperties": false,
+            "properties": {
+              "frame_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Frame Id",
+                "type": "string"
+              },
+              "act_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Act Id",
+                "type": "string"
+              },
+              "source_label": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Source Label"
+              },
+              "order": {
+                "default": 0,
+                "minimum": 0,
+                "title": "Order",
+                "type": "integer"
+              },
+              "bg": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Component"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "characters": {
+                "items": {
+                  "$ref": "#/$defs/Component"
+                },
+                "title": "Characters",
+                "type": "array"
+              },
+              "decorations": {
+                "items": {
+                  "$ref": "#/$defs/Component"
+                },
+                "title": "Decorations",
+                "type": "array"
+              },
+              "dialogue": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Dialogue"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "voice": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Voice"
+              },
+              "bgm": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Bgm"
+              },
+              "sfx": {
+                "items": {
+                  "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                  "type": "string"
+                },
+                "title": "Sfx",
+                "type": "array"
+              },
+              "transition": {
+                "$ref": "#/$defs/Transition"
+              },
+              "flow": {
+                "$ref": "#/$defs/Flow"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "frame_id",
+              "act_id",
+              "flow"
+            ],
+            "title": "Frame",
+            "type": "object"
+          },
+          "JsonValue": {},
+          "Layout": {
+            "additionalProperties": false,
+            "description": "Coordinates/sizes are fractions of the canvas; anchors of the component.",
+            "properties": {
+              "x": {
+                "default": 0.5,
+                "maximum": 3.0,
+                "minimum": -2.0,
+                "title": "X",
+                "type": "number"
+              },
+              "y": {
+                "default": 1.0,
+                "maximum": 3.0,
+                "minimum": -2.0,
+                "title": "Y",
+                "type": "number"
+              },
+              "anchor_x": {
+                "default": 0.5,
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "title": "Anchor X",
+                "type": "number"
+              },
+              "anchor_y": {
+                "default": 1.0,
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "title": "Anchor Y",
+                "type": "number"
+              },
+              "width": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0.0,
+                    "maximum": 4.0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Width"
+              },
+              "height": {
+                "anyOf": [
+                  {
+                    "exclusiveMinimum": 0.0,
+                    "maximum": 4.0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Height"
+              },
+              "fit": {
+                "default": "contain",
+                "enum": [
+                  "contain",
+                  "cover"
+                ],
+                "title": "Fit",
+                "type": "string"
+              }
+            },
+            "title": "Layout",
+            "type": "object"
+          },
+          "MinigameDefinition": {
+            "additionalProperties": false,
+            "properties": {
+              "game_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Game Id",
+                "type": "string"
+              },
+              "package_digest": {
+                "pattern": "^[0-9a-f]{64}$",
+                "title": "Package Digest",
+                "type": "string"
+              },
+              "package_version": {
+                "minLength": 1,
+                "title": "Package Version",
+                "type": "string"
+              },
+              "path": {
+                "title": "Path",
+                "type": "string"
+              },
+              "manifest": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Manifest",
+                "type": "object"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "game_id",
+              "package_digest",
+              "package_version",
+              "path",
+              "manifest"
+            ],
+            "title": "MinigameDefinition",
+            "type": "object"
+          },
+          "Predicate": {
+            "additionalProperties": false,
+            "properties": {
+              "op": {
+                "enum": [
+                  "eq",
+                  "ne",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte",
+                  "all",
+                  "any",
+                  "not"
+                ],
+                "title": "Op",
+                "type": "string"
+              },
+              "left": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ValueBinding"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "right": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/ValueBinding"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "conditions": {
+                "items": {
+                  "$ref": "#/$defs/Predicate"
+                },
+                "maxItems": 128,
+                "title": "Conditions",
+                "type": "array"
+              }
+            },
+            "required": [
+              "op"
+            ],
+            "title": "Predicate",
+            "type": "object"
+          },
+          "ResultBranch": {
+            "additionalProperties": false,
+            "properties": {
+              "branch_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Branch Id",
+                "type": "string"
+              },
+              "outcome": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Outcome",
+                "type": "string"
+              },
+              "predicate": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Predicate"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null
+              },
+              "effects": {
+                "items": {
+                  "$ref": "#/$defs/VariableEffect"
+                },
+                "maxItems": 256,
+                "title": "Effects",
+                "type": "array"
+              },
+              "target_frame_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Target Frame Id",
+                "type": "string"
+              }
+            },
+            "required": [
+              "branch_id",
+              "outcome",
+              "target_frame_id"
+            ],
+            "title": "ResultBranch",
+            "type": "object"
+          },
+          "Transition": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "default": "none",
+                "enum": [
+                  "none",
+                  "dissolve",
+                  "fade"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "duration": {
+                "default": 0.3,
+                "maximum": 10.0,
+                "minimum": 0.0,
+                "title": "Duration",
+                "type": "number"
+              }
+            },
+            "title": "Transition",
+            "type": "object"
+          },
+          "ValueBinding": {
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": [
+                  "literal",
+                  "variable",
+                  "result"
+                ],
+                "title": "Kind",
+                "type": "string"
+              },
+              "value": {
+                "$ref": "#/$defs/JsonValue",
+                "default": null
+              },
+              "variable_id": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Variable Id"
+              },
+              "field": {
+                "anyOf": [
+                  {
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Field"
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "title": "ValueBinding",
+            "type": "object"
+          },
+          "VariableDefinition": {
+            "additionalProperties": false,
+            "properties": {
+              "variable_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Variable Id",
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "int",
+                  "float",
+                  "bool",
+                  "str"
+                ],
+                "title": "Type",
+                "type": "string"
+              },
+              "default": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "minimum": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Minimum"
+              },
+              "maximum": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Maximum"
+              },
+              "allowed_values": {
+                "anyOf": [
+                  {
+                    "items": {
+                      "$ref": "#/$defs/JsonValue"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Allowed Values"
+              },
+              "scope": {
+                "const": "save",
+                "default": "save",
+                "title": "Scope",
+                "type": "string"
+              },
+              "provenance": {
+                "additionalProperties": {
+                  "$ref": "#/$defs/JsonValue"
+                },
+                "title": "Provenance",
+                "type": "object"
+              }
+            },
+            "required": [
+              "variable_id",
+              "type",
+              "default"
+            ],
+            "title": "VariableDefinition",
+            "type": "object"
+          },
+          "VariableEffect": {
+            "additionalProperties": false,
+            "properties": {
+              "effect_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Effect Id",
+                "type": "string"
+              },
+              "op": {
+                "enum": [
+                  "set",
+                  "add"
+                ],
+                "title": "Op",
+                "type": "string"
+              },
+              "variable_id": {
+                "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+                "title": "Variable Id",
+                "type": "string"
+              },
+              "value": {
+                "$ref": "#/$defs/ValueBinding"
+              }
+            },
+            "required": [
+              "effect_id",
+              "op",
+              "variable_id",
+              "value"
+            ],
+            "title": "VariableEffect",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "import_session_id": {
+            "title": "Import Session Id",
+            "type": "string"
+          },
+          "batch_id": {
+            "title": "Batch Id",
+            "type": "string"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/$defs/Frame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "acts": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/$defs/Act"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Acts"
+          },
+          "characters": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/$defs/Character"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Characters"
+          },
+          "entry_frame_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Entry Frame Id"
+          },
+          "variables": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/$defs/VariableDefinition"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Variables"
+          },
+          "minigames": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/$defs/MinigameDefinition"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Minigames"
+          }
+        },
+        "required": [
+          "project_id",
+          "import_session_id",
+          "batch_id",
+          "frames"
+        ],
+        "title": "stage_import_batchArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "stage_minigame_package",
+      "description": "在导入候选中验证完整HTML包，尚不修改有效head；配合变量和前向剧情引用一次提交。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "import_session_id": {
+            "title": "Import Session Id",
+            "type": "string"
+          },
+          "batch_id": {
+            "title": "Batch Id",
+            "type": "string"
+          },
+          "source_path": {
+            "title": "Source Path",
+            "type": "string"
+          },
+          "expected_digest": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Expected Digest"
+          },
+          "provenance": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Provenance"
+          }
+        },
+        "required": [
+          "project_id",
+          "import_session_id",
+          "batch_id",
+          "source_path"
+        ],
+        "title": "stage_minigame_packageArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "test_minigame",
+      "description": "同窗WebView2真实输入+原生返回断言，不注入胜利。取消通过窗口内返回按钮；error仅以开发模式终止本次受管宿主验证，不能指定任意进程。单场景不冒充整图覆盖。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          },
+          "frame_id": {
+            "title": "Frame Id",
+            "type": "string"
+          },
+          "actions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Actions",
+            "type": "array"
+          },
+          "expected_outcome": {
+            "title": "Expected Outcome",
+            "type": "string"
+          },
+          "expected_target_frame_id": {
+            "title": "Expected Target Frame Id",
+            "type": "string"
+          },
+          "expected_variables": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Expected Variables"
+          },
+          "from_entry": {
+            "default": false,
+            "title": "From Entry",
+            "type": "boolean"
+          },
+          "fault_plan": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Fault Plan"
+          }
+        },
+        "required": [
+          "project_id",
+          "revision",
+          "frame_id",
+          "actions",
+          "expected_outcome",
+          "expected_target_frame_id"
+        ],
+        "title": "test_minigameArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "test_routes",
+      "description": "从Start逐步点击小分支，检查完整状态、对白及结局，生成覆盖报告；循环/超限明确报错。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "revision": {
+            "title": "Revision",
+            "type": "integer"
+          },
+          "max_routes": {
+            "default": 256,
+            "title": "Max Routes",
+            "type": "integer"
+          },
+          "include_interactions": {
+            "default": false,
+            "title": "Include Interactions",
+            "type": "boolean"
+          },
+          "minigame_scenarios": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Minigame Scenarios"
+          }
+        },
+        "required": [
+          "project_id",
+          "revision"
+        ],
+        "title": "test_routesArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "update_flow",
+      "description": "修改next/choices/end；目标必须存在，不能传任意程序或表达式。",
+      "inputSchema": {
+        "properties": {
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          },
+          "frame_id": {
+            "title": "Frame Id",
+            "type": "string"
+          },
+          "flow": {
+            "additionalProperties": true,
+            "title": "Flow",
+            "type": "object"
+          },
+          "expected_revision": {
+            "title": "Expected Revision",
+            "type": "integer"
+          },
+          "operation_id": {
+            "title": "Operation Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "frame_id",
+          "flow",
+          "expected_revision",
+          "operation_id"
+        ],
+        "title": "update_flowArguments",
+        "type": "object"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false
+      }
+    }
+  ]
+}

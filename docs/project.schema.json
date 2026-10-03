@@ -1,0 +1,1188 @@
+{
+  "$defs": {
+    "Act": {
+      "additionalProperties": false,
+      "properties": {
+        "act_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Act Id",
+          "type": "string"
+        },
+        "name": {
+          "default": "第一幕",
+          "title": "Name",
+          "type": "string"
+        },
+        "order": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Order",
+          "type": "integer"
+        },
+        "frame_ids": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Frame Ids",
+          "type": "array"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "act_id"
+      ],
+      "title": "Act",
+      "type": "object"
+    },
+    "Asset": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "image",
+            "audio",
+            "font"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "version": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        },
+        "name": {
+          "default": "",
+          "title": "Name",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Metadata",
+          "type": "object"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "asset_id",
+        "kind",
+        "path",
+        "sha256"
+      ],
+      "title": "Asset",
+      "type": "object"
+    },
+    "Canvas": {
+      "additionalProperties": false,
+      "properties": {
+        "width": {
+          "default": 1280,
+          "maximum": 7680,
+          "minimum": 320,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "default": 720,
+          "maximum": 4320,
+          "minimum": 240,
+          "title": "Height",
+          "type": "integer"
+        }
+      },
+      "title": "Canvas",
+      "type": "object"
+    },
+    "Character": {
+      "additionalProperties": false,
+      "properties": {
+        "character_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Character Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "color": {
+          "default": "#ffffff",
+          "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+          "title": "Color",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Metadata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "character_id",
+        "name"
+      ],
+      "title": "Character",
+      "type": "object"
+    },
+    "Choice": {
+      "additionalProperties": false,
+      "properties": {
+        "choice_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Choice Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "target_frame_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Target Frame Id",
+          "type": "string"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "choice_id",
+        "text",
+        "target_frame_id"
+      ],
+      "title": "Choice",
+      "type": "object"
+    },
+    "Component": {
+      "additionalProperties": false,
+      "properties": {
+        "component_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Component Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "background",
+            "character",
+            "image",
+            "text"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "asset_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asset Id"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "character_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Character Id"
+        },
+        "layout": {
+          "$ref": "#/$defs/Layout"
+        },
+        "zorder": {
+          "default": 0,
+          "maximum": 1000,
+          "minimum": -1000,
+          "title": "Zorder",
+          "type": "integer"
+        },
+        "font_size": {
+          "default": 32,
+          "maximum": 128,
+          "minimum": 12,
+          "title": "Font Size",
+          "type": "integer"
+        },
+        "color": {
+          "default": "#ffffff",
+          "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+          "title": "Color",
+          "type": "string"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "component_id",
+        "kind"
+      ],
+      "title": "Component",
+      "type": "object"
+    },
+    "Dialogue": {
+      "additionalProperties": false,
+      "properties": {
+        "speaker_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Speaker Id"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "Dialogue",
+      "type": "object"
+    },
+    "Flow": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "next",
+            "choices",
+            "end",
+            "minigame"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "target_frame_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Frame Id"
+        },
+        "choices": {
+          "items": {
+            "$ref": "#/$defs/Choice"
+          },
+          "title": "Choices",
+          "type": "array"
+        },
+        "game_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Game Id"
+        },
+        "instance_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Instance Id"
+        },
+        "inputs": {
+          "patternProperties": {
+            "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+              "$ref": "#/$defs/ValueBinding"
+            }
+          },
+          "title": "Inputs",
+          "type": "object"
+        },
+        "result_branches": {
+          "items": {
+            "$ref": "#/$defs/ResultBranch"
+          },
+          "maxItems": 256,
+          "title": "Result Branches",
+          "type": "array"
+        },
+        "cancel_target_frame_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cancel Target Frame Id"
+        },
+        "error_target_frame_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error Target Frame Id"
+        },
+        "fallback_target_frame_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fallback Target Frame Id"
+        },
+        "save_mode": {
+          "default": "entry_restart",
+          "enum": [
+            "entry_restart",
+            "checkpoint"
+          ],
+          "title": "Save Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "Flow",
+      "type": "object"
+    },
+    "Frame": {
+      "additionalProperties": false,
+      "properties": {
+        "frame_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Frame Id",
+          "type": "string"
+        },
+        "act_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Act Id",
+          "type": "string"
+        },
+        "source_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Label"
+        },
+        "order": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Order",
+          "type": "integer"
+        },
+        "bg": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Component"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "characters": {
+          "items": {
+            "$ref": "#/$defs/Component"
+          },
+          "title": "Characters",
+          "type": "array"
+        },
+        "decorations": {
+          "items": {
+            "$ref": "#/$defs/Component"
+          },
+          "title": "Decorations",
+          "type": "array"
+        },
+        "dialogue": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Dialogue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "voice": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Voice"
+        },
+        "bgm": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bgm"
+        },
+        "sfx": {
+          "items": {
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Sfx",
+          "type": "array"
+        },
+        "transition": {
+          "$ref": "#/$defs/Transition"
+        },
+        "flow": {
+          "$ref": "#/$defs/Flow"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "frame_id",
+        "act_id",
+        "flow"
+      ],
+      "title": "Frame",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "Layout": {
+      "additionalProperties": false,
+      "description": "Coordinates/sizes are fractions of the canvas; anchors of the component.",
+      "properties": {
+        "x": {
+          "default": 0.5,
+          "maximum": 3.0,
+          "minimum": -2.0,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "default": 1.0,
+          "maximum": 3.0,
+          "minimum": -2.0,
+          "title": "Y",
+          "type": "number"
+        },
+        "anchor_x": {
+          "default": 0.5,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Anchor X",
+          "type": "number"
+        },
+        "anchor_y": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Anchor Y",
+          "type": "number"
+        },
+        "width": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "maximum": 4.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Width"
+        },
+        "height": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "maximum": 4.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Height"
+        },
+        "fit": {
+          "default": "contain",
+          "enum": [
+            "contain",
+            "cover"
+          ],
+          "title": "Fit",
+          "type": "string"
+        }
+      },
+      "title": "Layout",
+      "type": "object"
+    },
+    "LayoutProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "safe_margin": {
+          "default": 0.04,
+          "maximum": 0.25,
+          "minimum": 0.0,
+          "title": "Safe Margin",
+          "type": "number"
+        },
+        "dialogue_height": {
+          "default": 0.24,
+          "exclusiveMinimum": 0.0,
+          "maximum": 0.6,
+          "title": "Dialogue Height",
+          "type": "number"
+        },
+        "font_size": {
+          "default": 32,
+          "maximum": 128,
+          "minimum": 12,
+          "title": "Font Size",
+          "type": "integer"
+        },
+        "min_font_size": {
+          "default": 20,
+          "maximum": 128,
+          "minimum": 12,
+          "title": "Min Font Size",
+          "type": "integer"
+        },
+        "character_slots": {
+          "patternProperties": {
+            "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+              "$ref": "#/$defs/Layout"
+            }
+          },
+          "title": "Character Slots",
+          "type": "object"
+        }
+      },
+      "title": "LayoutProfile",
+      "type": "object"
+    },
+    "MinigameDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "game_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Game Id",
+          "type": "string"
+        },
+        "package_digest": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Package Digest",
+          "type": "string"
+        },
+        "package_version": {
+          "minLength": 1,
+          "title": "Package Version",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "manifest": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Manifest",
+          "type": "object"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "game_id",
+        "package_digest",
+        "package_version",
+        "path",
+        "manifest"
+      ],
+      "title": "MinigameDefinition",
+      "type": "object"
+    },
+    "Predicate": {
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "enum": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "all",
+            "any",
+            "not"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "left": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValueBinding"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "right": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ValueBinding"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "conditions": {
+          "items": {
+            "$ref": "#/$defs/Predicate"
+          },
+          "maxItems": 128,
+          "title": "Conditions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "op"
+      ],
+      "title": "Predicate",
+      "type": "object"
+    },
+    "ResultBranch": {
+      "additionalProperties": false,
+      "properties": {
+        "branch_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Branch Id",
+          "type": "string"
+        },
+        "outcome": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Outcome",
+          "type": "string"
+        },
+        "predicate": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Predicate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "effects": {
+          "items": {
+            "$ref": "#/$defs/VariableEffect"
+          },
+          "maxItems": 256,
+          "title": "Effects",
+          "type": "array"
+        },
+        "target_frame_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Target Frame Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "branch_id",
+        "outcome",
+        "target_frame_id"
+      ],
+      "title": "ResultBranch",
+      "type": "object"
+    },
+    "Transition": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "default": "none",
+          "enum": [
+            "none",
+            "dissolve",
+            "fade"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "duration": {
+          "default": 0.3,
+          "maximum": 10.0,
+          "minimum": 0.0,
+          "title": "Duration",
+          "type": "number"
+        }
+      },
+      "title": "Transition",
+      "type": "object"
+    },
+    "ValueBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "literal",
+            "variable",
+            "result"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/JsonValue",
+          "default": null
+        },
+        "variable_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Variable Id"
+        },
+        "field": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Field"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "ValueBinding",
+      "type": "object"
+    },
+    "VariableDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "variable_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Variable Id",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "int",
+            "float",
+            "bool",
+            "str"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "default": {
+          "$ref": "#/$defs/JsonValue"
+        },
+        "minimum": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimum"
+        },
+        "maximum": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Maximum"
+        },
+        "allowed_values": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/JsonValue"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Allowed Values"
+        },
+        "scope": {
+          "const": "save",
+          "default": "save",
+          "title": "Scope",
+          "type": "string"
+        },
+        "provenance": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Provenance",
+          "type": "object"
+        }
+      },
+      "required": [
+        "variable_id",
+        "type",
+        "default"
+      ],
+      "title": "VariableDefinition",
+      "type": "object"
+    },
+    "VariableEffect": {
+      "additionalProperties": false,
+      "properties": {
+        "effect_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Effect Id",
+          "type": "string"
+        },
+        "op": {
+          "enum": [
+            "set",
+            "add"
+          ],
+          "title": "Op",
+          "type": "string"
+        },
+        "variable_id": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "title": "Variable Id",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/ValueBinding"
+        }
+      },
+      "required": [
+        "effect_id",
+        "op",
+        "variable_id",
+        "value"
+      ],
+      "title": "VariableEffect",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "enum": [
+        "1.0",
+        "1.1"
+      ],
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+      "title": "Project Id",
+      "type": "string"
+    },
+    "name": {
+      "default": "新作品",
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    },
+    "revision": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "canvas": {
+      "$ref": "#/$defs/Canvas"
+    },
+    "language": {
+      "const": "schinese",
+      "default": "schinese",
+      "title": "Language",
+      "type": "string"
+    },
+    "entry_frame_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Entry Frame Id"
+    },
+    "save_namespace": {
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,63}$",
+      "title": "Save Namespace",
+      "type": "string"
+    },
+    "acts": {
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+          "$ref": "#/$defs/Act"
+        }
+      },
+      "title": "Acts",
+      "type": "object"
+    },
+    "frames": {
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+          "$ref": "#/$defs/Frame"
+        }
+      },
+      "title": "Frames",
+      "type": "object"
+    },
+    "characters": {
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+          "$ref": "#/$defs/Character"
+        }
+      },
+      "title": "Characters",
+      "type": "object"
+    },
+    "assets": {
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+          "$ref": "#/$defs/Asset"
+        }
+      },
+      "title": "Assets",
+      "type": "object"
+    },
+    "variables": {
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+          "$ref": "#/$defs/VariableDefinition"
+        }
+      },
+      "title": "Variables",
+      "type": "object"
+    },
+    "minigames": {
+      "patternProperties": {
+        "^[A-Za-z][A-Za-z0-9_-]{0,63}$": {
+          "$ref": "#/$defs/MinigameDefinition"
+        }
+      },
+      "title": "Minigames",
+      "type": "object"
+    },
+    "layout": {
+      "$ref": "#/$defs/LayoutProfile"
+    },
+    "sdk_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sdk Version"
+    },
+    "adapter_version": {
+      "default": "0.1.0",
+      "title": "Adapter Version",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "title": "Metadata",
+      "type": "object"
+    },
+    "provenance": {
+      "additionalProperties": {
+        "$ref": "#/$defs/JsonValue"
+      },
+      "title": "Provenance",
+      "type": "object"
+    }
+  },
+  "required": [
+    "project_id",
+    "save_namespace"
+  ],
+  "title": "Project",
+  "type": "object"
+}

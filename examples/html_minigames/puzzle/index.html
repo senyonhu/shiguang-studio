@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>星图锁 · 九宫格拼图</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 360px; margin: 24px auto; }
+    .tile { aspect-ratio: 1; font-size: 30px; font-weight: 700; padding: 0; background: #29496d; }
+    .blank { aspect-ratio: 1; border: 1px dashed #46627f; border-radius: 12px; background: #111e32; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">离线玩法原型 · 星图锁</div>
+    <h1>把星图归位</h1>
+    <p>点击空格旁的数字移动方块。将数字排成 <strong>1–8</strong>，空格留在右下角，即可打开星图锁。</p>
+    <div class="stats"><span>移动 <strong id="moves" data-testid="moves">0</strong> 次</span><span>用时 <strong id="elapsed">0.0</strong> 秒</span></div>
+    <div id="board" class="board" aria-label="九宫格拼图" data-testid="board"></div>
+    <div id="status" class="status" role="status" aria-live="polite" data-testid="status">正在等待游戏开始……</div>
+    <p class="help">键盘：方向键移动空格；也可以用 Tab 选择方块，再按 Enter。暂停时不能移动。</p>
+    <p id="preview" class="preview" hidden>独立预览：这里可以实际解谜，完成结果不会返回 Galgame。</p>
+  </main>
+  <script src="bridge-sdk.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+{
+  "format_version": "1.0",
+  "prototype": false,
+  "game_id": "prod_timed",
+  "version": "1.0.0",
+  "entry": "index.html",
+  "protocol": "1.0",
+  "display_name": "信号回路 · 限时操作",
+  "inputs": {
+    "duration_seconds": {
+      "type": "number",
+      "default": 12,
+      "minimum": 3,
+      "maximum": 60
+    },
+    "rounds": {
+      "type": "integer",
+      "default": 6,
+      "minimum": 3,
+      "maximum": 24
+    }
+  },
+  "results": {
+    "outcomes": [
+      "win",
+      "lose"
+    ],
+    "fields": {
+      "score": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "hits": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 24
+      },
+      "misses": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "elapsed_ms": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  },
+  "save_capabilities": {
+    "entry_restart": true,
+    "checkpoint": false,
+    "snapshot_version": null
+  },
+  "automation": {
+    "begin": "[data-testid=begin]",
+    "lit_target": ".target.lit",
+    "actual_actions": "开始后逐次按发亮端子胜利；开始后不操作到计时归零失败"
+  },
+  "required_capabilities": [
+    "local_content",
+    "host_messages",
+    "audio"
+  ],
+  "license": "MIT; see LICENSE.txt. Original code, instructions, and generated tap.wav; no external dependency.",
+  "files": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "0261a4eeb30d6394dcf6ef461f0727536fa1e00c5bf9b536ea7af73a18e14fe9",
+      "bytes": 1082
+    },
+    {
+      "path": "bridge-sdk.js",
+      "sha256": "531be4ccec4f4294e7ab489e5857d206a01e24a3231d934a55de166bfc13303b",
+      "bytes": 7423
+    },
+    {
+      "path": "game.js",
+      "sha256": "50b9a932b4835f3dbe0685b6a769b28eb3e1dcdefe1629cfaccadee930c747c4",
+      "bytes": 4576
+    },
+    {
+      "path": "index.html",
+      "sha256": "c37a35a4b94e42d6ebb86058daab45d5f342cc92efc41c28605f2381f2049a92",
+      "bytes": 2231
+    },
+    {
+      "path": "instructions.txt",
+      "sha256": "6ce6322babb6f3434343629ed023608250d56d446cd02f416a4f81fe5e984d7a",
+      "bytes": 154
+    },
+    {
+      "path": "styles.css",
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b",
+      "bytes": 1732
+    },
+    {
+      "path": "tap.wav",
+      "sha256": "f8e0e065a4962a8af76161ca5d068a1d515feb351194430651260c8ee2afbecf",
+      "bytes": 5336
+    }
+  ]
+}

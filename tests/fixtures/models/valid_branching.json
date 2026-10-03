@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "project_id": "project_branching",
+  "name": "完整帧与短分支固定样例",
+  "revision": 3,
+  "save_namespace": "project_branching",
+  "entry_frame_id": "frame_opening",
+  "acts": {
+    "act_1": {
+      "act_id": "act_1",
+      "name": "第一幕",
+      "frame_ids": ["frame_opening", "frame_choice", "frame_left", "frame_right"]
+    },
+    "act_2": {
+      "act_id": "act_2",
+      "name": "第二幕",
+      "order": 1,
+      "frame_ids": ["frame_join", "frame_end"]
+    }
+  },
+  "characters": {
+    "character_anna": {"character_id": "character_anna", "name": "安娜", "color": "#ffcccc"},
+    "character_ben": {"character_id": "character_ben", "name": "小本"}
+  },
+  "assets": {
+    "asset_bg": {"asset_id": "asset_bg", "kind": "image", "path": "assets/校园 背景.png", "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "asset_anna": {"asset_id": "asset_anna", "kind": "image", "path": "assets/安娜 笑.png", "sha256": "1111111111111111111111111111111111111111111111111111111111111111"},
+    "asset_ben": {"asset_id": "asset_ben", "kind": "image", "path": "assets/小本.png", "sha256": "2222222222222222222222222222222222222222222222222222222222222222"},
+    "asset_voice": {"asset_id": "asset_voice", "kind": "audio", "path": "assets/voice/第一句.ogg", "sha256": "3333333333333333333333333333333333333333333333333333333333333333", "metadata": {"duration_seconds": 2.5}},
+    "asset_music": {"asset_id": "asset_music", "kind": "audio", "path": "assets/music.ogg", "sha256": "4444444444444444444444444444444444444444444444444444444444444444"}
+  },
+  "frames": {
+    "frame_opening": {
+      "frame_id": "frame_opening", "act_id": "act_1", "source_label": "第1帧",
+      "bg": {"component_id": "bg", "kind": "background", "asset_id": "asset_bg"},
+      "characters": [
+        {"component_id": "anna", "kind": "character", "asset_id": "asset_anna", "character_id": "character_anna", "layout": {"x": 0.25, "height": 0.85}},
+        {"component_id": "ben", "kind": "character", "asset_id": "asset_ben", "character_id": "character_ben", "layout": {"x": 0.75, "height": 0.85}}
+      ],
+      "dialogue": {"speaker_id": "character_anna", "text": "你好，今天去哪里？[原文] {不是指令}"},
+      "voice": "asset_voice", "bgm": "asset_music",
+      "flow": {"kind": "next", "target_frame_id": "frame_choice"},
+      "provenance": {"source_id": "source_workbook", "sheet": "第一幕", "cell": "B2"}
+    },
+    "frame_choice": {
+      "frame_id": "frame_choice", "act_id": "act_1", "order": 1,
+      "bg": {"component_id": "bg", "kind": "background", "asset_id": "asset_bg"},
+      "characters": [{"component_id": "anna", "kind": "character", "asset_id": "asset_anna", "character_id": "character_anna"}],
+      "dialogue": {"speaker_id": "character_anna", "text": "选一条路吧。"},
+      "bgm": "asset_music",
+      "flow": {"kind": "choices", "choices": [
+        {"choice_id": "choice_left", "text": "走左边", "target_frame_id": "frame_left"},
+        {"choice_id": "choice_right", "text": "走右边", "target_frame_id": "frame_right"}
+      ]}
+    },
+    "frame_left": {
+      "frame_id": "frame_left", "act_id": "act_1", "order": 2,
+      "characters": [{"component_id": "anna", "kind": "character", "asset_id": "asset_anna", "character_id": "character_anna"}],
+      "dialogue": {"text": "安娜从左边来到终点。"},
+      "flow": {"kind": "next", "target_frame_id": "frame_join"}
+    },
+    "frame_right": {
+      "frame_id": "frame_right", "act_id": "act_1", "order": 3,
+      "characters": [
+        {"component_id": "anna", "kind": "character", "asset_id": "asset_anna", "character_id": "character_anna"},
+        {"component_id": "ben", "kind": "character", "asset_id": "asset_ben", "character_id": "character_ben"}
+      ],
+      "dialogue": {"text": "两人从右边来到终点。"},
+      "flow": {"kind": "next", "target_frame_id": "frame_join"}
+    },
+    "frame_join": {
+      "frame_id": "frame_join", "act_id": "act_2",
+      "bg": {"component_id": "bg", "kind": "background", "asset_id": "asset_bg"},
+      "characters": [],
+      "decorations": [{"component_id": "title", "kind": "text", "text": "相同汇合画面"}],
+      "dialogue": {"text": "这帧只有背景和文字，不继承任何人物。"},
+      "flow": {"kind": "next", "target_frame_id": "frame_end"}
+    },
+    "frame_end": {
+      "frame_id": "frame_end", "act_id": "act_2", "order": 1,
+      "flow": {"kind": "end"}
+    }
+  },
+  "metadata": {"fixture_only": true, "asset_hashes_are_synthetic": true, "import_baselines": {}},
+  "provenance": {"source_id": "source_workbook", "sha256": "5555555555555555555555555555555555555555555555555555555555555555"}
+}

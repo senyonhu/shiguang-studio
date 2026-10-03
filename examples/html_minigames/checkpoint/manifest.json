@@ -1,0 +1,128 @@
+{
+  "format_version": "1.0",
+  "prototype": true,
+  "game_id": "h0_checkpoint",
+  "version": "h0-1",
+  "entry": "index.html",
+  "protocol": "1.0",
+  "display_name": "温室修复 · 检查点任务",
+  "inputs": {
+    "target_temperature": {
+      "type": "integer",
+      "default": 37,
+      "minimum": 20,
+      "maximum": 50
+    }
+  },
+  "results": {
+    "outcomes": [
+      "win"
+    ],
+    "fields": {
+      "score": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 300
+      },
+      "steps_completed": {
+        "type": "integer",
+        "enum": [
+          3
+        ]
+      },
+      "mistakes": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "calibrated_temperature": {
+        "type": "integer",
+        "minimum": 20,
+        "maximum": 50
+      }
+    }
+  },
+  "save_capabilities": {
+    "entry_restart": true,
+    "checkpoint": true,
+    "snapshot_version": "1.0"
+  },
+  "snapshot_schema": {
+    "type": "object",
+    "required": [
+      "stage",
+      "sensor",
+      "wire",
+      "calibration",
+      "mistakes"
+    ],
+    "properties": {
+      "stage": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 2
+      },
+      "sensor": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          null,
+          "temperature"
+        ]
+      },
+      "wire": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          null,
+          "blue"
+        ]
+      },
+      "calibration": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 99
+      },
+      "mistakes": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100000
+      }
+    },
+    "additionalProperties": false
+  },
+  "automation": {
+    "stage": "[data-testid=workshop]",
+    "actual_actions": "温度探头→蓝色端子→调到目标温度→实测；前两步真实提交检查点"
+  },
+  "required_capabilities": [
+    "local_content",
+    "host_messages"
+  ],
+  "license": "Original example code and generated tone; no external dependency",
+  "files": [
+    {
+      "path": "bridge-sdk.js",
+      "sha256": "083b35d3de199dbdf93ac14b6c2d76cfaaf194e40b0e64de7e68b03f0fc9d1a9",
+      "bytes": 7389
+    },
+    {
+      "path": "game.js",
+      "sha256": "b069fb8012423c530483dbe42e95cd4b7ef4414b637f57945ec622b62b9feca0",
+      "bytes": 5739
+    },
+    {
+      "path": "index.html",
+      "sha256": "34c35ad917f0883755a1651c82985018dd896b575e41a12bb293a1f5060d0a1c",
+      "bytes": 3198
+    },
+    {
+      "path": "styles.css",
+      "sha256": "8c43304aa71932721e1235edf15f8bb2b8b3807c500665785b435d4c5958a26b",
+      "bytes": 1732
+    }
+  ]
+}

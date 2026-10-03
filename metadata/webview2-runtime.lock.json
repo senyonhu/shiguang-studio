@@ -1,0 +1,1052 @@
+{
+  "version": "154.0.4258.53",
+  "architecture": "x64",
+  "mode": "fixed",
+  "official_page": "https://developer.microsoft.com/en-us/microsoft-edge/webview2/",
+  "source_url": "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/0b89c3a3-0043-4746-b39e-65830da7744d/Microsoft.WebView2.FixedVersionRuntime.154.0.4258.53.x64.cab",
+  "cab_sha256": "ec12b2db6423d127fb8e1935d34e2e68abc70fe8ecb1f6162ba1c1ccc2825f6d",
+  "exe_sha256": "30285e24a33be3c0b2d0a7c3909fa1cc21d2fc0f0c2ab4eb79e46a9304b4256d",
+  "relative_runtime_path": "runtimes/webview2-fixed-154.0.4258.53/Microsoft.WebView2.FixedVersionRuntime.154.0.4258.53.x64",
+  "schema_version": "1.0",
+  "cab_bytes": 307996323,
+  "runtime_tree_sha256": "afcde57278f1cd84e8956d7ba591807d28c28362950b33b8a97806ec79efce7a",
+  "files": {
+    "154.0.4258.53.manifest": {
+      "sha256": "83e8f4d06e5bc5e341333add4adafd3be01a824b157f2051c88543fa60215717",
+      "bytes": 226
+    },
+    "AdSelectionAttestationsPreloaded/ad-selection-attestations.dat": {
+      "sha256": "dc94c97fb9437a5137a1d47b376e212732a15cb1266148792b94da6fa9939d17",
+      "bytes": 63
+    },
+    "AdSelectionAttestationsPreloaded/manifest.json": {
+      "sha256": "e92ad2a1a517ec4c6db1538513b0a529966249182b3a571fab3941ea3eff5ff0",
+      "bytes": 128
+    },
+    "concrt140.dll": {
+      "sha256": "2a4a9de5f3a27ab3e93e2034517e7e6c67b8997954dd232828804965839feb88",
+      "bytes": 384264
+    },
+    "Copilot.dat": {
+      "sha256": "d79e27858722fcb4c2db9a7fa6bb4fb958eb90c2ab12fd35370be8c05dee7878",
+      "bytes": 8192
+    },
+    "copilot_overlay_images_100_percent.pak": {
+      "sha256": "fc6280f42a847d2d83188c4f80e348b38c90b89ddf595d78c5fc2161969fd552",
+      "bytes": 8684
+    },
+    "copilot_overlay_images_200_percent.pak": {
+      "sha256": "d536f97bf3c00d57bff69eb836de1cf8d490a87d460587e9ee46ac9ef6768052",
+      "bytes": 23614
+    },
+    "copilot_overlay_unscaled_images.pak": {
+      "sha256": "56ee1d4392cfd1e16fd3fe3ee64ba0e4cae268c7e3d54eb0ff82b9ad1f908523",
+      "bytes": 38789
+    },
+    "copilotapp.exe": {
+      "sha256": "1ab7bb4910ad6f22b124e66db218e5c03898c4ae9d185e8b5ec39a680b03e63b",
+      "bytes": 4999496
+    },
+    "d3dcompiler_47.dll": {
+      "sha256": "bf8411c0cc90c63a60dbb1327bdc31ebb801e7ea2ee55a2b66ef5001b0172eac",
+      "bytes": 4763944
+    },
+    "dual_engine_adapter_x64.dll": {
+      "sha256": "3308ec380c16fb8a34f8185691284e18d947636f7fafaf893a27750cd98d2fe8",
+      "bytes": 5431496
+    },
+    "dxcompiler.dll": {
+      "sha256": "5da9bce3c4eedf037a9fa3632c9b33b6d48983e6f1cb9f1fbd8314ee8ff535c4",
+      "bytes": 20458816
+    },
+    "dxil.dll": {
+      "sha256": "cca1ce5c740650c468db5848384fd8c37d093d16553e501c1ae1cb797e3bbbc9",
+      "bytes": 1513808
+    },
+    "EBWebView/x64/EmbeddedBrowserWebView.dll": {
+      "sha256": "07b9416907225b99556c2a5242ecc6d16afd83d374b151285cfe41f164843c1c",
+      "bytes": 9101128
+    },
+    "EBWebView/x86/EmbeddedBrowserWebView.dll": {
+      "sha256": "ffcc25823cb82502c17e8a07e65adde453c557b28622e4046cf4015bdff51aa8",
+      "bytes": 5799240
+    },
+    "Edge.dat": {
+      "sha256": "aad5a84356ee96f3d6ca9742b23b6124eafba558f6d60ceed6c3067dac459c81",
+      "bytes": 12288
+    },
+    "edge_feedback/camera_mf_trace.wprp": {
+      "sha256": "3f2eb6455f54365c27829f85dd64ca0bafaa8577a6c8e79a54a6dd4c67df6470",
+      "bytes": 24910
+    },
+    "edge_feedback/mf_trace.wprp": {
+      "sha256": "79a228f8f85310c27c292055d9e0e9b827c319c2472b4ba5b40e88851bc4b4f3",
+      "bytes": 12735
+    },
+    "EdgeWebView.dat": {
+      "sha256": "482297326005fcb6e961e9b3e327e4cbb151901e7ca55cbe2bf982823bc06934",
+      "bytes": 8192
+    },
+    "elevated_tracing_service.exe": {
+      "sha256": "e43490c5fdf474d84d4ba65a52b864ec7ab29fde0eb2c6003384c675bfd6d321",
+      "bytes": 5529416
+    },
+    "eventlog_provider.dll": {
+      "sha256": "1c2acbd4b8b50a28e9cd5f713cc8ea60392c120ada753f055c34cee3e511874f",
+      "bytes": 16200
+    },
+    "Extensions/external_extensions.json": {
+      "sha256": "a68cafd7d78d5c671c2560656653f2a4d83ab66d87a8728356a88fb1f477b3e6",
+      "bytes": 99
+    },
+    "ffmpeg.dll": {
+      "sha256": "6dbfadd63ffda14d69fe82b471eede90829b65e571b9c4dbb5a43aafbcffde79",
+      "bytes": 3110216
+    },
+    "icudtl.dat": {
+      "sha256": "c0b5b5411e5d67db5aa8a531c7a6debd77502c4da33a312c05c2abf5814845d1",
+      "bytes": 12404688
+    },
+    "Installer/copilot_setup.exe": {
+      "sha256": "55e16475f8d6a84a268c82a37fcf4ba6c0e1a5c05eb1731fda198e98e33ec516",
+      "bytes": 31048
+    },
+    "learning_tools.dll": {
+      "sha256": "1a676533373c90863e0daa0486b53df3f5cd8a38c097ea35b530e0c9c4919446",
+      "bytes": 1312584
+    },
+    "Locales/af.pak": {
+      "sha256": "03af6c23fc997ead3462aef33e5bba7e1e4235534ebbe71e3ece38a4e7941a0b",
+      "bytes": 1066253
+    },
+    "Locales/am.pak": {
+      "sha256": "85104101ae618d04584311a90acd6d83e62c6d0248f0d4e1cb3707e05094758a",
+      "bytes": 1568133
+    },
+    "Locales/ar.pak": {
+      "sha256": "b6f18da24e56be5800157440093b3278d5014bbb93be05bde24ec092ba42e8d6",
+      "bytes": 1625747
+    },
+    "Locales/as.pak": {
+      "sha256": "bca2298b9f8d4da3b0dc0e2fdcd3848222126b5f2bbb81d94b1c69c07a8a035f",
+      "bytes": 2316012
+    },
+    "Locales/az.pak": {
+      "sha256": "04d1d8866ea67022be5114badcc1a08a4fdd11d873be1fe65db11a3bcd598096",
+      "bytes": 1223020
+    },
+    "Locales/bg.pak": {
+      "sha256": "0c1bfe7ad4b43ab7336cab8d7da1e56276915e2db31a1a3f78364d679cf2097e",
+      "bytes": 1828841
+    },
+    "Locales/bn-IN.pak": {
+      "sha256": "53baa3366bee53c2579dbbee6c7e17f20abbb756f30c845dbce8ebc566b1b01e",
+      "bytes": 2394302
+    },
+    "Locales/bs.pak": {
+      "sha256": "7306cb617612b04d3c44f28b45a1b22e027dcc2dc54f7c1a4c6d22656554ad9f",
+      "bytes": 1139028
+    },
+    "Locales/ca-Es-VALENCIA.pak": {
+      "sha256": "766bc61587c681f770f1f80b327ffc2d66bb9ad0c976b46c51a5dc4811f7946c",
+      "bytes": 1193502
+    },
+    "Locales/ca.pak": {
+      "sha256": "251dd124a72ff300580dadda253a73ed55a51e1c76114bf6a939b184026cd4fd",
+      "bytes": 1196324
+    },
+    "Locales/copilot_overlay_strings_af.pak": {
+      "sha256": "b65e87daf38bea4d1d3d39bede2ebc8ed6b948732f049ee458e333a0c0cab780",
+      "bytes": 65313
+    },
+    "Locales/copilot_overlay_strings_am.pak": {
+      "sha256": "f2702eeba49e9245914d3b9be2aa46cca947b76a9ea06e64e6b42363e221d224",
+      "bytes": 95433
+    },
+    "Locales/copilot_overlay_strings_ar.pak": {
+      "sha256": "db561f02864010cef516a1526a13496b7e9cb50f197a4cc60dece2aa096c3b54",
+      "bytes": 92323
+    },
+    "Locales/copilot_overlay_strings_as.pak": {
+      "sha256": "a8741730e052b1be90b803807bd72c9e923d2acec99877d3604c0e2f89689c0f",
+      "bytes": 142267
+    },
+    "Locales/copilot_overlay_strings_az.pak": {
+      "sha256": "ed695c437041a297922f6719f2e998b6cd41f22e23074c9e36decfba51d8276c",
+      "bytes": 73393
+    },
+    "Locales/copilot_overlay_strings_bg.pak": {
+      "sha256": "afef9954af906a1f717217b4cb63aa0fe4d2720493aae23e84a9bcad621257ac",
+      "bytes": 108305
+    },
+    "Locales/copilot_overlay_strings_bn-IN.pak": {
+      "sha256": "a5cb7a0640492c42bf10cf4060bfd26d06cb21789f3f3aaf783849d7e8fa6dd6",
+      "bytes": 148687
+    },
+    "Locales/copilot_overlay_strings_bs.pak": {
+      "sha256": "bce18ebf8d7d05ebfcfda1346f29efb0c665d8c67b8b87a2499dcd64f576d4c8",
+      "bytes": 67943
+    },
+    "Locales/copilot_overlay_strings_ca-Es-VALENCIA.pak": {
+      "sha256": "f7b99acc7ec431685458e7867ffd1982b1d6e2df335e0b8e25aff9208cb54b5c",
+      "bytes": 71580
+    },
+    "Locales/copilot_overlay_strings_ca.pak": {
+      "sha256": "38233c8e3831b5da82653c030f680976d37ea29ce7e1d652c61a660d23cfadd6",
+      "bytes": 71367
+    },
+    "Locales/copilot_overlay_strings_cs.pak": {
+      "sha256": "a97d3e7952b633e00339ee13f307b5e930cac8f99bfe18c1806296f5b8a6f84b",
+      "bytes": 69514
+    },
+    "Locales/copilot_overlay_strings_cy.pak": {
+      "sha256": "07849c6bde72921345bead056c51ff004df26706d04ace707d08b0643b936f2d",
+      "bytes": 69656
+    },
+    "Locales/copilot_overlay_strings_da.pak": {
+      "sha256": "11d963eb115dcb7e5924ab37679e2eb4d26cb57a258e3cce5b19deb0f0eb792e",
+      "bytes": 64834
+    },
+    "Locales/copilot_overlay_strings_de.pak": {
+      "sha256": "4ea7d91225ecad8e66c6b85f876624c772abd8eb59592ee4902cb16bc9350bf1",
+      "bytes": 72365
+    },
+    "Locales/copilot_overlay_strings_el.pak": {
+      "sha256": "c86addd265cf21ee246782c13332618d4d7220cdb9a317595691e0e494031cb2",
+      "bytes": 122665
+    },
+    "Locales/copilot_overlay_strings_en-GB.pak": {
+      "sha256": "19e8924c8746897c628bf6db5fc0c9f30527b7909e7f29e47ae7eb8748aa4b1c",
+      "bytes": 59715
+    },
+    "Locales/copilot_overlay_strings_en-US.pak": {
+      "sha256": "ff450c9ce1a05b3eddaa4049cb6116f417be44c8886379e764f1cb4d52b01ac4",
+      "bytes": 59071
+    },
+    "Locales/copilot_overlay_strings_es-419.pak": {
+      "sha256": "6e0be27a1cb1ce806fae1fe71e30704324c17305eee22e78f86f699b5419c47e",
+      "bytes": 69853
+    },
+    "Locales/copilot_overlay_strings_es.pak": {
+      "sha256": "f4fe7bd65d897fcda6df116f88402547fee5ac8563dbdfa0655e2878658bc8f4",
+      "bytes": 69658
+    },
+    "Locales/copilot_overlay_strings_et.pak": {
+      "sha256": "def1c868c759930bc183b7b847566eac8c45fb1cbdac3cbcbfeb134c309519fd",
+      "bytes": 63666
+    },
+    "Locales/copilot_overlay_strings_eu.pak": {
+      "sha256": "d79cbbbce8bb4b47651bf1f60789da1539d363d6e6bca0e8f337a7ae3c0cc7c5",
+      "bytes": 65628
+    },
+    "Locales/copilot_overlay_strings_fa.pak": {
+      "sha256": "32f9ba17fc8d848c0abd745525203725216f83f224892a89e9cdf85bb1929df6",
+      "bytes": 101946
+    },
+    "Locales/copilot_overlay_strings_fi.pak": {
+      "sha256": "f63bcc7bbabb99928d8177ab7f23b3f01b74589ac5d8c28112f919ff43e2c6e5",
+      "bytes": 67172
+    },
+    "Locales/copilot_overlay_strings_fil.pak": {
+      "sha256": "87439f697490be4258a49731c086e8b895a28bb4c7e2e8dae3416f20480286c2",
+      "bytes": 73077
+    },
+    "Locales/copilot_overlay_strings_fr-CA.pak": {
+      "sha256": "6d1a517cc643822e05d88ea2d6e6db0088d686a48288cf054b6888276e566ae1",
+      "bytes": 76945
+    },
+    "Locales/copilot_overlay_strings_fr.pak": {
+      "sha256": "768a67935d663cd2f88259516e34e986e3f74ec11fa4d40c35a28fe94d547778",
+      "bytes": 76432
+    },
+    "Locales/copilot_overlay_strings_ga.pak": {
+      "sha256": "4732359ddb73fe1245838b8f2804dc96253ceba231d390e9d15a2b612b6d9a8c",
+      "bytes": 76402
+    },
+    "Locales/copilot_overlay_strings_gd.pak": {
+      "sha256": "47e9262f7f237f34554fe6556536a0c27f8ab2803b61373f45101bee55d0b865",
+      "bytes": 78227
+    },
+    "Locales/copilot_overlay_strings_gl.pak": {
+      "sha256": "924a2c10b0f8d314c4eb9cab24b6bdb728bc7596efdc47c2c80592ab64cdb06e",
+      "bytes": 68101
+    },
+    "Locales/copilot_overlay_strings_gu.pak": {
+      "sha256": "6a50080919a72f2d1ca93d24832d97e0963e8ddf9f6cba6ef6a4c5896e6a077e",
+      "bytes": 143852
+    },
+    "Locales/copilot_overlay_strings_he.pak": {
+      "sha256": "cc3c22601c9469cf0dfdc845fdd3849773199d499fca8e8e0108547fd9b5df8d",
+      "bytes": 82626
+    },
+    "Locales/copilot_overlay_strings_hi.pak": {
+      "sha256": "f7eb7f247fcce316ead10875fefccf7592a008c8fb39b8533f49690c01d1c5e4",
+      "bytes": 140743
+    },
+    "Locales/copilot_overlay_strings_hr.pak": {
+      "sha256": "562585ddcc7c62a5deaa065e19dcde0689afaa262ee2fc156eae2aaf37b7a19f",
+      "bytes": 68474
+    },
+    "Locales/copilot_overlay_strings_hu.pak": {
+      "sha256": "29ae6fcf2a7c69c09712a22a82526b753b7c7306f79f2e6b1b9a28cc7db3d0b5",
+      "bytes": 73382
+    },
+    "Locales/copilot_overlay_strings_id.pak": {
+      "sha256": "2b1bf68b41e8179f88b6b9e752bc685e68296c661257967d39517c64f1dc54a1",
+      "bytes": 64953
+    },
+    "Locales/copilot_overlay_strings_is.pak": {
+      "sha256": "2ad63770cd9b0555570c46e3c137b78d7cf1d46fa8503c8763c29fae9bec37dd",
+      "bytes": 68999
+    },
+    "Locales/copilot_overlay_strings_it.pak": {
+      "sha256": "b8add7ec7f68f86e5b0fa44680d9d30d931bcb322288bb3cac8224a32df310ae",
+      "bytes": 69491
+    },
+    "Locales/copilot_overlay_strings_ja.pak": {
+      "sha256": "1ea4c302db5dacbeedb131e9653d4bb73919e8d845948e121db19b9d7bd0b002",
+      "bytes": 84111
+    },
+    "Locales/copilot_overlay_strings_ka.pak": {
+      "sha256": "c6002ccfe5972a5a622790a1bfcbf958c527c1586283cccdf7c168096722aa73",
+      "bytes": 151642
+    },
+    "Locales/copilot_overlay_strings_kk.pak": {
+      "sha256": "986749f1a07306d7b62810d0a23cec2988bc77e30f47157e3913e0eceeacf0d1",
+      "bytes": 111604
+    },
+    "Locales/copilot_overlay_strings_km.pak": {
+      "sha256": "382544d83c575ada0f3a59a37405602ef5f93a793c9b2d3835ab83d58d2130a9",
+      "bytes": 152689
+    },
+    "Locales/copilot_overlay_strings_kn.pak": {
+      "sha256": "0100a0cf56927ed0e76ce7d357b5665c8612ecb77254fcc9cd861a1c9b2aac42",
+      "bytes": 154944
+    },
+    "Locales/copilot_overlay_strings_ko.pak": {
+      "sha256": "7155401e15819420d1c8d5590b38305ce017aa06f2e4b96a8707b506c4fe0b96",
+      "bytes": 72562
+    },
+    "Locales/copilot_overlay_strings_kok.pak": {
+      "sha256": "d24cdf4b522127629828497cd97cc84c6d3ba1c60ff93c47b73d0c7eee82c69f",
+      "bytes": 134279
+    },
+    "Locales/copilot_overlay_strings_lb.pak": {
+      "sha256": "7a674be98fb7c4aad2c372719799fdc4b988ba913f188b17de5ccf8988cebe60",
+      "bytes": 70220
+    },
+    "Locales/copilot_overlay_strings_lo.pak": {
+      "sha256": "9549aa7acbdce287acea89484b5c07713a585798373f556ffde808712c7ee031",
+      "bytes": 138214
+    },
+    "Locales/copilot_overlay_strings_lt.pak": {
+      "sha256": "2f93ef2bafb57594354b330c676e192913708c9f78e3d71825fee3dc6bea4ae1",
+      "bytes": 72544
+    },
+    "Locales/copilot_overlay_strings_lv.pak": {
+      "sha256": "561daee507ad621804b32989e0f0fa434ec03ca12a3e1f0408465e5f12c0612e",
+      "bytes": 69947
+    },
+    "Locales/copilot_overlay_strings_mi.pak": {
+      "sha256": "6d5fbbec09854ade9e995697e535c6259f2224cd71c14fd3b07ad38a22fbab32",
+      "bytes": 70815
+    },
+    "Locales/copilot_overlay_strings_mk.pak": {
+      "sha256": "91b647d30f9deff74fff0c0882c384363f69feea592a161a985b49a302f2133e",
+      "bytes": 109784
+    },
+    "Locales/copilot_overlay_strings_ml.pak": {
+      "sha256": "92b3ce168fa4322b0ff908e2001a3c1fb775fcd01b5c4e7531011b122b8033bb",
+      "bytes": 171945
+    },
+    "Locales/copilot_overlay_strings_mr.pak": {
+      "sha256": "af0675e7b458ae54bca964ad4be4789e68de58ee0d711898bf4ad195c8dc443b",
+      "bytes": 144400
+    },
+    "Locales/copilot_overlay_strings_ms.pak": {
+      "sha256": "729e2f54c45c425b706b945c8fe9b03d32fcd8bc9ef4371978bb7baa172da209",
+      "bytes": 67298
+    },
+    "Locales/copilot_overlay_strings_mt.pak": {
+      "sha256": "9d8eb1ed7b77cdf06b951376162319dc89f28efa403de2172631aae0e073d3b4",
+      "bytes": 72926
+    },
+    "Locales/copilot_overlay_strings_nb.pak": {
+      "sha256": "0b4b48989dbe00ae8ba90afc6b706da467d91db5e67a32e2d9221015b4deb649",
+      "bytes": 63207
+    },
+    "Locales/copilot_overlay_strings_ne.pak": {
+      "sha256": "c8c7704c23f9e70a785508eb97931f939307029d675fb133240ee06d25b1df52",
+      "bytes": 148326
+    },
+    "Locales/copilot_overlay_strings_nl.pak": {
+      "sha256": "266c2a8e7be794dbccfcab5a417f212b93cfa9bd1787b7c73bf5cc6dd58e7b98",
+      "bytes": 68010
+    },
+    "Locales/copilot_overlay_strings_nn.pak": {
+      "sha256": "d81e55deba88a3c59c9c491e6790eb51043f12f952d2d2167b0390bad2639f13",
+      "bytes": 63071
+    },
+    "Locales/copilot_overlay_strings_or.pak": {
+      "sha256": "0040807dde7c2053110a4d16c00b31c5fc53b99a7445cd4e241342b3c18d29af",
+      "bytes": 154883
+    },
+    "Locales/copilot_overlay_strings_pa.pak": {
+      "sha256": "5c74c4851e607bfe81ef188843c813c887b2efb7004a5af03439f5af36aa1187",
+      "bytes": 147563
+    },
+    "Locales/copilot_overlay_strings_pl.pak": {
+      "sha256": "e8cd709b8e070076f8e3f109be1a1390384f74785bba54c41af1d2c1ab39febb",
+      "bytes": 74917
+    },
+    "Locales/copilot_overlay_strings_pt-BR.pak": {
+      "sha256": "ed331a3cc25dc3128558a7a71e6744db36feac94594cc73df511965d97c8d82d",
+      "bytes": 68307
+    },
+    "Locales/copilot_overlay_strings_pt-PT.pak": {
+      "sha256": "af8f6fd27e6cf831ca349e88a5bc4cf2e520e41c550e29d11941244c53dbe321",
+      "bytes": 70552
+    },
+    "Locales/copilot_overlay_strings_qu.pak": {
+      "sha256": "00846971f03635ce5f0da862edbb39153518c84631832c247531a268085d339b",
+      "bytes": 70516
+    },
+    "Locales/copilot_overlay_strings_ro.pak": {
+      "sha256": "4ed76f98e68a61cf57c5f3ce4e2e128ca152560d208e49cd4a649aa773a456cf",
+      "bytes": 71474
+    },
+    "Locales/copilot_overlay_strings_ru.pak": {
+      "sha256": "c8278289433fe9887c506ac93320750b93a3ecf9d4d1089d309ca24a65574409",
+      "bytes": 109866
+    },
+    "Locales/copilot_overlay_strings_sk.pak": {
+      "sha256": "3965ec7f37e4f4d686d689c588c0e7c5800cd7c7ef1253e885d5aa8fa1f92faf",
+      "bytes": 71024
+    },
+    "Locales/copilot_overlay_strings_sl.pak": {
+      "sha256": "d64d5efd45e31eff66775eeb0479f0f33fb658df0a05a44e6b024cf159dbcdd1",
+      "bytes": 68699
+    },
+    "Locales/copilot_overlay_strings_sq.pak": {
+      "sha256": "8303f2d83918a6d45424c697366089c32abc25190cd4bca73caab2adb22b4ecd",
+      "bytes": 70593
+    },
+    "Locales/copilot_overlay_strings_sr-Cyrl-BA.pak": {
+      "sha256": "93977a65aaf0b4add6a0cae68c7bc676e2b9fe0f5e5a6685c0f1a5e3a943d86a",
+      "bytes": 105716
+    },
+    "Locales/copilot_overlay_strings_sr-Latn-RS.pak": {
+      "sha256": "bb05b81443dd48aaffb38ebebe24d355b539c22496b29145e5073f5d300eedf3",
+      "bytes": 68677
+    },
+    "Locales/copilot_overlay_strings_sr.pak": {
+      "sha256": "3c2c9f39b857f9325112d8877fe88a29e58073f71c25605fd029c1dcff5323f4",
+      "bytes": 107339
+    },
+    "Locales/copilot_overlay_strings_sv.pak": {
+      "sha256": "66ea3428191bec7b26c041c842cdf5c3a8164124ef4d2046e0bf3e6616b477da",
+      "bytes": 64323
+    },
+    "Locales/copilot_overlay_strings_ta.pak": {
+      "sha256": "f66a6555729f9d9a2ed65017cd2bafa30a9272177f2254470d82bc6f6f3324f8",
+      "bytes": 167090
+    },
+    "Locales/copilot_overlay_strings_te.pak": {
+      "sha256": "9576aa7b2be6e3adcdc3e703f89e829189ce5de6446b862a2da59991ce25f14c",
+      "bytes": 153868
+    },
+    "Locales/copilot_overlay_strings_th.pak": {
+      "sha256": "a6d360c5a101ffa0cf633c503f023086ba609a452d226ae18060bb097b5738c5",
+      "bytes": 135828
+    },
+    "Locales/copilot_overlay_strings_tr.pak": {
+      "sha256": "8f7ca5cd6251c383274609aceb2a64929e97e7adff99336dc8b8956d94602216",
+      "bytes": 70086
+    },
+    "Locales/copilot_overlay_strings_tt.pak": {
+      "sha256": "fb6d402f22f5ad8a092372048149befc6a12162705b986f7cfdb3d426fd3f2fc",
+      "bytes": 106744
+    },
+    "Locales/copilot_overlay_strings_ug.pak": {
+      "sha256": "bef3f0f13cc3b89f67481e2f68c734950cc36f9787d74f0c097bef8281b6a720",
+      "bytes": 107951
+    },
+    "Locales/copilot_overlay_strings_uk.pak": {
+      "sha256": "3b51e7d1737e0d99d19b19aa9c2fa89fa876e408ea4f3b45d4a8fd58dce4a721",
+      "bytes": 106158
+    },
+    "Locales/copilot_overlay_strings_ur.pak": {
+      "sha256": "ed2a0450f83fe1fb8933780bbc09d8160801ee0fca2ceaab480abe7501988dc0",
+      "bytes": 104139
+    },
+    "Locales/copilot_overlay_strings_vi.pak": {
+      "sha256": "7c046bbcf0f7953aaaf16ab9f5a0f243f3ba6d7538f800beb9f31c5f3b5eaed7",
+      "bytes": 80224
+    },
+    "Locales/copilot_overlay_strings_zh-CN.pak": {
+      "sha256": "e4aefec2edf1e0cb96f8e6db4f5ec90a52e6937d45b47b813075866dee767fd9",
+      "bytes": 56104
+    },
+    "Locales/copilot_overlay_strings_zh-TW.pak": {
+      "sha256": "be6106d1bd39686d0653e21401568ea76e93bb5bd78e34bdd6ffca6e8dcc5e87",
+      "bytes": 58320
+    },
+    "Locales/cs.pak": {
+      "sha256": "1c74cfbec1f233ed963a0bf2c04900a16b3086e2d277bdbaa57f6cfe5da2a6b2",
+      "bytes": 1189296
+    },
+    "Locales/cy.pak": {
+      "sha256": "9fcdf2fa2425ecdebb21b27741f55d14a65845884d2b653a1943a1e4d66ddf09",
+      "bytes": 1178030
+    },
+    "Locales/da.pak": {
+      "sha256": "be9ca92d91ad8db0d3a5cdba38a481ef89a3aa7536f251c46bedb82d7289ccb3",
+      "bytes": 1066615
+    },
+    "Locales/de.pak": {
+      "sha256": "85a33132ff857f5042ab0cefacd70e12f71bd23c44c01a3ef3ecbac001da5d48",
+      "bytes": 1189300
+    },
+    "Locales/el.pak": {
+      "sha256": "753a743718a4eb769eec1a89a4252cccba11ba0e214d14bda70de5104ec6beb4",
+      "bytes": 2023689
+    },
+    "Locales/en-GB.pak": {
+      "sha256": "8cff81184cfb93ddbdab1ef337cc3cfa6f27d5a3b039ce7823304fa1c5eed9b2",
+      "bytes": 971672
+    },
+    "Locales/en-US.pak": {
+      "sha256": "2b774ad0b1e0ae47f04dae2e37a50ff3a8cd30d05b22d76da988c06c1678dbd1",
+      "bytes": 952901
+    },
+    "Locales/es-419.pak": {
+      "sha256": "d4f169bf3a62463f3a6578352d2d7e73b2398ebfe13df0c7b60000080b8430ba",
+      "bytes": 1180644
+    },
+    "Locales/es.pak": {
+      "sha256": "14ee2f6db4686136a98b7e3c45d204961aaf3359dc6ab32f0ee7fbb3a2407e11",
+      "bytes": 1181399
+    },
+    "Locales/et.pak": {
+      "sha256": "c5033fff953c9d2af29c64ab69ce305899e99085b84d39c7feb715bd5931e7ee",
+      "bytes": 1056160
+    },
+    "Locales/eu.pak": {
+      "sha256": "5e74304e79cd9a47b1ed241b39bbd9f802972b8c71fb023021e3a83dd7dec23c",
+      "bytes": 1098722
+    },
+    "Locales/fa.pak": {
+      "sha256": "8701e1a7b646643fa123a41047e814fdaf896ba550fdc34fab9d55eb78b2de25",
+      "bytes": 1648827
+    },
+    "Locales/fi.pak": {
+      "sha256": "e64544bbad4f22e2c4199d3544f9ca68acd5c44475ad97652c5b545bd5df579a",
+      "bytes": 1103066
+    },
+    "Locales/fil.pak": {
+      "sha256": "28106bb18c4a0b1047ad82874b3ceb16d43e2a8867414151a27a6659e2120191",
+      "bytes": 1189539
+    },
+    "Locales/fr-CA.pak": {
+      "sha256": "76d82a766f9c37fafed4195430d69bef5ef990edd2dc9d3c7dc7a5f8013e791a",
+      "bytes": 1271540
+    },
+    "Locales/fr.pak": {
+      "sha256": "d3644f111dde9fcc68b825ddb210c70b9c24ad39f6e619f8cafa73b493d5e5f8",
+      "bytes": 1262580
+    },
+    "Locales/ga.pak": {
+      "sha256": "dd04aae0e8e37007ee1e7666c72bcf755f4b367ce23557ced4ab3412c2fcc0b8",
+      "bytes": 1265966
+    },
+    "Locales/gd.pak": {
+      "sha256": "7941cd3d4fbf41e5fca2feada03a77e9e3e222630fcb9adb3ad676a3e01a3b1d",
+      "bytes": 1333466
+    },
+    "Locales/gl.pak": {
+      "sha256": "caf385f42adede22277746d81e25c0fc5bdb938f623057b3bbddd121e90a0182",
+      "bytes": 1130929
+    },
+    "Locales/gu.pak": {
+      "sha256": "f988eae9513f04b1680bf4f80096f5efb23f5fa5c865ed1522971b6333973f48",
+      "bytes": 2267456
+    },
+    "Locales/he.pak": {
+      "sha256": "7180a665f0a7705d043540f9d9bf2ae3c81662f92f36c81bf7e269865db5c39a",
+      "bytes": 1370960
+    },
+    "Locales/hi.pak": {
+      "sha256": "65283b67e3ecfb02a174a333d20c2bdbf16cb07fd2b2cc6d0283e5f5d5b04c30",
+      "bytes": 2263761
+    },
+    "Locales/hr.pak": {
+      "sha256": "77819c19a1e131b0429dd555c084e4fdaccc00e301e99f07595a9405d22596bd",
+      "bytes": 1152208
+    },
+    "Locales/hu.pak": {
+      "sha256": "96fc237601ba8341e14fed9c7f8b5bc3f15861d003560ec6f85c42bd97a8fe8e",
+      "bytes": 1218676
+    },
+    "Locales/id.pak": {
+      "sha256": "726badb8ccbb29adbf9a64c4a15987dfb07b6d31927fd2a457fa437dfdaa0c2b",
+      "bytes": 1042809
+    },
+    "Locales/is.pak": {
+      "sha256": "89b96abb7922efbef796c7a981da4ab45abe21ef31b01b871581f97771e830cb",
+      "bytes": 1118963
+    },
+    "Locales/it.pak": {
+      "sha256": "77137c356f41d3d05f70a98311b819c6e431ff8a1fc1670313f06e394e6d49ff",
+      "bytes": 1164436
+    },
+    "Locales/ja.pak": {
+      "sha256": "a1a94d089f38bd7e54b3326c3fd960e35c4d59c13b57bf5777b5177b337db736",
+      "bytes": 1359592
+    },
+    "Locales/ka.pak": {
+      "sha256": "9547465bb6bfe7e3d63f3704fb34d6c29f5abc8c3e2e69c20fc4bf579e86cd30",
+      "bytes": 2530253
+    },
+    "Locales/kk.pak": {
+      "sha256": "e25e2129c7c769fa4c8332ecfb1ff0945d957fa5645a4a0cedebec784a4bdfb7",
+      "bytes": 1790891
+    },
+    "Locales/km.pak": {
+      "sha256": "1cc84741af3d3fab78fd3b4cfd921a1dcf3dff709feb3e3ade8ce42c4d4e89ff",
+      "bytes": 2434212
+    },
+    "Locales/kn.pak": {
+      "sha256": "0a5b02b11a08cc313ecf6fbf228871ff19276e3e314b2b5a1f5816e200100d17",
+      "bytes": 2531812
+    },
+    "Locales/ko.pak": {
+      "sha256": "1b9fed7c199e9e53684f42151a92c4861d3c121a649870e12b9e2ee045019bae",
+      "bytes": 1145563
+    },
+    "Locales/kok.pak": {
+      "sha256": "603ebff33686be402e1321bfacf06ef482b58bef7527416b46c74f0ae7facc32",
+      "bytes": 2184329
+    },
+    "Locales/lb.pak": {
+      "sha256": "a33629261692687b04b310bf3c44ba4474887ac68d70583ce44dbaf7433b3206",
+      "bytes": 1149869
+    },
+    "Locales/lo.pak": {
+      "sha256": "fff4536cee6a4a0aec03e54f85b385763c1b551a634df3e0b679817e4917828c",
+      "bytes": 2211067
+    },
+    "Locales/lt.pak": {
+      "sha256": "5cf6a5d39377405579ee63dfdb3d5bc54514d9a320080b177f7544111c581f2f",
+      "bytes": 1205908
+    },
+    "Locales/lv.pak": {
+      "sha256": "27b311c9bf834bacdc2324fbdb57bcc32be8c5f00c18e98f927f4773ebb4be98",
+      "bytes": 1174425
+    },
+    "Locales/mi.pak": {
+      "sha256": "68ad28e8f6dc8809eaa72e959d1d9c9a29a199a6f08124e5d77860a15f4f6b2e",
+      "bytes": 1151085
+    },
+    "Locales/mk.pak": {
+      "sha256": "04a961d0a38739bf70294f5e184f8311325bfaf2c7d8761bf9cf7df6b97ac141",
+      "bytes": 1825703
+    },
+    "Locales/ml.pak": {
+      "sha256": "1bc4fa378ab83de2141969b30813916e4af5c4b79f65ec226ecd2554b61db1af",
+      "bytes": 2773042
+    },
+    "Locales/mr.pak": {
+      "sha256": "920efe24890d810fa649498c0cc4498071f7f6b756d1d8af8d4d0fd0cc8fc1e1",
+      "bytes": 2286424
+    },
+    "Locales/ms.pak": {
+      "sha256": "c62c1bab95923349049ccdea15958a584a1d0863381fb496426c5e6960e81b8c",
+      "bytes": 1074831
+    },
+    "Locales/mt.pak": {
+      "sha256": "c0776d5b8a7550286cfe8355bbc498f37ff6c86c198698040a2514566fb58d5e",
+      "bytes": 1225176
+    },
+    "Locales/nb.pak": {
+      "sha256": "9ddaba214fd6f95059c103aed0e4fac59de15af71c2716f2b43862487e555976",
+      "bytes": 1039856
+    },
+    "Locales/ne.pak": {
+      "sha256": "7333b9844c69dc696af2a4b9f8b5d9aeb3399becd38e9c5a816d9a4bea6e60bd",
+      "bytes": 2429271
+    },
+    "Locales/nl.pak": {
+      "sha256": "4e60b7a56da07471d85280aff9964137f20426127f0d145fc359f01632bfba56",
+      "bytes": 1111017
+    },
+    "Locales/nn.pak": {
+      "sha256": "d7ee259506248100044dfbff03863f9e4452d5bfa21efdb63f30a63277348527",
+      "bytes": 1044101
+    },
+    "Locales/or.pak": {
+      "sha256": "8ff97c6c09c337ed14d65ab3058e8f301d4ce026e66dbfe9867578bd6ac3eb2a",
+      "bytes": 2522841
+    },
+    "Locales/pa.pak": {
+      "sha256": "004b036edc6279caffabbb97133fb93c21d104cdced887ea89a163a5593a83d9",
+      "bytes": 2309350
+    },
+    "Locales/pl.pak": {
+      "sha256": "83d9566625c61489222f76781374a20ad11a83520fd1d6a8b0b09e8e0236ab76",
+      "bytes": 1236428
+    },
+    "Locales/pt-BR.pak": {
+      "sha256": "22f5d5cce54132efc02058277e72ea8342b623d88a1e226ae16e0a3f5db06440",
+      "bytes": 1145956
+    },
+    "Locales/pt-PT.pak": {
+      "sha256": "febc6426ed49bc76062f289d7c39c904359af108b83eb927efca5fcaf5210b92",
+      "bytes": 1178839
+    },
+    "Locales/qu.pak": {
+      "sha256": "fc642dda6dfaa12a7af8b4fba954ccb4c93537cc990403cdf36f8293ce436f67",
+      "bytes": 1180400
+    },
+    "Locales/ro.pak": {
+      "sha256": "53678f490b7b001ef622eb909d464cb4a17c6539f2199b3a9f27ab07e2e807cc",
+      "bytes": 1192738
+    },
+    "Locales/ru.pak": {
+      "sha256": "bc193bfd161997af2b317cf19817ee2d30046d121989297483618e1cdf6078be",
+      "bytes": 1869997
+    },
+    "Locales/sk.pak": {
+      "sha256": "76403479afb973ba934664cded2cc355beb819e28adac162682e14d0df60bfc6",
+      "bytes": 1211326
+    },
+    "Locales/sl.pak": {
+      "sha256": "2f6e473abd19e38309348d026f62ee0dff0f7e0963fed4c82bb9d8843fe84b1e",
+      "bytes": 1150667
+    },
+    "Locales/sq.pak": {
+      "sha256": "66903eb634d74e0e78291fcf181de723b0ea11cb1df13c51379a0d218b787a30",
+      "bytes": 1168127
+    },
+    "Locales/sr-Cyrl-BA.pak": {
+      "sha256": "d013c1b5890c0cdf7e2849eadf1e998465eaa04784db1cb10d48cee59e3d3032",
+      "bytes": 1766236
+    },
+    "Locales/sr-Latn-RS.pak": {
+      "sha256": "1322b46b0afb65e5751b94f004bc9f6a920e1f40a235fb1d60a4cb056d491416",
+      "bytes": 1143254
+    },
+    "Locales/sr.pak": {
+      "sha256": "cc0a31d1dc0dfb3210b32a39aef380ce4d28ba1eb5b5b10635deaffa9254db6e",
+      "bytes": 1783861
+    },
+    "Locales/sv.pak": {
+      "sha256": "9fb3de9c2dc05695039013067380c0afe8ec2a98b47e02e9606c161e3778abae",
+      "bytes": 1068227
+    },
+    "Locales/ta.pak": {
+      "sha256": "cb8229dd6f2b68ef36179cd04fbe8d1188f5d22d6dd5d7eb788a8c5f4bee2e72",
+      "bytes": 2764845
+    },
+    "Locales/te.pak": {
+      "sha256": "1893a3840b93aa464ce6a727130f3d6becf58421c83cc9a83e190682e48c850a",
+      "bytes": 2499410
+    },
+    "Locales/th.pak": {
+      "sha256": "0d5eefaee7c18046914d9a1248b9e7e554e3cd26538b999412edf6d1fbbb4018",
+      "bytes": 2186414
+    },
+    "Locales/tr.pak": {
+      "sha256": "c63a92482a896d6cb34907970c6bcef6f67235ffc76eb81e49f9ca4e19f94f34",
+      "bytes": 1143763
+    },
+    "Locales/tt.pak": {
+      "sha256": "7602737ed4b3d3c2291e3489c3ea4775c9a698844ee356a1df728bb8c4466f2e",
+      "bytes": 1795764
+    },
+    "Locales/ug.pak": {
+      "sha256": "245d1229b738f54e7cfc1f6e62b75198b51a801626a6d24671e347f140714ae3",
+      "bytes": 1739274
+    },
+    "Locales/uk.pak": {
+      "sha256": "70f5c247d0cd1f0d1f9ce9ddeb91e18f72cd366b5718262a97389c35d1dd94bf",
+      "bytes": 1836013
+    },
+    "Locales/ur.pak": {
+      "sha256": "43cffebb607299cdfbc22ec9936b56f7fb3858b7b3015bb9130d4263abf52ccf",
+      "bytes": 1670007
+    },
+    "Locales/vi.pak": {
+      "sha256": "8ca7998df6b270186f9924e694b70e270a6998392b4ef86f60e0cee456720def",
+      "bytes": 1305956
+    },
+    "Locales/zh-CN.pak": {
+      "sha256": "16053e64f276069cb89cb37c1538b19ee4ad5cf91f5921d3cfebad64f5a907e3",
+      "bytes": 914114
+    },
+    "Locales/zh-TW.pak": {
+      "sha256": "8735f807b884ae1930840b00956625f00c2b4a154f1445515234d3363d099498",
+      "bytes": 944851
+    },
+    "MEIPreload/manifest.json": {
+      "sha256": "44844cf3dde6e80087ae0e6bf0d9326d7ef7d23326d24ac83af0850be26923d2",
+      "bytes": 238
+    },
+    "MEIPreload/preloaded_data.pb": {
+      "sha256": "c6070a157b4e28d16fbccbd233e93846ddb070c85e1a1bc64469b7a5f1424fad",
+      "bytes": 8254
+    },
+    "microsoft_shell_integration.dll": {
+      "sha256": "ca44749be869b2423b198d3cca7b3fd78a4c923c404828db6155378621fb9d8e",
+      "bytes": 463688
+    },
+    "mip_core_gn.dll": {
+      "sha256": "1ab62730f5fd85e1fd9def1e9d04cadbc9360b0d4fc1ebaf4da5dd7c1cb8899a",
+      "bytes": 8692040
+    },
+    "mscopilot.exe": {
+      "sha256": "1f4d9dbc743340d78e7e72b72bdb83cebc8d76fb649c8e96a1df738c65f5cfab",
+      "bytes": 4959560
+    },
+    "msedge.dll": {
+      "sha256": "0203543127df71e7721fed2eef97447d32931a08f86b93f0f261b423b4af499a",
+      "bytes": 349895496
+    },
+    "msedge.dll.sig": {
+      "sha256": "9edc62e35a945e46440d24f6d84a0505661655c64eb6177102ec080fc09a41d7",
+      "bytes": 1389
+    },
+    "msedge_100_percent.pak": {
+      "sha256": "e2a469c8ad0f73c6068e906d83790ddca72a729e0ebf0b1e100bb6e894821da4",
+      "bytes": 976658
+    },
+    "msedge_200_percent.pak": {
+      "sha256": "bcff72fb8834960833aa3f9e79f5b8065310cbf1df397ce331a7e39734272287",
+      "bytes": 1677619
+    },
+    "msedge_elf.dll": {
+      "sha256": "74e6dd410e817ec9e79ac213c710e0c388eb68a2ded5daa413e3613767bc6607",
+      "bytes": 4058944
+    },
+    "msedge_wer.dll": {
+      "sha256": "15452c06576c5191337992736bb38576339aa452d207b9c8adf2c6b14e4fbc54",
+      "bytes": 125768
+    },
+    "msedgewebview2.exe": {
+      "sha256": "30285e24a33be3c0b2d0a7c3909fa1cc21d2fc0f0c2ab4eb79e46a9304b4256d",
+      "bytes": 4862792
+    },
+    "msedgewebview2.exe.sig": {
+      "sha256": "04cd07fbe565c65c9c8b4d2894b98903ec7a7376bd6ad454e948af5f0dfb2f15",
+      "bytes": 1389
+    },
+    "mspdf.dll": {
+      "sha256": "f21cc09c31f52786c2c0e3b88f726bccb340e4135dffc981ca06cee52cb61688",
+      "bytes": 18884424
+    },
+    "msvcp140.dll": {
+      "sha256": "92455cafa8ab1aad70b74e567ce1f4adc305ba08f3d0f4c0004f0a1d3e8aae90",
+      "bytes": 653568
+    },
+    "msvcp140_codecvt_ids.dll": {
+      "sha256": "be7e0579a61dd52052bf7df8850f3427193434f9aa3bd0d6db992ba06528ab18",
+      "bytes": 41216
+    },
+    "notification_helper.exe": {
+      "sha256": "b9975c4e6b712a81b7ffd0dd1743e6fc79745dbece0218619d30f523e42f2b00",
+      "bytes": 2865480
+    },
+    "oneauth.dll": {
+      "sha256": "80ebf062c0b3f68f1f95f5cd63a77baa6109d9550ee54ba5a919c19400cfbd73",
+      "bytes": 6451528
+    },
+    "oneds.dll": {
+      "sha256": "345fb68072e4489e328918ee7709762d7a3631149d50cbb770601da06ab5f3e1",
+      "bytes": 3528520
+    },
+    "onnxruntime.dll": {
+      "sha256": "6b0714597cccb6982c41622bc0d900ba84d64345186fd1c96141547619967b2d",
+      "bytes": 11105096
+    },
+    "onramp.dll": {
+      "sha256": "dc9575e533e333906b0810d61c07f183d64c378622d0363f6854a429afb4e375",
+      "bytes": 473928
+    },
+    "PdfPreview/PdfPreviewHandler.dll": {
+      "sha256": "abd9336228e9ae8c7f85ab2679cc33330d414fd6ea6b54c13ff552f622a56b48",
+      "bytes": 261448
+    },
+    "platform_experiences_helper.exe": {
+      "sha256": "a75e659a0ef813a8bbdf4022f703fae4530cdd256e3a8fc70eed4596fde8db60",
+      "bytes": 3179336
+    },
+    "prefs_enclave_x64.dll": {
+      "sha256": "543a55ef1735f7cb78f91f952e04be85538d4ee3186764a48188a9e918798275",
+      "bytes": 115944
+    },
+    "resources.pak": {
+      "sha256": "54c10caa8d2eba972e5bb22cdf6098ec910191cd013e5e74832a7193836ff1fb",
+      "bytes": 33982327
+    },
+    "show_third_party_software_licenses.bat": {
+      "sha256": "3e867e263b64592b2dad5c334b6aa46d0bb46a20aa0db01c5ff08c707c3e148d",
+      "bytes": 270
+    },
+    "telclient.dll": {
+      "sha256": "da149a92c01f647e87159d3b7ddf2bbbaab28bc8e52d077ff0019a62f0ee72be",
+      "bytes": 4064064
+    },
+    "textInputMethod.sccd": {
+      "sha256": "f88664c021237bbc0299b5ae3f5686b915e3007bf2902be8186ad847476447bf",
+      "bytes": 18615
+    },
+    "Trust Protection Lists/manifest.json": {
+      "sha256": "de864bf0ab8abacfba536d4e9764eca658f903bd2457f955e128c4ee181c7e58",
+      "bytes": 132
+    },
+    "Trust Protection Lists/Mu/Advertising": {
+      "sha256": "231be4e0be45f588b161634c816b9a5a49f530c0dcb55461d37715a94482dca1",
+      "bytes": 19889
+    },
+    "Trust Protection Lists/Mu/Analytics": {
+      "sha256": "bba2063d20d70f4ab06dc2ae04c2564cc2b8c631b6dab68248957dbdf107fdd2",
+      "bytes": 4036
+    },
+    "Trust Protection Lists/Mu/CompatExceptions": {
+      "sha256": "5b462316a51c918d0bae95959bf827cb9c72bbd84ffb0e43b750aa91fbf3ba53",
+      "bytes": 689
+    },
+    "Trust Protection Lists/Mu/Content": {
+      "sha256": "9a63f38e22b8573cbd47a4ef7b67ccb0934b87239e075c5cfafc7a1014e340c6",
+      "bytes": 4486
+    },
+    "Trust Protection Lists/Mu/Cryptomining": {
+      "sha256": "bdee796bf07922c152d770cd5928955f1b12c12515c4db6fc0ab8d2ad0c44c4e",
+      "bytes": 552
+    },
+    "Trust Protection Lists/Mu/Entities": {
+      "sha256": "f6e93c83d9e3cfdff064535647cee76fc85aa1c86fd22a93dcf3d2c377346d94",
+      "bytes": 69999
+    },
+    "Trust Protection Lists/Mu/Fingerprinting": {
+      "sha256": "05b29240a28bb75b4535d558edc510eb92df0ac27e9502498b99cdbc576b8298",
+      "bytes": 1113
+    },
+    "Trust Protection Lists/Mu/LICENSE": {
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "bytes": 35147
+    },
+    "Trust Protection Lists/Mu/Other": {
+      "sha256": "2b4a47b82cbe70e34407c7df126a24007aff8b45d5716db384d27cc1f3b30707",
+      "bytes": 34
+    },
+    "Trust Protection Lists/Mu/Social": {
+      "sha256": "4955c3e7f56641a4ae0ce9c79b4ceee4b21733b0f6dedc980bf8d822a792eba2",
+      "bytes": 754
+    },
+    "Trust Protection Lists/Mu/TransparentAdvertisers": {
+      "sha256": "d2cd0bef5f45daf490c53e705d6f67dfe12390c72a00efa6f5117432bd8edb8c",
+      "bytes": 105
+    },
+    "Trust Protection Lists/Sigma/Advertising": {
+      "sha256": "5c62ee354070033dba1bad40dcde115a81db45943b2274fae7059a5aa5c61d33",
+      "bytes": 21511
+    },
+    "Trust Protection Lists/Sigma/Analytics": {
+      "sha256": "d303be86132f8d7131941d41736694c2e29647ebaeccb38c0976fe66616ec8af",
+      "bytes": 3349
+    },
+    "Trust Protection Lists/Sigma/Content": {
+      "sha256": "70c295600066e9d3feeacd6bfc735bbcac6243694e4259477822d3db252729e1",
+      "bytes": 5938
+    },
+    "Trust Protection Lists/Sigma/Cryptomining": {
+      "sha256": "696e930706b5d391eb8778f73b0627ffc2be7f6c9a3e7659170d9d37fc4a97b5",
+      "bytes": 32
+    },
+    "Trust Protection Lists/Sigma/Entities": {
+      "sha256": "a5409d2c6a8cbd9339a95a5e09fcaedd4546a49d47fc4ebeda2d8749cfc66987",
+      "bytes": 131834
+    },
+    "Trust Protection Lists/Sigma/Fingerprinting": {
+      "sha256": "5306139881e81eebffd97de016130fdbb04e3ae976d94ad7a74e5dee63fbafcd",
+      "bytes": 2307
+    },
+    "Trust Protection Lists/Sigma/LICENSE": {
+      "sha256": "44071e0fcffb9a9a32e8fa7010bb18dbc41afd0b176f81bf700b15b638a88a51",
+      "bytes": 66
+    },
+    "Trust Protection Lists/Sigma/Other": {
+      "sha256": "2b4a47b82cbe70e34407c7df126a24007aff8b45d5716db384d27cc1f3b30707",
+      "bytes": 34
+    },
+    "Trust Protection Lists/Sigma/Social": {
+      "sha256": "28ac79097cf67587a228fdfe4746a1a9b31dae94d5a63bb3fcaa82443d69e7af",
+      "bytes": 3434
+    },
+    "Trust Protection Lists/Sigma/Staging": {
+      "sha256": "f90f4cb0976a046e93978971b58fba24bc93b0129e8612fdd0e5646a1bebed22",
+      "bytes": 1361
+    },
+    "v8_context_snapshot.bin": {
+      "sha256": "be9f84bff5eb7f3150427301f2810e32fa42f16d3cd517e0a4029e3ebdb7aa57",
+      "bytes": 775048
+    },
+    "vccorlib140.dll": {
+      "sha256": "c3e290cedd62fb3fdcefe73ea2b0d511f8d4e56557721a45fe2927d23dc1415b",
+      "bytes": 360712
+    },
+    "vcruntime140.dll": {
+      "sha256": "d72de19d1419ac79fb17d82c6cfa404d275231dec22d3ca57eef73b2d2b6ddb9",
+      "bytes": 188680
+    },
+    "vcruntime140_1.dll": {
+      "sha256": "0e1206bb6bb45b619210e67f23ca5bb66a7555700de47f552944f7613ce3bf65",
+      "bytes": 60168
+    },
+    "vk_swiftshader.dll": {
+      "sha256": "4248ea4daec55151841311164d93c56c0a8ce8a0ae35559700c3f0ebcb1e85dc",
+      "bytes": 4561224
+    },
+    "vk_swiftshader_icd.json": {
+      "sha256": "32d83ff113fef532a9f97e0d2831f8656628ab1c99e9060f0332b1532839afd9",
+      "bytes": 106
+    },
+    "vulkan-1.dll": {
+      "sha256": "7aa6b094deb9df137e9fef98ea5249363ef86876564bc2832b613a3d75264c53",
+      "bytes": 976200
+    },
+    "wdag.dll": {
+      "sha256": "099b0a065d15e55c8145db825302888244fb6c5a25ba91b2a740bb36472c58b7",
+      "bytes": 250696
+    },
+    "webview2_integration.dll": {
+      "sha256": "74c3b65d0d22e2829e3269e3aed77b907319577596edab5dcddfa093e57c91c4",
+      "bytes": 31560
+    },
+    "WidevineCdm/_platform_specific/win_x64/widevinecdm.dll": {
+      "sha256": "9849904f1c4b94ad0024bf29ef57fa9be3f3a111a6ed36abc33f200472cc3205",
+      "bytes": 22716072
+    },
+    "WidevineCdm/_platform_specific/win_x64/widevinecdm.dll.sig": {
+      "sha256": "ef521d8b23831293965238597f2cd52052a8be80293d2a464a62db4a62f1a446",
+      "bytes": 1389
+    },
+    "WidevineCdm/LICENSE": {
+      "sha256": "20de375707692099b3132084695377ce5fec0aec05813dedcce094b8eda44386",
+      "bytes": 473
+    },
+    "WidevineCdm/manifest.json": {
+      "sha256": "dca3cd7a673d0776a085c0b8958a85bdd8392923db21a0b55f4d37210f752322",
+      "bytes": 1002
+    }
+  },
+  "license_notice_files": [
+    "show_third_party_software_licenses.bat",
+    "Trust Protection Lists/Mu/LICENSE",
+    "Trust Protection Lists/Sigma/LICENSE",
+    "WidevineCdm/LICENSE"
+  ],
+  "license_source": "Unmodified notices embedded in the pinned official Fixed Version CAB; consult the official distribution page for applicable Microsoft terms.",
+  "authenticode_evidence": "No current signature attestation is stored in this public pin. The preparation tool requires a fresh Windows Authenticode check for every verification or publication.",
+  "historical_source_page_sha256": "bb444db4f5ed5a58d2627ccbb4eb8a933e04e68d946f822e81dca8e510faea25"
+}

@@ -1,0 +1,4 @@
+{
+  "project_id": "project_invalid", "save_namespace": "project_invalid",
+  "assets": {"asset_escape": {"asset_id": "asset_escape", "kind": "image", "path": "../outside.png", "sha256": "0000000000000000000000000000000000000000000000000000000000000000"}}
+}
